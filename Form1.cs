@@ -18,7 +18,7 @@ namespace Game
             InitializeComponent();
         }
 
-        public class MyList<T> : List<T>
+        public class ExtendedList<T> : List<T>
         {
 
             public event EventHandler OnAdd;
@@ -36,12 +36,26 @@ namespace Game
 
         SerialPort localPort = new SerialPort();
 
-        List<SerialFunction> AllFunctions = new List<SerialFunction>();
+        enum ObjectIndex
+        {
+            Label,
+            Button,
+            Combo,
+            LAST_INDEX
+        }
 
-        MyList<string> AllAnswers = new MyList<string>();
+        List<FunctionRule> AllRules = new List<FunctionRule>();
+        ExtendedList<string> AllAnswers = new ExtendedList<string>();
+        List<Function> AllFunctions = new List<Function>();
+
+        /**********************/
+        /*** IMPLEMENTATION ***\
+        /**********************/
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            int leo = (Int32)ObjectIndex.Label;
+
             Point newLocation = new Point(0, 0);
 
             for(int i=0;i<=12;i++)
@@ -71,9 +85,9 @@ namespace Game
                 newLocation.Y += 20;
             }
 
-            AllAnswers = new MyList<string>();
+            AllAnswers = new ExtendedList<string>();
 
-            AllAnswers.OnAdd += new EventHandler(List_AddItemEvent);
+            AllAnswers.OnAdd += new EventHandler(ParseReceivedAnswer);
         }
 
         private void pan_field_MouseOver(object sender, EventArgs e)
@@ -90,21 +104,36 @@ namespace Game
             senderPanel.BackColor = Color.LightBlue;
         }
 
-        void List_AddItemEvent(object sender, EventArgs e)
+        void ParseReceivedAnswer(object sender, EventArgs e)
         {
-            MessageBox.Show(AllAnswers[0]);
+            string answer = AllAnswers[0];
+
+            foreach(FunctionRule rule in AllRules)
+            {
+                if(rule.keyWord==answer)
+                {
+                    rule.targetLabel.Text = rule.displayText;
+
+                    AllAnswers.RemoveAt(0);
+                }
+            }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void cmd_addNewRule_Click(object sender, EventArgs e)
         {
-            SerialFunction newFunction = new SerialFunction()
+            int
+                parentIndex = cob_newRuleChooseFunction.SelectedIndex,
+                obejctIndex = cob_newRuleChooseObject.SelectedIndex;
+
+            FunctionRule newFunction = new FunctionRule()
             {
                 keyWord = txt_keyword.Text,
                 displayText = txt_displayText.Text,
-                functionIdx = cob_chooseFunction.SelectedIndex
+                ParentFunction = AllFunctions[parentIndex],
+                targetLabel = AllFunctions[parentIndex].targetObjects[obejctIndex]
             };
 
-            AllFunctions.Add(newFunction);
+            AllRules.Add(newFunction);
         }
 
         public void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
@@ -127,7 +156,7 @@ namespace Game
             AllAnswers.Add(receivedAnswer);
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void cmd_openPort_Click(object sender, EventArgs e)
         {
             localPort.PortName = "COM7";
             localPort.BaudRate = 9600;
@@ -137,20 +166,174 @@ namespace Game
             localPort.DataReceived += new SerialDataReceivedEventHandler(this.DataReceivedHandler);
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void cmd_closePort_Click(object sender, EventArgs e)
         {
             localPort.Close();
         }
+
+        private void cmd_addSimSerialAnswer_Click(object sender, EventArgs e)
+        {
+            string answer = txt_simSerialInput.Text;
+
+            if(answer!="")
+            {
+                AllAnswers.Add(answer);
+            }
+            else
+            {
+                MessageBox.Show("Eingabe fehlt!");
+            }
+        }
+
+        private void cmd_createFunction_Click(object sender, EventArgs e)
+        {
+            string functionName = txt_newFunctionName.Text;
+
+            if(functionName!="")
+            {
+                if(!DoesFunctionExist(functionName))
+                {
+                    Function newFunction = new Function()
+                    {
+                        name = functionName,
+                        index = AllFunctions.Count
+                    };
+
+                    AllFunctions.Add(newFunction);
+                }
+                else
+                {
+                    MessageBox.Show("Besteht schon!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Eingabe fehlt");
+            }
+        }
+
+        private void cob_chooseFunction_DropDown(object sender, EventArgs e)
+        {
+            ComboBox senderBox = sender as ComboBox;
+
+            senderBox.Items.Clear();
+            foreach(Function f in AllFunctions)
+            {
+                senderBox.Items.Add(f.name);
+            }
+        }
+
+        private void cmd_createNewObject_Click(object sender, EventArgs e)
+        {
+            dynamic newTargetObject=null;
+            int objectCobIndex = cob_newObjectType.SelectedIndex;
+            string objectName = txt_newObjectName.Text;
+            int functionIndex = cob_newObjectFunction.SelectedIndex;
+
+            int x_pos = Convert.ToInt32(txt_newObject_xPos.Text);
+            int y_pos = Convert.ToInt32(txt_newObject_yPos.Text);
+
+            switch(objectCobIndex)
+            {
+                case (Int32)ObjectIndex.Label:
+                    {
+                        Point newLocation = new Point(x_pos, y_pos);
+                        Label newLabel = new Label()
+                        {
+                            Name = objectName,
+                            Parent = pan_workspace,
+                            Text = "leer",
+                            Location = newLocation
+                        };
+
+                        newTargetObject = newLabel;
+                        break;
+                    }
+            }
+
+            if(newTargetObject!=null)
+            {
+                AllFunctions[functionIndex].targetObjects.Add(newTargetObject);
+            }
+            else
+            {
+                MessageBox.Show("newTargetObject=null");
+            }
+
+            lbl_preview.Visible = false;
+        }
+
+        private bool DoesFunctionExist(string functionName)
+        {
+            foreach(Function f in AllFunctions)
+            {
+                if(f.name==functionName)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private void cob_newRuleChooseFunction_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cob_newRuleChooseObject.Items.Clear();
+
+            int index = cob_newRuleChooseFunction.SelectedIndex;
+
+            foreach (Function f in AllFunctions)
+            {
+                if(f.index==index)
+                {
+                    foreach(dynamic targetObject in f.targetObjects)
+                    {
+                        cob_newRuleChooseObject.Items.Add(targetObject.Name);
+                    }                
+                }
+            }
+        }
+
+        private void txt_newObject_yPos_TextChanged(object sender, EventArgs e)
+        {
+            lbl_preview.Visible = true;
+
+            try
+            {
+                if (txt_newObject_xPos.Text != "" && txt_newObject_xPos.Text != "")
+                {
+                    int x = Convert.ToInt32(txt_newObject_xPos.Text);
+                    int y = Convert.ToInt32(txt_newObject_yPos.Text);
+
+                    Point newLocation = new Point(x, y);
+
+                    lbl_preview.Location = newLocation;
+                }
+            }
+            catch(Exception ex)
+            {
+                // Nothing.
+            }
+            
+        }
     }
 
-    public class SerialFunction
+    public class FunctionRule
     {
         public string
             keyWord,
             displayText;
 
         public int functionIdx;
+        public Function ParentFunction;
 
-        public Label targetLabel;
+        public dynamic targetLabel;
+    }
+
+    public class Function
+    {
+        public int index;
+        public string name;
+        public List<dynamic> targetObjects = new List<dynamic>();
     }
 }

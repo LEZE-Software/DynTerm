@@ -29,65 +29,89 @@
         private void InitializeComponent()
         {
             this.pan_field1 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lbl_newObjectFunction = new System.Windows.Forms.Label();
+            this.lbl_newObjectType_A = new System.Windows.Forms.Label();
+            this.lbl_newFunctionName_A = new System.Windows.Forms.Label();
             this.txt_keyword = new System.Windows.Forms.TextBox();
             this.lbl_keyword = new System.Windows.Forms.Label();
             this.txt_displayText = new System.Windows.Forms.TextBox();
             this.lbl_displayText = new System.Windows.Forms.Label();
-            this.cob_chooseFunction = new System.Windows.Forms.ComboBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.pan_field1.SuspendLayout();
+            this.cob_newRuleChooseFunction = new System.Windows.Forms.ComboBox();
+            this.cmd_addNewFunction = new System.Windows.Forms.Button();
+            this.cmd_openPort = new System.Windows.Forms.Button();
+            this.cmd_closePort = new System.Windows.Forms.Button();
+            this.grp_serialPort = new System.Windows.Forms.GroupBox();
+            this.cmd_addSimSerialAnswer = new System.Windows.Forms.Button();
+            this.lbl_simulateSerialInput_A = new System.Windows.Forms.Label();
+            this.txt_simSerialInput = new System.Windows.Forms.TextBox();
+            this.pan_workspace = new System.Windows.Forms.Panel();
+            this.lbl_preview = new System.Windows.Forms.Label();
+            this.cob_newObjectType = new System.Windows.Forms.ComboBox();
+            this.grp_editFunctions = new System.Windows.Forms.GroupBox();
+            this.cmd_createFunction = new System.Windows.Forms.Button();
+            this.txt_newFunctionName = new System.Windows.Forms.TextBox();
+            this.grp_createVisObject = new System.Windows.Forms.GroupBox();
+            this.lbl_newObject_posX_A = new System.Windows.Forms.Label();
+            this.lbl_newObject_yPos_A = new System.Windows.Forms.Label();
+            this.txt_newObject_xPos = new System.Windows.Forms.TextBox();
+            this.txt_newObject_yPos = new System.Windows.Forms.TextBox();
+            this.cob_newObjectFunction = new System.Windows.Forms.ComboBox();
+            this.lbl_newObjectName_A = new System.Windows.Forms.Label();
+            this.txt_newObjectName = new System.Windows.Forms.TextBox();
+            this.cmd_createNewObject = new System.Windows.Forms.Button();
+            this.grp_createRules = new System.Windows.Forms.GroupBox();
+            this.lbl_newRuleChooseObejct_A = new System.Windows.Forms.Label();
+            this.cob_newRuleChooseObject = new System.Windows.Forms.ComboBox();
+            this.lbl_newRuleChooseFunction_A = new System.Windows.Forms.Label();
+            this.grp_serialPort.SuspendLayout();
+            this.pan_workspace.SuspendLayout();
+            this.grp_editFunctions.SuspendLayout();
+            this.grp_createVisObject.SuspendLayout();
+            this.grp_createRules.SuspendLayout();
             this.SuspendLayout();
             // 
             // pan_field1
             // 
             this.pan_field1.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.pan_field1.Controls.Add(this.label3);
-            this.pan_field1.Controls.Add(this.label2);
-            this.pan_field1.Controls.Add(this.label1);
             this.pan_field1.Location = new System.Drawing.Point(12, 12);
             this.pan_field1.Name = "pan_field1";
             this.pan_field1.Size = new System.Drawing.Size(218, 218);
             this.pan_field1.TabIndex = 0;
             this.pan_field1.MouseHover += new System.EventHandler(this.pan_field_MouseOver);
             // 
-            // label3
+            // lbl_newObjectFunction
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(13, 68);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Tag = "func3";
-            this.label3.Text = "label3";
+            this.lbl_newObjectFunction.AutoSize = true;
+            this.lbl_newObjectFunction.Location = new System.Drawing.Point(6, 75);
+            this.lbl_newObjectFunction.Name = "lbl_newObjectFunction";
+            this.lbl_newObjectFunction.Size = new System.Drawing.Size(51, 13);
+            this.lbl_newObjectFunction.TabIndex = 2;
+            this.lbl_newObjectFunction.Tag = "";
+            this.lbl_newObjectFunction.Text = "Funktion:";
             // 
-            // label2
+            // lbl_newObjectType_A
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 41);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Tag = "func2";
-            this.label2.Text = "label2";
+            this.lbl_newObjectType_A.AutoSize = true;
+            this.lbl_newObjectType_A.Location = new System.Drawing.Point(6, 22);
+            this.lbl_newObjectType_A.Name = "lbl_newObjectType_A";
+            this.lbl_newObjectType_A.Size = new System.Drawing.Size(55, 13);
+            this.lbl_newObjectType_A.TabIndex = 1;
+            this.lbl_newObjectType_A.Tag = "";
+            this.lbl_newObjectType_A.Text = "Objekttyp:";
             // 
-            // label1
+            // lbl_newFunctionName_A
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 14);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Tag = "func1";
-            this.label1.Text = "label1";
+            this.lbl_newFunctionName_A.AutoSize = true;
+            this.lbl_newFunctionName_A.Location = new System.Drawing.Point(6, 16);
+            this.lbl_newFunctionName_A.Name = "lbl_newFunctionName_A";
+            this.lbl_newFunctionName_A.Size = new System.Drawing.Size(130, 13);
+            this.lbl_newFunctionName_A.TabIndex = 0;
+            this.lbl_newFunctionName_A.Tag = "func1";
+            this.lbl_newFunctionName_A.Text = "Name der neuen Funktion";
             // 
             // txt_keyword
             // 
-            this.txt_keyword.Location = new System.Drawing.Point(366, 106);
+            this.txt_keyword.Location = new System.Drawing.Point(9, 32);
             this.txt_keyword.Name = "txt_keyword";
             this.txt_keyword.Size = new System.Drawing.Size(100, 20);
             this.txt_keyword.TabIndex = 1;
@@ -96,7 +120,7 @@
             // 
             this.lbl_keyword.AutoSize = true;
             this.lbl_keyword.BackColor = System.Drawing.SystemColors.Control;
-            this.lbl_keyword.Location = new System.Drawing.Point(363, 90);
+            this.lbl_keyword.Location = new System.Drawing.Point(6, 16);
             this.lbl_keyword.Name = "lbl_keyword";
             this.lbl_keyword.Size = new System.Drawing.Size(51, 13);
             this.lbl_keyword.TabIndex = 2;
@@ -104,7 +128,7 @@
             // 
             // txt_displayText
             // 
-            this.txt_displayText.Location = new System.Drawing.Point(542, 106);
+            this.txt_displayText.Location = new System.Drawing.Point(146, 32);
             this.txt_displayText.Name = "txt_displayText";
             this.txt_displayText.Size = new System.Drawing.Size(100, 20);
             this.txt_displayText.TabIndex = 3;
@@ -113,93 +137,358 @@
             // 
             this.lbl_displayText.AutoSize = true;
             this.lbl_displayText.BackColor = System.Drawing.SystemColors.Control;
-            this.lbl_displayText.Location = new System.Drawing.Point(539, 90);
+            this.lbl_displayText.Location = new System.Drawing.Point(143, 16);
             this.lbl_displayText.Name = "lbl_displayText";
             this.lbl_displayText.Size = new System.Drawing.Size(65, 13);
             this.lbl_displayText.TabIndex = 4;
             this.lbl_displayText.Text = "Anzeigetext:";
             // 
-            // cob_chooseFunction
+            // cob_newRuleChooseFunction
             // 
-            this.cob_chooseFunction.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cob_chooseFunction.FormattingEnabled = true;
-            this.cob_chooseFunction.Items.AddRange(new object[] {
-            "F1",
-            "F2",
-            "F3"});
-            this.cob_chooseFunction.Location = new System.Drawing.Point(667, 105);
-            this.cob_chooseFunction.Name = "cob_chooseFunction";
-            this.cob_chooseFunction.Size = new System.Drawing.Size(121, 21);
-            this.cob_chooseFunction.TabIndex = 5;
+            this.cob_newRuleChooseFunction.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cob_newRuleChooseFunction.FormattingEnabled = true;
+            this.cob_newRuleChooseFunction.Location = new System.Drawing.Point(6, 73);
+            this.cob_newRuleChooseFunction.Name = "cob_newRuleChooseFunction";
+            this.cob_newRuleChooseFunction.Size = new System.Drawing.Size(103, 21);
+            this.cob_newRuleChooseFunction.TabIndex = 5;
+            this.cob_newRuleChooseFunction.DropDown += new System.EventHandler(this.cob_chooseFunction_DropDown);
+            this.cob_newRuleChooseFunction.SelectedIndexChanged += new System.EventHandler(this.cob_newRuleChooseFunction_SelectedIndexChanged);
             // 
-            // button1
+            // cmd_addNewFunction
             // 
-            this.button1.Location = new System.Drawing.Point(667, 143);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(121, 23);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.cmd_addNewFunction.Location = new System.Drawing.Point(151, 103);
+            this.cmd_addNewFunction.Name = "cmd_addNewFunction";
+            this.cmd_addNewFunction.Size = new System.Drawing.Size(100, 23);
+            this.cmd_addNewFunction.TabIndex = 6;
+            this.cmd_addNewFunction.Text = "Hinzufügen";
+            this.cmd_addNewFunction.UseVisualStyleBackColor = true;
+            this.cmd_addNewFunction.Click += new System.EventHandler(this.cmd_addNewRule_Click);
             // 
-            // button2
+            // cmd_openPort
             // 
-            this.button2.Location = new System.Drawing.Point(40, 300);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "Connect";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.cmd_openPort.Location = new System.Drawing.Point(6, 19);
+            this.cmd_openPort.Name = "cmd_openPort";
+            this.cmd_openPort.Size = new System.Drawing.Size(75, 23);
+            this.cmd_openPort.TabIndex = 7;
+            this.cmd_openPort.Text = "Connect";
+            this.cmd_openPort.UseVisualStyleBackColor = true;
+            this.cmd_openPort.Click += new System.EventHandler(this.cmd_openPort_Click);
             // 
-            // button3
+            // cmd_closePort
             // 
-            this.button3.Location = new System.Drawing.Point(40, 339);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 8;
-            this.button3.Text = "Disconnect";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.cmd_closePort.Location = new System.Drawing.Point(137, 19);
+            this.cmd_closePort.Name = "cmd_closePort";
+            this.cmd_closePort.Size = new System.Drawing.Size(75, 23);
+            this.cmd_closePort.TabIndex = 8;
+            this.cmd_closePort.Text = "Disconnect";
+            this.cmd_closePort.UseVisualStyleBackColor = true;
+            this.cmd_closePort.Click += new System.EventHandler(this.cmd_closePort_Click);
+            // 
+            // grp_serialPort
+            // 
+            this.grp_serialPort.Controls.Add(this.cmd_addSimSerialAnswer);
+            this.grp_serialPort.Controls.Add(this.lbl_simulateSerialInput_A);
+            this.grp_serialPort.Controls.Add(this.cmd_openPort);
+            this.grp_serialPort.Controls.Add(this.txt_simSerialInput);
+            this.grp_serialPort.Controls.Add(this.cmd_closePort);
+            this.grp_serialPort.Location = new System.Drawing.Point(12, 245);
+            this.grp_serialPort.Name = "grp_serialPort";
+            this.grp_serialPort.Size = new System.Drawing.Size(218, 132);
+            this.grp_serialPort.TabIndex = 9;
+            this.grp_serialPort.TabStop = false;
+            this.grp_serialPort.Text = "Serielle Schnittstelle";
+            // 
+            // cmd_addSimSerialAnswer
+            // 
+            this.cmd_addSimSerialAnswer.Location = new System.Drawing.Point(137, 99);
+            this.cmd_addSimSerialAnswer.Name = "cmd_addSimSerialAnswer";
+            this.cmd_addSimSerialAnswer.Size = new System.Drawing.Size(75, 23);
+            this.cmd_addSimSerialAnswer.TabIndex = 12;
+            this.cmd_addSimSerialAnswer.Text = "Ausführen";
+            this.cmd_addSimSerialAnswer.UseVisualStyleBackColor = true;
+            this.cmd_addSimSerialAnswer.Click += new System.EventHandler(this.cmd_addSimSerialAnswer_Click);
+            // 
+            // lbl_simulateSerialInput_A
+            // 
+            this.lbl_simulateSerialInput_A.AutoSize = true;
+            this.lbl_simulateSerialInput_A.Location = new System.Drawing.Point(3, 57);
+            this.lbl_simulateSerialInput_A.Name = "lbl_simulateSerialInput_A";
+            this.lbl_simulateSerialInput_A.Size = new System.Drawing.Size(95, 13);
+            this.lbl_simulateSerialInput_A.TabIndex = 11;
+            this.lbl_simulateSerialInput_A.Text = "Eingabe simulieren";
+            // 
+            // txt_simSerialInput
+            // 
+            this.txt_simSerialInput.Location = new System.Drawing.Point(6, 73);
+            this.txt_simSerialInput.Name = "txt_simSerialInput";
+            this.txt_simSerialInput.Size = new System.Drawing.Size(206, 20);
+            this.txt_simSerialInput.TabIndex = 10;
+            // 
+            // pan_workspace
+            // 
+            this.pan_workspace.Controls.Add(this.lbl_preview);
+            this.pan_workspace.Location = new System.Drawing.Point(236, 12);
+            this.pan_workspace.Name = "pan_workspace";
+            this.pan_workspace.Size = new System.Drawing.Size(257, 218);
+            this.pan_workspace.TabIndex = 10;
+            // 
+            // lbl_preview
+            // 
+            this.lbl_preview.AutoSize = true;
+            this.lbl_preview.Location = new System.Drawing.Point(6, 16);
+            this.lbl_preview.Name = "lbl_preview";
+            this.lbl_preview.Size = new System.Drawing.Size(52, 13);
+            this.lbl_preview.TabIndex = 0;
+            this.lbl_preview.Text = "Vorschau";
+            this.lbl_preview.Visible = false;
+            // 
+            // cob_newObjectType
+            // 
+            this.cob_newObjectType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cob_newObjectType.FormattingEnabled = true;
+            this.cob_newObjectType.Items.AddRange(new object[] {
+            "Label"});
+            this.cob_newObjectType.Location = new System.Drawing.Point(70, 19);
+            this.cob_newObjectType.Name = "cob_newObjectType";
+            this.cob_newObjectType.Size = new System.Drawing.Size(124, 21);
+            this.cob_newObjectType.TabIndex = 11;
+            // 
+            // grp_editFunctions
+            // 
+            this.grp_editFunctions.Controls.Add(this.cmd_createFunction);
+            this.grp_editFunctions.Controls.Add(this.txt_newFunctionName);
+            this.grp_editFunctions.Controls.Add(this.lbl_newFunctionName_A);
+            this.grp_editFunctions.Location = new System.Drawing.Point(499, 12);
+            this.grp_editFunctions.Name = "grp_editFunctions";
+            this.grp_editFunctions.Size = new System.Drawing.Size(200, 100);
+            this.grp_editFunctions.TabIndex = 12;
+            this.grp_editFunctions.TabStop = false;
+            this.grp_editFunctions.Text = "Funktionen";
+            // 
+            // cmd_createFunction
+            // 
+            this.cmd_createFunction.Location = new System.Drawing.Point(119, 71);
+            this.cmd_createFunction.Name = "cmd_createFunction";
+            this.cmd_createFunction.Size = new System.Drawing.Size(75, 23);
+            this.cmd_createFunction.TabIndex = 1;
+            this.cmd_createFunction.Text = "Erstellen";
+            this.cmd_createFunction.UseVisualStyleBackColor = true;
+            this.cmd_createFunction.Click += new System.EventHandler(this.cmd_createFunction_Click);
+            // 
+            // txt_newFunctionName
+            // 
+            this.txt_newFunctionName.Location = new System.Drawing.Point(9, 32);
+            this.txt_newFunctionName.Name = "txt_newFunctionName";
+            this.txt_newFunctionName.Size = new System.Drawing.Size(127, 20);
+            this.txt_newFunctionName.TabIndex = 0;
+            // 
+            // grp_createVisObject
+            // 
+            this.grp_createVisObject.Controls.Add(this.lbl_newObject_posX_A);
+            this.grp_createVisObject.Controls.Add(this.lbl_newObject_yPos_A);
+            this.grp_createVisObject.Controls.Add(this.txt_newObject_xPos);
+            this.grp_createVisObject.Controls.Add(this.txt_newObject_yPos);
+            this.grp_createVisObject.Controls.Add(this.cob_newObjectFunction);
+            this.grp_createVisObject.Controls.Add(this.lbl_newObjectName_A);
+            this.grp_createVisObject.Controls.Add(this.txt_newObjectName);
+            this.grp_createVisObject.Controls.Add(this.lbl_newObjectFunction);
+            this.grp_createVisObject.Controls.Add(this.cmd_createNewObject);
+            this.grp_createVisObject.Controls.Add(this.cob_newObjectType);
+            this.grp_createVisObject.Controls.Add(this.lbl_newObjectType_A);
+            this.grp_createVisObject.Location = new System.Drawing.Point(499, 118);
+            this.grp_createVisObject.Name = "grp_createVisObject";
+            this.grp_createVisObject.Size = new System.Drawing.Size(200, 179);
+            this.grp_createVisObject.TabIndex = 13;
+            this.grp_createVisObject.TabStop = false;
+            this.grp_createVisObject.Text = "Objekte erstellen";
+            // 
+            // lbl_newObject_posX_A
+            // 
+            this.lbl_newObject_posX_A.AutoSize = true;
+            this.lbl_newObject_posX_A.BackColor = System.Drawing.SystemColors.Control;
+            this.lbl_newObject_posX_A.Location = new System.Drawing.Point(8, 117);
+            this.lbl_newObject_posX_A.Name = "lbl_newObject_posX_A";
+            this.lbl_newObject_posX_A.Size = new System.Drawing.Size(54, 13);
+            this.lbl_newObject_posX_A.TabIndex = 21;
+            this.lbl_newObject_posX_A.Text = "X-Position";
+            // 
+            // lbl_newObject_yPos_A
+            // 
+            this.lbl_newObject_yPos_A.AutoSize = true;
+            this.lbl_newObject_yPos_A.BackColor = System.Drawing.SystemColors.Control;
+            this.lbl_newObject_yPos_A.Location = new System.Drawing.Point(8, 143);
+            this.lbl_newObject_yPos_A.Name = "lbl_newObject_yPos_A";
+            this.lbl_newObject_yPos_A.Size = new System.Drawing.Size(54, 13);
+            this.lbl_newObject_yPos_A.TabIndex = 20;
+            this.lbl_newObject_yPos_A.Text = "Y-Position";
+            // 
+            // txt_newObject_xPos
+            // 
+            this.txt_newObject_xPos.Location = new System.Drawing.Point(71, 114);
+            this.txt_newObject_xPos.Name = "txt_newObject_xPos";
+            this.txt_newObject_xPos.Size = new System.Drawing.Size(40, 20);
+            this.txt_newObject_xPos.TabIndex = 19;
+            this.txt_newObject_xPos.Text = "10";
+            this.txt_newObject_xPos.TextChanged += new System.EventHandler(this.txt_newObject_yPos_TextChanged);
+            // 
+            // txt_newObject_yPos
+            // 
+            this.txt_newObject_yPos.Location = new System.Drawing.Point(71, 140);
+            this.txt_newObject_yPos.Name = "txt_newObject_yPos";
+            this.txt_newObject_yPos.Size = new System.Drawing.Size(40, 20);
+            this.txt_newObject_yPos.TabIndex = 18;
+            this.txt_newObject_yPos.Text = "10";
+            this.txt_newObject_yPos.TextChanged += new System.EventHandler(this.txt_newObject_yPos_TextChanged);
+            // 
+            // cob_newObjectFunction
+            // 
+            this.cob_newObjectFunction.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cob_newObjectFunction.FormattingEnabled = true;
+            this.cob_newObjectFunction.Location = new System.Drawing.Point(70, 72);
+            this.cob_newObjectFunction.Name = "cob_newObjectFunction";
+            this.cob_newObjectFunction.Size = new System.Drawing.Size(124, 21);
+            this.cob_newObjectFunction.TabIndex = 17;
+            this.cob_newObjectFunction.DropDown += new System.EventHandler(this.cob_chooseFunction_DropDown);
+            // 
+            // lbl_newObjectName_A
+            // 
+            this.lbl_newObjectName_A.AutoSize = true;
+            this.lbl_newObjectName_A.Location = new System.Drawing.Point(6, 49);
+            this.lbl_newObjectName_A.Name = "lbl_newObjectName_A";
+            this.lbl_newObjectName_A.Size = new System.Drawing.Size(60, 13);
+            this.lbl_newObjectName_A.TabIndex = 16;
+            this.lbl_newObjectName_A.Tag = "";
+            this.lbl_newObjectName_A.Text = "Bezeichner";
+            // 
+            // txt_newObjectName
+            // 
+            this.txt_newObjectName.Location = new System.Drawing.Point(70, 46);
+            this.txt_newObjectName.Name = "txt_newObjectName";
+            this.txt_newObjectName.Size = new System.Drawing.Size(124, 20);
+            this.txt_newObjectName.TabIndex = 15;
+            // 
+            // cmd_createNewObject
+            // 
+            this.cmd_createNewObject.Location = new System.Drawing.Point(119, 99);
+            this.cmd_createNewObject.Name = "cmd_createNewObject";
+            this.cmd_createNewObject.Size = new System.Drawing.Size(75, 23);
+            this.cmd_createNewObject.TabIndex = 14;
+            this.cmd_createNewObject.Text = "Erstellen";
+            this.cmd_createNewObject.UseVisualStyleBackColor = true;
+            this.cmd_createNewObject.Click += new System.EventHandler(this.cmd_createNewObject_Click);
+            // 
+            // grp_createRules
+            // 
+            this.grp_createRules.Controls.Add(this.lbl_newRuleChooseObejct_A);
+            this.grp_createRules.Controls.Add(this.cob_newRuleChooseObject);
+            this.grp_createRules.Controls.Add(this.lbl_newRuleChooseFunction_A);
+            this.grp_createRules.Controls.Add(this.lbl_keyword);
+            this.grp_createRules.Controls.Add(this.txt_keyword);
+            this.grp_createRules.Controls.Add(this.txt_displayText);
+            this.grp_createRules.Controls.Add(this.lbl_displayText);
+            this.grp_createRules.Controls.Add(this.cob_newRuleChooseFunction);
+            this.grp_createRules.Controls.Add(this.cmd_addNewFunction);
+            this.grp_createRules.Location = new System.Drawing.Point(236, 245);
+            this.grp_createRules.Name = "grp_createRules";
+            this.grp_createRules.Size = new System.Drawing.Size(257, 132);
+            this.grp_createRules.TabIndex = 14;
+            this.grp_createRules.TabStop = false;
+            this.grp_createRules.Text = "Neue Regel erstellen";
+            // 
+            // lbl_newRuleChooseObejct_A
+            // 
+            this.lbl_newRuleChooseObejct_A.AutoSize = true;
+            this.lbl_newRuleChooseObejct_A.BackColor = System.Drawing.SystemColors.Control;
+            this.lbl_newRuleChooseObejct_A.Location = new System.Drawing.Point(140, 57);
+            this.lbl_newRuleChooseObejct_A.Name = "lbl_newRuleChooseObejct_A";
+            this.lbl_newRuleChooseObejct_A.Size = new System.Drawing.Size(53, 13);
+            this.lbl_newRuleChooseObejct_A.TabIndex = 9;
+            this.lbl_newRuleChooseObejct_A.Text = "Zielobjekt";
+            // 
+            // cob_newRuleChooseObject
+            // 
+            this.cob_newRuleChooseObject.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cob_newRuleChooseObject.FormattingEnabled = true;
+            this.cob_newRuleChooseObject.Location = new System.Drawing.Point(143, 72);
+            this.cob_newRuleChooseObject.Name = "cob_newRuleChooseObject";
+            this.cob_newRuleChooseObject.Size = new System.Drawing.Size(103, 21);
+            this.cob_newRuleChooseObject.TabIndex = 8;
+            // 
+            // lbl_newRuleChooseFunction_A
+            // 
+            this.lbl_newRuleChooseFunction_A.AutoSize = true;
+            this.lbl_newRuleChooseFunction_A.BackColor = System.Drawing.SystemColors.Control;
+            this.lbl_newRuleChooseFunction_A.Location = new System.Drawing.Point(6, 57);
+            this.lbl_newRuleChooseFunction_A.Name = "lbl_newRuleChooseFunction_A";
+            this.lbl_newRuleChooseFunction_A.Size = new System.Drawing.Size(48, 13);
+            this.lbl_newRuleChooseFunction_A.TabIndex = 7;
+            this.lbl_newRuleChooseFunction_A.Text = "Funktion";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.cob_chooseFunction);
-            this.Controls.Add(this.lbl_displayText);
-            this.Controls.Add(this.txt_displayText);
-            this.Controls.Add(this.lbl_keyword);
-            this.Controls.Add(this.txt_keyword);
+            this.Controls.Add(this.grp_createRules);
+            this.Controls.Add(this.grp_createVisObject);
+            this.Controls.Add(this.grp_editFunctions);
+            this.Controls.Add(this.pan_workspace);
+            this.Controls.Add(this.grp_serialPort);
             this.Controls.Add(this.pan_field1);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.pan_field1.ResumeLayout(false);
-            this.pan_field1.PerformLayout();
+            this.grp_serialPort.ResumeLayout(false);
+            this.grp_serialPort.PerformLayout();
+            this.pan_workspace.ResumeLayout(false);
+            this.pan_workspace.PerformLayout();
+            this.grp_editFunctions.ResumeLayout(false);
+            this.grp_editFunctions.PerformLayout();
+            this.grp_createVisObject.ResumeLayout(false);
+            this.grp_createVisObject.PerformLayout();
+            this.grp_createRules.ResumeLayout(false);
+            this.grp_createRules.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.Panel pan_field1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lbl_newObjectFunction;
+        private System.Windows.Forms.Label lbl_newObjectType_A;
+        private System.Windows.Forms.Label lbl_newFunctionName_A;
         private System.Windows.Forms.TextBox txt_keyword;
         private System.Windows.Forms.Label lbl_keyword;
         private System.Windows.Forms.TextBox txt_displayText;
         private System.Windows.Forms.Label lbl_displayText;
-        private System.Windows.Forms.ComboBox cob_chooseFunction;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.ComboBox cob_newRuleChooseFunction;
+        private System.Windows.Forms.Button cmd_addNewFunction;
+        private System.Windows.Forms.Button cmd_openPort;
+        private System.Windows.Forms.Button cmd_closePort;
+        private System.Windows.Forms.GroupBox grp_serialPort;
+        private System.Windows.Forms.Button cmd_addSimSerialAnswer;
+        private System.Windows.Forms.Label lbl_simulateSerialInput_A;
+        private System.Windows.Forms.TextBox txt_simSerialInput;
+        private System.Windows.Forms.Panel pan_workspace;
+        private System.Windows.Forms.ComboBox cob_newObjectType;
+        private System.Windows.Forms.GroupBox grp_editFunctions;
+        private System.Windows.Forms.TextBox txt_newFunctionName;
+        private System.Windows.Forms.Button cmd_createFunction;
+        private System.Windows.Forms.GroupBox grp_createVisObject;
+        private System.Windows.Forms.ComboBox cob_newObjectFunction;
+        private System.Windows.Forms.Label lbl_newObjectName_A;
+        private System.Windows.Forms.TextBox txt_newObjectName;
+        private System.Windows.Forms.Button cmd_createNewObject;
+        private System.Windows.Forms.GroupBox grp_createRules;
+        private System.Windows.Forms.Label lbl_newRuleChooseFunction_A;
+        private System.Windows.Forms.Label lbl_newRuleChooseObejct_A;
+        private System.Windows.Forms.ComboBox cob_newRuleChooseObject;
+        private System.Windows.Forms.Label lbl_preview;
+        private System.Windows.Forms.Label lbl_newObject_posX_A;
+        private System.Windows.Forms.Label lbl_newObject_yPos_A;
+        private System.Windows.Forms.TextBox txt_newObject_xPos;
+        private System.Windows.Forms.TextBox txt_newObject_yPos;
     }
 }
 
