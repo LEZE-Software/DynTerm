@@ -51,6 +51,8 @@
             this.cmd_createFunction = new System.Windows.Forms.Button();
             this.txt_newFunctionName = new System.Windows.Forms.TextBox();
             this.grp_createVisObject = new System.Windows.Forms.GroupBox();
+            this.lbl_newObjectContent_A = new System.Windows.Forms.Label();
+            this.txt_newObjectContent = new System.Windows.Forms.TextBox();
             this.lbl_newObject_posX_A = new System.Windows.Forms.Label();
             this.lbl_newObject_yPos_A = new System.Windows.Forms.Label();
             this.txt_newObject_xPos = new System.Windows.Forms.TextBox();
@@ -67,6 +69,7 @@
             this.lbl_newRuleChooseObejct_A = new System.Windows.Forms.Label();
             this.cob_newRuleChooseObject = new System.Windows.Forms.ComboBox();
             this.lbl_newRuleChooseFunction_A = new System.Windows.Forms.Label();
+            this.chb_newObjectDisplayObject = new System.Windows.Forms.CheckBox();
             this.grp_serialPort.SuspendLayout();
             this.pan_workspace.SuspendLayout();
             this.grp_editFunctions.SuspendLayout();
@@ -288,6 +291,9 @@
             // 
             // grp_createVisObject
             // 
+            this.grp_createVisObject.Controls.Add(this.chb_newObjectDisplayObject);
+            this.grp_createVisObject.Controls.Add(this.lbl_newObjectContent_A);
+            this.grp_createVisObject.Controls.Add(this.txt_newObjectContent);
             this.grp_createVisObject.Controls.Add(this.lbl_newObject_posX_A);
             this.grp_createVisObject.Controls.Add(this.lbl_newObject_yPos_A);
             this.grp_createVisObject.Controls.Add(this.txt_newObject_xPos);
@@ -301,16 +307,34 @@
             this.grp_createVisObject.Controls.Add(this.lbl_newObjectType_A);
             this.grp_createVisObject.Location = new System.Drawing.Point(499, 118);
             this.grp_createVisObject.Name = "grp_createVisObject";
-            this.grp_createVisObject.Size = new System.Drawing.Size(200, 179);
+            this.grp_createVisObject.Size = new System.Drawing.Size(200, 220);
             this.grp_createVisObject.TabIndex = 13;
             this.grp_createVisObject.TabStop = false;
             this.grp_createVisObject.Text = "Objekte erstellen";
+            this.grp_createVisObject.Enter += new System.EventHandler(this.grp_createVisObject_Enter);
+            // 
+            // lbl_newObjectContent_A
+            // 
+            this.lbl_newObjectContent_A.AutoSize = true;
+            this.lbl_newObjectContent_A.Location = new System.Drawing.Point(6, 102);
+            this.lbl_newObjectContent_A.Name = "lbl_newObjectContent_A";
+            this.lbl_newObjectContent_A.Size = new System.Drawing.Size(36, 13);
+            this.lbl_newObjectContent_A.TabIndex = 23;
+            this.lbl_newObjectContent_A.Tag = "";
+            this.lbl_newObjectContent_A.Text = "Inhalt:";
+            // 
+            // txt_newObjectContent
+            // 
+            this.txt_newObjectContent.Location = new System.Drawing.Point(70, 99);
+            this.txt_newObjectContent.Name = "txt_newObjectContent";
+            this.txt_newObjectContent.Size = new System.Drawing.Size(124, 20);
+            this.txt_newObjectContent.TabIndex = 22;
             // 
             // lbl_newObject_posX_A
             // 
             this.lbl_newObject_posX_A.AutoSize = true;
             this.lbl_newObject_posX_A.BackColor = System.Drawing.SystemColors.Control;
-            this.lbl_newObject_posX_A.Location = new System.Drawing.Point(8, 117);
+            this.lbl_newObject_posX_A.Location = new System.Drawing.Point(7, 128);
             this.lbl_newObject_posX_A.Name = "lbl_newObject_posX_A";
             this.lbl_newObject_posX_A.Size = new System.Drawing.Size(54, 13);
             this.lbl_newObject_posX_A.TabIndex = 21;
@@ -320,7 +344,7 @@
             // 
             this.lbl_newObject_yPos_A.AutoSize = true;
             this.lbl_newObject_yPos_A.BackColor = System.Drawing.SystemColors.Control;
-            this.lbl_newObject_yPos_A.Location = new System.Drawing.Point(8, 143);
+            this.lbl_newObject_yPos_A.Location = new System.Drawing.Point(7, 154);
             this.lbl_newObject_yPos_A.Name = "lbl_newObject_yPos_A";
             this.lbl_newObject_yPos_A.Size = new System.Drawing.Size(54, 13);
             this.lbl_newObject_yPos_A.TabIndex = 20;
@@ -328,7 +352,7 @@
             // 
             // txt_newObject_xPos
             // 
-            this.txt_newObject_xPos.Location = new System.Drawing.Point(71, 114);
+            this.txt_newObject_xPos.Location = new System.Drawing.Point(70, 125);
             this.txt_newObject_xPos.Name = "txt_newObject_xPos";
             this.txt_newObject_xPos.Size = new System.Drawing.Size(40, 20);
             this.txt_newObject_xPos.TabIndex = 19;
@@ -337,7 +361,7 @@
             // 
             // txt_newObject_yPos
             // 
-            this.txt_newObject_yPos.Location = new System.Drawing.Point(71, 140);
+            this.txt_newObject_yPos.Location = new System.Drawing.Point(70, 151);
             this.txt_newObject_yPos.Name = "txt_newObject_yPos";
             this.txt_newObject_yPos.Size = new System.Drawing.Size(40, 20);
             this.txt_newObject_yPos.TabIndex = 18;
@@ -373,7 +397,7 @@
             // 
             // cmd_createNewObject
             // 
-            this.cmd_createNewObject.Location = new System.Drawing.Point(119, 99);
+            this.cmd_createNewObject.Location = new System.Drawing.Point(119, 148);
             this.cmd_createNewObject.Name = "cmd_createNewObject";
             this.cmd_createNewObject.Size = new System.Drawing.Size(75, 23);
             this.cmd_createNewObject.TabIndex = 14;
@@ -475,6 +499,16 @@
             this.lbl_newRuleChooseFunction_A.TabIndex = 7;
             this.lbl_newRuleChooseFunction_A.Text = "Funktion";
             // 
+            // chb_newObjectDisplayObject
+            // 
+            this.chb_newObjectDisplayObject.AutoSize = true;
+            this.chb_newObjectDisplayObject.Location = new System.Drawing.Point(9, 180);
+            this.chb_newObjectDisplayObject.Name = "chb_newObjectDisplayObject";
+            this.chb_newObjectDisplayObject.Size = new System.Drawing.Size(93, 17);
+            this.chb_newObjectDisplayObject.TabIndex = 24;
+            this.chb_newObjectDisplayObject.Text = "Anzeigeobjekt";
+            this.chb_newObjectDisplayObject.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -544,6 +578,9 @@
         private System.Windows.Forms.Label lbl_newRuleChooseOperation_A;
         private System.Windows.Forms.ComboBox cob_newRule_chooseOperation;
         private System.Windows.Forms.Button cmd_newRuleDisplayKeyword;
+        private System.Windows.Forms.Label lbl_newObjectContent_A;
+        private System.Windows.Forms.TextBox txt_newObjectContent;
+        private System.Windows.Forms.CheckBox chb_newObjectDisplayObject;
     }
 }
 

@@ -41,6 +41,7 @@ namespace Game
             Label,
             Button,
             Combo,
+            Invalid,
             LAST_INDEX
         }
 
@@ -244,12 +245,28 @@ namespace Game
         private void cmd_createNewObject_Click(object sender, EventArgs e)
         {
             dynamic newTargetObject=null;
-            int objectCobIndex = cob_newObjectType.SelectedIndex;
-            string objectName = txt_newObjectName.Text;
-            int functionIndex = cob_newObjectFunction.SelectedIndex;
 
-            int x_pos = Convert.ToInt32(txt_newObject_xPos.Text);
-            int y_pos = Convert.ToInt32(txt_newObject_yPos.Text);
+            string
+                objectName = txt_newObjectName.Text,
+                objectContent = txt_newObjectContent.Text;
+
+            bool isDisplayObject = chb_newObjectDisplayObject.Checked;
+
+            int 
+                objectCobIndex = cob_newObjectType.SelectedIndex,
+                functionIndex = cob_newObjectFunction.SelectedIndex,
+                x_pos = Convert.ToInt32(txt_newObject_xPos.Text),
+                y_pos = Convert.ToInt32(txt_newObject_yPos.Text);
+
+            // Check if the content shall be set or not.
+            if(objectContent=="" && !isDisplayObject)
+            {
+                objectContent = "leer";
+            }
+            else if(objectContent=="" && isDisplayObject)
+            {
+                MessageBox.Show("Displayobjekte dürfen nicht leer sein!");
+            }
 
             switch(objectCobIndex)
             {
@@ -260,22 +277,30 @@ namespace Game
                         {
                             Name = objectName,
                             Parent = pan_workspace,
-                            Text = "leer",
+                            Text = objectContent,
                             Location = newLocation
                         };
 
                         newTargetObject = newLabel;
                         break;
                     }
+                case (Int32)ObjectIndex.Invalid:
+                    {
+                        // Object is invalid and will not be created.
+                        break;
+                    }
             }
 
-            if(newTargetObject!=null)
+            if(newTargetObject!=null && !isDisplayObject)
             {
                 AllFunctions[functionIndex].targetObjects.Add(newTargetObject);
             }
-            else
+            else if(newTargetObject==null)
             {
-                MessageBox.Show("newTargetObject=null");
+                if(objectCobIndex != (Int32)ObjectIndex.Invalid)
+                {
+                    MessageBox.Show("newTargetObject=null");
+                }
             }
 
             lbl_preview.Visible = false;
@@ -348,6 +373,11 @@ namespace Game
                 txt_newRuleDisplayText.Enabled = true;
             }
         }
+
+        private void grp_createVisObject_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 
     public class FunctionRule
@@ -373,9 +403,9 @@ namespace Game
         {
             switch (keywordOperationIndex)
             {
-                case (Int32)KeywordOperations.Contains:
+                case (Int32)KeywordOperation.Contains:
                     {
-                        if(serialAnswer.Contains(keyword))
+                        if(serialAnswer.Contains(keyWord))
                         {
                             return true;
                         }
@@ -384,9 +414,9 @@ namespace Game
 
                         break;
                     }
-                case (Int32)KeywordOperations.ContainsNot:
+                case (Int32)KeywordOperation.ContainsNot:
                     {
-                        if(!serialAnswer.Contains(keyword))
+                        if(!serialAnswer.Contains(keyWord))
                         {
                             return true;
                         }
@@ -395,9 +425,9 @@ namespace Game
 
                         break;
                     }
-                case (Int32)KeywordOperations.IsEqual:
+                case (Int32)KeywordOperation.IsEqual:
                     {
-                        if(serialAnswer==keyword)
+                        if(serialAnswer==keyWord)
                         {
                             return true;
                         }
