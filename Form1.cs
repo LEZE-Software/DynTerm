@@ -44,6 +44,13 @@ namespace Game
             LAST_INDEX
         }
 
+        public enum KeywordOperation
+        {
+            Contains,
+            ContainsNot,
+            IsEqual
+        }
+
         List<FunctionRule> AllRules = new List<FunctionRule>();
         ExtendedList<string> AllAnswers = new ExtendedList<string>();
         List<Function> AllFunctions = new List<Function>();
@@ -123,12 +130,17 @@ namespace Game
         {
             int
                 parentIndex = cob_newRuleChooseFunction.SelectedIndex,
-                obejctIndex = cob_newRuleChooseObject.SelectedIndex;
+                obejctIndex = cob_newRuleChooseObject.SelectedIndex,
+                operationIndex = cob_newRule_chooseOperation.SelectedIndex;
+
+            bool displayKeyword = txt_newRuleDisplayText.Enabled;
 
             FunctionRule newFunction = new FunctionRule()
             {
-                keyWord = txt_keyword.Text,
-                displayText = txt_displayText.Text,
+                keyWord = txt_newRuleKeyword.Text,
+                displayText = txt_newRuleDisplayText.Text,
+                displayKeywordExceptOfText = displayKeyword,
+                keywordOperationIndex = operationIndex,
                 ParentFunction = AllFunctions[parentIndex],
                 targetLabel = AllFunctions[parentIndex].targetObjects[obejctIndex]
             };
@@ -316,6 +328,20 @@ namespace Game
             }
             
         }
+
+        private void cmd_newRuleDisplayKeyword_Click(object sender, EventArgs e)
+        {
+            if(txt_newRuleDisplayText.Enabled)
+            {
+                cmd_newRuleDisplayKeyword.Text = "Keyword";
+                txt_newRuleDisplayText.Enabled = false;
+            }
+            else
+            {
+                cmd_newRuleDisplayKeyword.Text = "Anzeigetext";
+                txt_newRuleDisplayText.Enabled = true;
+            }
+        }
     }
 
     public class FunctionRule
@@ -324,10 +350,26 @@ namespace Game
             keyWord,
             displayText;
 
-        public int functionIdx;
+        public int
+            keywordOperationIndex;
+
+        public bool
+            displayKeywordExceptOfText;
+
         public Function ParentFunction;
 
         public dynamic targetLabel;
+
+        public void ExecuteFunction()
+        {
+            switch (keywordOperationIndex)
+            {
+                case (Int32)Form1.KeywordOperations.Contains:
+                    {
+                        break;
+                    }
+            }
+        }
     }
 
     public class Function

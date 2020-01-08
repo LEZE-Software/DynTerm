@@ -32,9 +32,9 @@
             this.lbl_newObjectFunction = new System.Windows.Forms.Label();
             this.lbl_newObjectType_A = new System.Windows.Forms.Label();
             this.lbl_newFunctionName_A = new System.Windows.Forms.Label();
-            this.txt_keyword = new System.Windows.Forms.TextBox();
+            this.txt_newRuleKeyword = new System.Windows.Forms.TextBox();
             this.lbl_keyword = new System.Windows.Forms.Label();
-            this.txt_displayText = new System.Windows.Forms.TextBox();
+            this.txt_newRuleDisplayText = new System.Windows.Forms.TextBox();
             this.lbl_displayText = new System.Windows.Forms.Label();
             this.cob_newRuleChooseFunction = new System.Windows.Forms.ComboBox();
             this.cmd_addNewFunction = new System.Windows.Forms.Button();
@@ -60,6 +60,10 @@
             this.txt_newObjectName = new System.Windows.Forms.TextBox();
             this.cmd_createNewObject = new System.Windows.Forms.Button();
             this.grp_createRules = new System.Windows.Forms.GroupBox();
+            this.cmd_newRuleDisplayKeyword = new System.Windows.Forms.Button();
+            this.lbl_newRuleChooseDisplayOperation_A = new System.Windows.Forms.Label();
+            this.lbl_newRuleChooseOperation_A = new System.Windows.Forms.Label();
+            this.cob_newRule_chooseOperation = new System.Windows.Forms.ComboBox();
             this.lbl_newRuleChooseObejct_A = new System.Windows.Forms.Label();
             this.cob_newRuleChooseObject = new System.Windows.Forms.ComboBox();
             this.lbl_newRuleChooseFunction_A = new System.Windows.Forms.Label();
@@ -109,12 +113,12 @@
             this.lbl_newFunctionName_A.Tag = "func1";
             this.lbl_newFunctionName_A.Text = "Name der neuen Funktion";
             // 
-            // txt_keyword
+            // txt_newRuleKeyword
             // 
-            this.txt_keyword.Location = new System.Drawing.Point(9, 32);
-            this.txt_keyword.Name = "txt_keyword";
-            this.txt_keyword.Size = new System.Drawing.Size(100, 20);
-            this.txt_keyword.TabIndex = 1;
+            this.txt_newRuleKeyword.Location = new System.Drawing.Point(9, 32);
+            this.txt_newRuleKeyword.Name = "txt_newRuleKeyword";
+            this.txt_newRuleKeyword.Size = new System.Drawing.Size(100, 20);
+            this.txt_newRuleKeyword.TabIndex = 1;
             // 
             // lbl_keyword
             // 
@@ -126,12 +130,12 @@
             this.lbl_keyword.TabIndex = 2;
             this.lbl_keyword.Text = "Keyword.";
             // 
-            // txt_displayText
+            // txt_newRuleDisplayText
             // 
-            this.txt_displayText.Location = new System.Drawing.Point(146, 32);
-            this.txt_displayText.Name = "txt_displayText";
-            this.txt_displayText.Size = new System.Drawing.Size(100, 20);
-            this.txt_displayText.TabIndex = 3;
+            this.txt_newRuleDisplayText.Location = new System.Drawing.Point(146, 32);
+            this.txt_newRuleDisplayText.Name = "txt_newRuleDisplayText";
+            this.txt_newRuleDisplayText.Size = new System.Drawing.Size(100, 20);
+            this.txt_newRuleDisplayText.TabIndex = 3;
             // 
             // lbl_displayText
             // 
@@ -156,7 +160,7 @@
             // 
             // cmd_addNewFunction
             // 
-            this.cmd_addNewFunction.Location = new System.Drawing.Point(151, 103);
+            this.cmd_addNewFunction.Location = new System.Drawing.Point(143, 164);
             this.cmd_addNewFunction.Name = "cmd_addNewFunction";
             this.cmd_addNewFunction.Size = new System.Drawing.Size(100, 23);
             this.cmd_addNewFunction.TabIndex = 6;
@@ -379,21 +383,68 @@
             // 
             // grp_createRules
             // 
+            this.grp_createRules.Controls.Add(this.cmd_newRuleDisplayKeyword);
+            this.grp_createRules.Controls.Add(this.lbl_newRuleChooseDisplayOperation_A);
+            this.grp_createRules.Controls.Add(this.lbl_newRuleChooseOperation_A);
+            this.grp_createRules.Controls.Add(this.cob_newRule_chooseOperation);
             this.grp_createRules.Controls.Add(this.lbl_newRuleChooseObejct_A);
             this.grp_createRules.Controls.Add(this.cob_newRuleChooseObject);
+            this.grp_createRules.Controls.Add(this.cmd_addNewFunction);
             this.grp_createRules.Controls.Add(this.lbl_newRuleChooseFunction_A);
             this.grp_createRules.Controls.Add(this.lbl_keyword);
-            this.grp_createRules.Controls.Add(this.txt_keyword);
-            this.grp_createRules.Controls.Add(this.txt_displayText);
+            this.grp_createRules.Controls.Add(this.txt_newRuleKeyword);
+            this.grp_createRules.Controls.Add(this.txt_newRuleDisplayText);
             this.grp_createRules.Controls.Add(this.lbl_displayText);
             this.grp_createRules.Controls.Add(this.cob_newRuleChooseFunction);
-            this.grp_createRules.Controls.Add(this.cmd_addNewFunction);
             this.grp_createRules.Location = new System.Drawing.Point(236, 245);
             this.grp_createRules.Name = "grp_createRules";
-            this.grp_createRules.Size = new System.Drawing.Size(257, 132);
+            this.grp_createRules.Size = new System.Drawing.Size(257, 193);
             this.grp_createRules.TabIndex = 14;
             this.grp_createRules.TabStop = false;
-            this.grp_createRules.Text = "Neue Regel erstellen";
+            this.grp_createRules.Text = " ";
+            // 
+            // cmd_newRuleDisplayKeyword
+            // 
+            this.cmd_newRuleDisplayKeyword.Location = new System.Drawing.Point(143, 121);
+            this.cmd_newRuleDisplayKeyword.Name = "cmd_newRuleDisplayKeyword";
+            this.cmd_newRuleDisplayKeyword.Size = new System.Drawing.Size(103, 21);
+            this.cmd_newRuleDisplayKeyword.TabIndex = 14;
+            this.cmd_newRuleDisplayKeyword.Text = "Anzeigetext";
+            this.cmd_newRuleDisplayKeyword.UseVisualStyleBackColor = true;
+            this.cmd_newRuleDisplayKeyword.Click += new System.EventHandler(this.cmd_newRuleDisplayKeyword_Click);
+            // 
+            // lbl_newRuleChooseDisplayOperation_A
+            // 
+            this.lbl_newRuleChooseDisplayOperation_A.AutoSize = true;
+            this.lbl_newRuleChooseDisplayOperation_A.BackColor = System.Drawing.SystemColors.Control;
+            this.lbl_newRuleChooseDisplayOperation_A.Location = new System.Drawing.Point(143, 105);
+            this.lbl_newRuleChooseDisplayOperation_A.Name = "lbl_newRuleChooseDisplayOperation_A";
+            this.lbl_newRuleChooseDisplayOperation_A.Size = new System.Drawing.Size(76, 13);
+            this.lbl_newRuleChooseDisplayOperation_A.TabIndex = 13;
+            this.lbl_newRuleChooseDisplayOperation_A.Text = "Angezeigt wird";
+            // 
+            // lbl_newRuleChooseOperation_A
+            // 
+            this.lbl_newRuleChooseOperation_A.AutoSize = true;
+            this.lbl_newRuleChooseOperation_A.BackColor = System.Drawing.SystemColors.Control;
+            this.lbl_newRuleChooseOperation_A.Location = new System.Drawing.Point(6, 105);
+            this.lbl_newRuleChooseOperation_A.Name = "lbl_newRuleChooseOperation_A";
+            this.lbl_newRuleChooseOperation_A.Size = new System.Drawing.Size(53, 13);
+            this.lbl_newRuleChooseOperation_A.TabIndex = 11;
+            this.lbl_newRuleChooseOperation_A.Text = "Operation";
+            // 
+            // cob_newRule_chooseOperation
+            // 
+            this.cob_newRule_chooseOperation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cob_newRule_chooseOperation.FormattingEnabled = true;
+            this.cob_newRule_chooseOperation.Items.AddRange(new object[] {
+            "Enthält Key",
+            "Enthält Key nicht",
+            "Entspricht Key"});
+            this.cob_newRule_chooseOperation.Location = new System.Drawing.Point(6, 121);
+            this.cob_newRule_chooseOperation.Name = "cob_newRule_chooseOperation";
+            this.cob_newRule_chooseOperation.Size = new System.Drawing.Size(103, 21);
+            this.cob_newRule_chooseOperation.TabIndex = 10;
             // 
             // lbl_newRuleChooseObejct_A
             // 
@@ -458,9 +509,9 @@
         private System.Windows.Forms.Label lbl_newObjectFunction;
         private System.Windows.Forms.Label lbl_newObjectType_A;
         private System.Windows.Forms.Label lbl_newFunctionName_A;
-        private System.Windows.Forms.TextBox txt_keyword;
+        private System.Windows.Forms.TextBox txt_newRuleKeyword;
         private System.Windows.Forms.Label lbl_keyword;
-        private System.Windows.Forms.TextBox txt_displayText;
+        private System.Windows.Forms.TextBox txt_newRuleDisplayText;
         private System.Windows.Forms.Label lbl_displayText;
         private System.Windows.Forms.ComboBox cob_newRuleChooseFunction;
         private System.Windows.Forms.Button cmd_addNewFunction;
@@ -489,6 +540,10 @@
         private System.Windows.Forms.Label lbl_newObject_yPos_A;
         private System.Windows.Forms.TextBox txt_newObject_xPos;
         private System.Windows.Forms.TextBox txt_newObject_yPos;
+        private System.Windows.Forms.Label lbl_newRuleChooseDisplayOperation_A;
+        private System.Windows.Forms.Label lbl_newRuleChooseOperation_A;
+        private System.Windows.Forms.ComboBox cob_newRule_chooseOperation;
+        private System.Windows.Forms.Button cmd_newRuleDisplayKeyword;
     }
 }
 
