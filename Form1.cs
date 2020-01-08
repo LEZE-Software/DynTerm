@@ -48,7 +48,8 @@ namespace Game
         {
             Contains,
             ContainsNot,
-            IsEqual
+            IsEqual,
+            LAST_INDEX
         }
 
         List<FunctionRule> AllRules = new List<FunctionRule>();
@@ -61,8 +62,6 @@ namespace Game
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            int leo = (Int32)ObjectIndex.Label;
-
             Point newLocation = new Point(0, 0);
 
             for(int i=0;i<=12;i++)
@@ -117,10 +116,17 @@ namespace Game
 
             foreach(FunctionRule rule in AllRules)
             {
-                if(rule.keyWord==answer)
+                if(rule.ExecuteOperation(answer))
                 {
-                    rule.targetLabel.Text = rule.displayText;
-
+					if(rule.displayKeywordExceptOfText)
+					{
+						rule.targetLabel.Text=rule.keyWord;
+					}
+					else
+					{
+						rule.targetLabel.Text=rule.displayText;
+					}
+					
                     AllAnswers.RemoveAt(0);
                 }
             }
@@ -301,7 +307,7 @@ namespace Game
                     foreach(dynamic targetObject in f.targetObjects)
                     {
                         cob_newRuleChooseObject.Items.Add(targetObject.Name);
-                    }                
+                    }
                 }
             }
         }
@@ -326,7 +332,7 @@ namespace Game
             {
                 // Nothing.
             }
-            
+
         }
 
         private void cmd_newRuleDisplayKeyword_Click(object sender, EventArgs e)
@@ -346,29 +352,63 @@ namespace Game
 
     public class FunctionRule
     {
+        public enum KeywordOperation
+        {
+            Contains,
+            ContainsNot,
+            IsEqual,
+            LAST_INDEX
+        }
+
         public string
             keyWord,
             displayText;
 
-        public int
-            keywordOperationIndex;
-
-        public bool
-            displayKeywordExceptOfText;
-
+        public int keywordOperationIndex;
+        public bool displayKeywordExceptOfText;
         public Function ParentFunction;
+        public dynamic targetLabel;	
 
-        public dynamic targetLabel;
-
-        public void ExecuteFunction()
+        public bool ExecuteOperation(string serialAnswer)
         {
             switch (keywordOperationIndex)
             {
-                case (Int32)Form1.KeywordOperations.Contains:
+                case (Int32)KeywordOperations.Contains:
                     {
+                        if(serialAnswer.Contains(keyword))
+                        {
+                            return true;
+                        }
+						
+                        return false;
+
+                        break;
+                    }
+                case (Int32)KeywordOperations.ContainsNot:
+                    {
+                        if(!serialAnswer.Contains(keyword))
+                        {
+                            return true;
+                        }
+						
+                        return false;
+
+                        break;
+                    }
+                case (Int32)KeywordOperations.IsEqual:
+                    {
+                        if(serialAnswer==keyword)
+                        {
+                            return true;
+                        }
+						
+                        return false;
+
                         break;
                     }
             }
+
+            return false;
         }
     }
 
