@@ -34,28 +34,13 @@ namespace Game
             }
         }
 
-        SerialPort localPort = new SerialPort();
-
-        enum ObjectIndex
-        {
-            Label,
-            Button,
-            Combo,
-            Invalid,
-            LAST_INDEX
-        }
-
-        public enum KeywordOperation
-        {
-            Contains,
-            ContainsNot,
-            IsEqual,
-            LAST_INDEX
-        }
+        SerialPort localPort = new SerialPort();        
 
         List<FunctionRule> AllRules = new List<FunctionRule>();
         ExtendedList<string> AllAnswers = new ExtendedList<string>();
         List<Function> AllFunctions = new List<Function>();
+
+        Panel[,] panelArray = new Panel[13, 13];
 
         /**********************/
         /*** IMPLEMENTATION ***\
@@ -77,13 +62,16 @@ namespace Game
                         BackColor = Color.LightBlue,
                     };
 
-                    newPanel.MouseHover += new EventHandler(pan_field_MouseOver);
+                    newPanel.MouseEnter += new EventHandler(pan_field_MouseEnter);
                     newPanel.MouseLeave += new EventHandler(pan_field_MouseLeave);
 
-                    newPanel.Name = "field1_" + i + k;
+                    newPanel.Name = "field1_" + i + "x" + k;
+                    newPanel.Tag = i + "x" + k;
                     newPanel.Parent = pan_field1;
 
                     newPanel.Location = newLocation;
+
+                    panelArray[i, k] = newPanel;
 
                     pan_field1.Controls.Add(newPanel);
 
@@ -97,9 +85,56 @@ namespace Game
             AllAnswers.OnAdd += new EventHandler(ParseReceivedAnswer);
         }
 
-        private void pan_field_MouseOver(object sender, EventArgs e)
+        private void pan_field_MouseEnter(object sender, EventArgs e)
         {
             Panel senderPanel = sender as Panel;
+
+            string panelTag = senderPanel.Tag.ToString();
+
+            int
+                i = Convert.ToInt32(panelTag.Split('x')[0]),
+                k = Convert.ToInt32(panelTag.Split('x')[1]);
+
+            if(i>0 && k>0)
+            {
+                panelArray[i - 1, k - 1].BackColor = Color.Blue;
+            }
+            
+            if(k>0 && i<13)
+            {
+                panelArray[i + 1, k - 1].BackColor = Color.Blue;
+            }
+
+            if(k>0)
+            {
+                panelArray[i, k - 1].BackColor = Color.Blue;
+            }
+
+            if (k < 13)
+            {
+                panelArray[i, k + 1].BackColor = Color.Blue;
+            }
+
+            if (i > 0)
+            {
+                panelArray[i - 1, k].BackColor = Color.Blue;
+            }
+
+            if (i < 13)
+            {
+                panelArray[i + 1, k].BackColor = Color.Blue;
+            }
+
+            if (k<13 && i>0)
+            {
+                panelArray[i - 1, k + 1].BackColor = Color.Blue;
+
+            }
+
+            if(k<13 && i<13)
+            {
+                panelArray[i + 1, k + 1].BackColor = Color.Blue;
+            }
 
             senderPanel.BackColor = Color.Red;
         }
@@ -107,6 +142,53 @@ namespace Game
         private void pan_field_MouseLeave(object sender, EventArgs e)
         {
             Panel senderPanel = sender as Panel;
+
+            string panelTag = senderPanel.Tag.ToString();
+
+            int
+                i = Convert.ToInt32(panelTag.Split('x')[0]),
+                k = Convert.ToInt32(panelTag.Split('x')[1]);
+
+            if (i > 0 && k > 0)
+            {
+                panelArray[i - 1, k - 1].BackColor = Color.LightBlue;
+            }
+
+            if (k > 0 && i < 13)
+            {
+                panelArray[i + 1, k - 1].BackColor = Color.LightBlue;
+            }
+
+            if (k > 0)
+            {
+                panelArray[i, k - 1].BackColor = Color.LightBlue;
+            }
+
+            if (k < 13)
+            {
+                panelArray[i, k + 1].BackColor = Color.LightBlue;
+            }
+
+            if (i > 0)
+            {
+                panelArray[i - 1, k].BackColor = Color.LightBlue;
+            }
+
+            if (i < 13)
+            {
+                panelArray[i + 1, k].BackColor = Color.LightBlue;
+            }
+
+            if (k < 13 && i > 0)
+            {
+                panelArray[i - 1, k + 1].BackColor = Color.LightBlue;
+
+            }
+
+            if (k < 13 && i < 13)
+            {
+                panelArray[i + 1, k + 1].BackColor = Color.LightBlue;
+            }
 
             senderPanel.BackColor = Color.LightBlue;
         }
@@ -117,19 +199,29 @@ namespace Game
 
             foreach(FunctionRule rule in AllRules)
             {
-                if(rule.ExecuteOperation(answer))
+                switch(rule.displayOperationIndex)
                 {
-					if(rule.displayKeywordExceptOfText)
-					{
-						rule.targetLabel.Text=rule.keyWord;
-					}
-					else
-					{
-						rule.targetLabel.Text=rule.displayText;
-					}
-					
-                    AllAnswers.RemoveAt(0);
+                    case (Int32)Props.DisplayOperation.YesNo:
+                    case (Int32)Props.DisplayOperation.YesNoIndiv:
+                    case (Int32)Props.DisplayOperation.RawData:
+                    case (Int32)Props.DisplayOperation.Keyword:
+                        {
+                            rule.ExecuteReaction(answer);
+
+                            break;
+                        }
+                    default:
+                        {
+                            if (rule.ExecuteOperation(answer))
+                            {
+                                rule.ExecuteReaction(answer);
+                            }
+
+                            break;
+                        }
                 }
+
+                AllAnswers.Remove(answer);
             }
         }
 
@@ -137,22 +229,48 @@ namespace Game
         {
             int
                 parentIndex = cob_newRuleChooseFunction.SelectedIndex,
-                obejctIndex = cob_newRuleChooseObject.SelectedIndex,
-                operationIndex = cob_newRule_chooseOperation.SelectedIndex;
+                targetObjectIndex = cob_newRuleChooseObject.SelectedIndex,
+                operationIndex = cob_newRule_chooseOperation.SelectedIndex,
+                displayIndex = cob_newRuleChooseDisplayItem.SelectedIndex,
+                answerIndex = cob_newRule_chooseSendOption.SelectedIndex,
+                serialSourceIndexPos = cob_newRule_sendFromObject_pos.SelectedIndex,
+                serialSourceIndexNeg = cob_newRule_sendFromObject_neg.SelectedIndex;
 
-            bool displayKeyword = txt_newRuleDisplayText.Enabled;
+            bool
+                enableSerialAnswer = chb_newRule_sendAnswer.Checked,
+                enableDisplayAction = chb_newRule_allowDisplay.Checked;
 
-            FunctionRule newFunction = new FunctionRule()
+            if(enableDisplayAction || enableSerialAnswer)
             {
-                keyWord = txt_newRuleKeyword.Text,
-                displayText = txt_newRuleDisplayText.Text,
-                displayKeywordExceptOfText = displayKeyword,
-                keywordOperationIndex = operationIndex,
-                ParentFunction = AllFunctions[parentIndex],
-                targetLabel = AllFunctions[parentIndex].targetObjects[obejctIndex]
-            };
+                FunctionRule newFunction = new FunctionRule()
+                {
+                    keyWord = txt_newRuleKeyword.Text,
+                    displayTextPos = txt_newRuleDisplayText_pos.Text,
+                    displayTextNeg = txt_newRuleDisplayText_neg.Text,
+                    displayText = txt_newRuleDisplayText_pos.Text,
 
-            AllRules.Add(newFunction);
+                    sendSerialMessage = enableSerialAnswer,
+                    displaySomeContent = enableDisplayAction,
+                    serialAnswerPos = txt_newRule_posSendText.Text,
+                    serialAnswerNeg = txt_newRule_negSendText.Text,
+
+                    displayOperationIndex = displayIndex,
+                    keywordOperationIndex = operationIndex,
+                    answerOperationIndex = answerIndex,
+
+                    ParentFunction = AllFunctions[parentIndex],
+
+                    targetLabel = AllFunctions[parentIndex].targetObjects[targetObjectIndex],
+                    sourceObjectAnswerPos = AllFunctions[parentIndex].targetObjects[serialSourceIndexPos],
+                    sourceObjectAnswerNeg = AllFunctions[parentIndex].targetObjects[serialSourceIndexNeg]
+                };
+
+                AllRules.Add(newFunction);
+            }
+            else
+            {
+                MessageBox.Show("Diese Funktion führt nichts aus!");
+            }  
         }
 
         public void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
@@ -219,6 +337,8 @@ namespace Game
                     };
 
                     AllFunctions.Add(newFunction);
+
+                    txt_newFunctionName.Text = "";
                 }
                 else
                 {
@@ -247,63 +367,94 @@ namespace Game
             dynamic newTargetObject=null;
 
             string
-                objectName = txt_newObjectName.Text,
+                objectName = "lbl_" + txt_newObjectName.Text,
                 objectContent = txt_newObjectContent.Text;
 
-            bool isDisplayObject = chb_newObjectDisplayObject.Checked;
+            bool connectToFunction = chb_newObjectDisplayObject.Checked;
 
-            int 
+            int
                 objectCobIndex = cob_newObjectType.SelectedIndex,
                 functionIndex = cob_newObjectFunction.SelectedIndex,
                 x_pos = Convert.ToInt32(txt_newObject_xPos.Text),
-                y_pos = Convert.ToInt32(txt_newObject_yPos.Text);
+                y_pos = Convert.ToInt32(txt_newObject_yPos.Text),
+                width = Convert.ToInt32(txt_newObject_width.Text);
 
             // Check if the content shall be set or not.
-            if(objectContent=="" && !isDisplayObject)
+            if(objectContent=="" && connectToFunction)
             {
-                objectContent = "leer";
+                if(objectCobIndex==(Int32)Props.ObjectIndex.Label)
+                {
+                    objectContent = "leer";
+                }
             }
-            else if(objectContent=="" && isDisplayObject)
+            else if(objectContent=="" && !connectToFunction)
             {
                 MessageBox.Show("Displayobjekte dürfen nicht leer sein!");
+                objectCobIndex = (Int32)Props.ObjectIndex.Invalid;
             }
 
-            switch(objectCobIndex)
+            Point newLocation = new Point(x_pos, y_pos);
+
+            switch (objectCobIndex)
             {
-                case (Int32)ObjectIndex.Label:
+                case (Int32)Props.ObjectIndex.Label:
                     {
-                        Point newLocation = new Point(x_pos, y_pos);
                         Label newLabel = new Label()
                         {
                             Name = objectName,
                             Parent = pan_workspace,
                             Text = objectContent,
-                            Location = newLocation
+                            Location = newLocation,
+                            Width = width
                         };
 
                         newTargetObject = newLabel;
                         break;
                     }
-                case (Int32)ObjectIndex.Invalid:
+                case (Int32)Props.ObjectIndex.Textbox:
+                    {
+                        TextBox newLabel = new TextBox()
+                        {
+                            Name = objectName,
+                            Parent = pan_workspace,
+                            Text = objectContent,
+                            Location = newLocation,
+                            Width = width
+                        };
+
+                        newTargetObject = newLabel;
+
+                        break;
+                    }
+
+                case (Int32)Props.ObjectIndex.Invalid:
                     {
                         // Object is invalid and will not be created.
                         break;
                     }
             }
 
-            if(newTargetObject!=null && !isDisplayObject)
+            if(newTargetObject!=null && connectToFunction)
             {
                 AllFunctions[functionIndex].targetObjects.Add(newTargetObject);
             }
-            else if(newTargetObject==null)
+            else if(newTargetObject==null && !connectToFunction)
             {
-                if(objectCobIndex != (Int32)ObjectIndex.Invalid)
+                if(objectCobIndex != (Int32)Props.ObjectIndex.Invalid)
                 {
                     MessageBox.Show("newTargetObject=null");
                 }
             }
 
-            lbl_preview.Visible = false;
+            lbl_preview.Visible = 
+                txt_preview.Visible = false;
+
+            txt_newObjectContent.Text =
+                txt_newObjectName.Text = "";
+            cob_newObjectFunction.SelectedIndex =
+                cob_newObjectType.SelectedIndex = -1;
+
+            chb_newObjectDisplayObject.Checked = false;
         }
 
         private bool DoesFunctionExist(string functionName)
@@ -331,121 +482,140 @@ namespace Game
                 {
                     foreach(dynamic targetObject in f.targetObjects)
                     {
+
                         cob_newRuleChooseObject.Items.Add(targetObject.Name);
                     }
                 }
             }
         }
 
-        private void txt_newObject_yPos_TextChanged(object sender, EventArgs e)
-        {
-            lbl_preview.Visible = true;
-
+        private void txt_newObject_Pos_TextChanged(object sender, EventArgs e)
+        {          
             try
             {
-                if (txt_newObject_xPos.Text != "" && txt_newObject_xPos.Text != "")
+                if (txt_newObject_xPos.Text != "" && txt_newObject_width.Text != "" && txt_newObject_xPos.Text != "")
                 {
-                    int x = Convert.ToInt32(txt_newObject_xPos.Text);
-                    int y = Convert.ToInt32(txt_newObject_yPos.Text);
+                    int
+                        x = Convert.ToInt32(txt_newObject_xPos.Text),
+                        y = Convert.ToInt32(txt_newObject_yPos.Text),
+                        width = Convert.ToInt32(txt_newObject_width.Text);                  
 
                     Point newLocation = new Point(x, y);
 
-                    lbl_preview.Location = newLocation;
+                    switch (cob_newObjectType.SelectedIndex)
+                    {
+                        case (Int32)Props.ObjectIndex.Label:
+                            {
+                                lbl_preview.Width = width;
+                                lbl_preview.Visible = true;
+                                lbl_preview.Location = newLocation;
+                                break;
+                            }
+                        case (Int32)Props.ObjectIndex.Textbox:
+                            {
+                                txt_preview.Width = width;
+                                txt_preview.Visible = true;
+                                txt_preview.Location = newLocation;
+                                break;
+                            }
+                    }
                 }
             }
-            catch(Exception ex)
+            catch
             {
                 // Nothing.
             }
 
         }
 
-        private void cmd_newRuleDisplayKeyword_Click(object sender, EventArgs e)
+        private void chb_newObjectDisplayObject_CheckedChanged(object sender, EventArgs e)
         {
-            if(txt_newRuleDisplayText.Enabled)
-            {
-                cmd_newRuleDisplayKeyword.Text = "Keyword";
-                txt_newRuleDisplayText.Enabled = false;
-            }
-            else
-            {
-                cmd_newRuleDisplayKeyword.Text = "Anzeigetext";
-                txt_newRuleDisplayText.Enabled = true;
-            }
+            cob_newObjectFunction.Enabled = chb_newObjectDisplayObject.Checked;
         }
 
-        private void grp_createVisObject_Enter(object sender, EventArgs e)
+        private void cob_newRuleChooseDisplayItem_SelectedIndexChanged(object sender, EventArgs e)
         {
+            int index = cob_newRuleChooseDisplayItem.SelectedIndex;
 
-        }
-    }
-
-    public class FunctionRule
-    {
-        public enum KeywordOperation
-        {
-            Contains,
-            ContainsNot,
-            IsEqual,
-            LAST_INDEX
-        }
-
-        public string
-            keyWord,
-            displayText;
-
-        public int keywordOperationIndex;
-        public bool displayKeywordExceptOfText;
-        public Function ParentFunction;
-        public dynamic targetLabel;	
-
-        public bool ExecuteOperation(string serialAnswer)
-        {
-            switch (keywordOperationIndex)
+            switch (index)
             {
-                case (Int32)KeywordOperation.Contains:
+                case (Int32)Props.DisplayOperation.DisplayText:
                     {
-                        if(serialAnswer.Contains(keyWord))
-                        {
-                            return true;
-                        }
-						
-                        return false;
+                        txt_newRuleGeneralText.Enabled = true;
+                        txt_newRuleDisplayText_pos.Enabled =
+                            txt_newRuleDisplayText_neg.Enabled = false;
 
                         break;
                     }
-                case (Int32)KeywordOperation.ContainsNot:
+                case (Int32)Props.DisplayOperation.YesNoIndiv:
                     {
-                        if(!serialAnswer.Contains(keyWord))
-                        {
-                            return true;
-                        }
-						
-                        return false;
+                        txt_newRuleGeneralText.Enabled = false;
+
+                        txt_newRuleDisplayText_pos.Enabled =
+                            txt_newRuleDisplayText_neg.Enabled = true;
 
                         break;
                     }
-                case (Int32)KeywordOperation.IsEqual:
+                default:
                     {
-                        if(serialAnswer==keyWord)
-                        {
-                            return true;
-                        }
-						
-                        return false;
+                        txt_newRuleGeneralText.Enabled =
+                            txt_newRuleDisplayText_pos.Enabled =
+                            txt_newRuleDisplayText_neg.Enabled = false;
 
                         break;
                     }
             }
-
-            return false;
         }
-    }
 
-    public class Function
-    {
-        public int index;
-        public string name;
-        public List<dynamic> targetObjects = new List<dynamic>();
-    }
+        private void cob_newRule_chooseOperation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = cob_newRule_chooseOperation.SelectedIndex;
+
+            switch (index)
+            {
+                case (Int32)Props.KeywordOperation.DisplayContent:
+                    {
+                        txt_newRuleKeyword.Enabled = false;
+                        cob_newRuleChooseDisplayItem.SelectedIndex = (Int32)Props.DisplayOperation.RawData;
+                        break;
+                    }
+                default:
+                    {
+                        txt_newRuleKeyword.Enabled = true;
+                        break;
+                    }
+            }
+
+        }
+
+        private void chb_newRule_sendAnswer_CheckedChanged(object sender, EventArgs e)
+        {
+            txt_newRule_posSendText.Enabled =
+                txt_newRule_negSendText.Enabled =
+                cob_newRule_chooseSendOption.Enabled =
+                cob_newRule_sendFromObject_neg.Enabled =
+                cob_newRule_sendFromObject_pos.Enabled =
+                chb_newRule_sendAnswer.Checked;
+        }
+
+        private void cob_newRule_sendFromObject_DropDown(object sender, EventArgs e)
+        {
+            ComboBox senderBox = sender as ComboBox;
+
+            senderBox.Items.Clear();
+
+            int index = cob_newRuleChooseFunction.SelectedIndex;
+
+            foreach (Function f in AllFunctions)
+            {
+                if (f.index == index)
+                {
+                    foreach (dynamic targetObject in f.targetObjects)
+                    {
+                        senderBox.Items.Add(targetObject.Name);
+                    }
+                }
+            }
+        }
+    }    
 }
