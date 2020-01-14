@@ -1,6 +1,9 @@
 # DynTerm
-Individually configurable terminal program
+Welcome in the repository of the DynTerm-Project!
 
-Creation of a terminal tool which allows the user to set combine keywords and individual reactions of the form.
+I work with microcontrollers and I always needed a terminal program which can work with individual content and displayes individual information depending on the received information.
+Therefore I invented the "DynTerm"-tool. A tool which allows the user to build an individual form, create rules to process serial information and display the content the user needs.
 
-The user shall be able to create rules which are followed by the tool. "If keyword A is received display the received value on label X."
+Feel free to leave comments, issues or the participate on the project.
+
+For mor information feel free to contact me: MTB1Leo@GMX.de
