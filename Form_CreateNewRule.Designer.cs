@@ -264,7 +264,6 @@
             this.cob_parentFunction.Size = new System.Drawing.Size(156, 22);
             this.cob_parentFunction.TabIndex = 5;
             this.cob_parentFunction.DropDown += new System.EventHandler(this.cob_chooseFunction_DropDown);
-            this.cob_parentFunction.SelectedIndexChanged += new System.EventHandler(this.cob_chooseFunction_SelectedIndexChanged);
             // 
             // lbl_function
             // 
@@ -372,7 +371,7 @@
             this.cob_targetObject.Name = "cob_targetObject";
             this.cob_targetObject.Size = new System.Drawing.Size(133, 22);
             this.cob_targetObject.TabIndex = 8;
-            this.cob_targetObject.DropDown += new System.EventHandler(this.cob_displayOperation_SelectedIndexChanged);
+            this.cob_targetObject.DropDown += new System.EventHandler(this.cob_targetObject_DropDown);
             // 
             // txt_displayText1
             // 
@@ -436,6 +435,7 @@
             this.Controls.Add(this.grp_outputSettings);
             this.Controls.Add(this.grp_generals);
             this.Font = new System.Drawing.Font("Verdana", 9F);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "Form_CreateNewRule";
             this.Text = "Neue Regel erstellen";

@@ -103,12 +103,18 @@ namespace Game
 
                 displayOperationIndex = displayIndex,
                 keywordOperationIndex = operationIndex,
-                answerOperationIndex = answerIndex,
 
-                ParentFunction = mainFM.AllFunctions[parentIndex],
+                ParentFunction = mainFM.AllFunctions[parentIndex],//
 
-                targetLabel = mainFM.AllFunctions[parentIndex].textboxes[targetObjectIndex]                
+                targetObject = mainFM.AllObjects[targetObjectIndex]
             };
+
+            if(answerIndex!=-1)
+            {
+                newFunction.answerOperationIndex = answerIndex;
+            }
+
+
 
             if(serialSourceIndexPos!=-1)
             {
@@ -120,29 +126,6 @@ namespace Game
             }
 
             mainFM.AllRules.Add(newFunction);
-        }
-
-        private void cob_chooseFunction_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            cob_targetObject.Items.Clear();
-
-            int index = cob_parentFunction.SelectedIndex;
-
-            foreach (Function f in mainFM.AllFunctions)
-            {
-                if (f.index == index)
-                {
-                    foreach (TextBox targetObject in f.textboxes)
-                    {
-                        cob_targetObject.Items.Add(targetObject.Name);
-                    }
-
-                    /*foreach (dynamic targetObject in f.targetObjects)
-                    {
-                        cob_targetObject.Items.Add(targetObject.Name);
-                    }*/
-                }
-            }
         }
 
         private void cob_operation_SelectedIndexChanged(object sender, EventArgs e)
@@ -213,6 +196,14 @@ namespace Game
             }
         }
 
-        
+        private void cob_targetObject_DropDown(object sender, EventArgs e)
+        {
+            cob_targetObject.Items.Clear();
+
+            foreach(ControlObject c in mainFM.AllObjects)
+            {
+                cob_targetObject.Items.Add(c.rootObject.Name);
+            }
+        }
     }
 }

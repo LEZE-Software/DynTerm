@@ -12,5 +12,10 @@ namespace Game
         {
             // Send command.
         }
+
+        public static void OpenClosePort()
+        {
+            // Open close port.
+        }
     }
 }

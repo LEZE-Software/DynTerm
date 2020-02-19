@@ -22,20 +22,14 @@ namespace Game
 
         private void Form_Playground_Load(object sender, EventArgs e)
         {
-            foreach(Function f in mainFM.AllFunctions)
-            {
-                foreach (dynamic d in f.targetObjects)
-                {
-                    TextBox newBox = new TextBox()
-                    {
-                        Name = d.Name,
-                        Location = d.Location,
-                        Width = d.Width,
-                        Height = d.Height
-                    };
 
-                    this.Controls.Add(newBox);
-                }
+        }
+
+        private void Form_Playground_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if(!Props.shallClose)
+            {
+                e.Cancel = true;
             }
         }
     }

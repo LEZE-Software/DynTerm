@@ -40,7 +40,7 @@ namespace Game
         public List<FunctionRule> AllRules = new List<FunctionRule>();
         public ExtendedList<string> AllAnswers = new ExtendedList<string>();
         public List<Function> AllFunctions = new List<Function>();
-
+        public List<ControlObject> AllObjects = new List<ControlObject>();
         public List<TextBox> AllTextBoxes = new List<TextBox>();
 
         /**********************/
@@ -52,8 +52,22 @@ namespace Game
             AllAnswers = new ExtendedList<string>();
 
             AllAnswers.OnAdd += new EventHandler(ParseReceivedAnswer);
-        }
 
+            ref_playground = new Form_Playground(this)
+            {
+                MdiParent = this
+            };
+
+            ref_playground.Show();
+
+            // Create Displayfunction.
+            Function displayFunction = new Function()
+            {
+                index = 0,
+                name = "Anzeiger"
+            };
+            AllFunctions.Add(displayFunction);
+        }
         
         void ParseReceivedAnswer(object sender, EventArgs e)
         {
@@ -188,15 +202,10 @@ namespace Game
 
             return false;
         }
-
+    
         private void cmd_openPlayground_Click(object sender, EventArgs e)
         {
-            ref_playground = new Form_Playground(this)
-            {
-                MdiParent = this
-            };
 
-            ref_playground.Show();
         }
 
         private void menu_createNewRule_Click(object sender, EventArgs e)
@@ -217,6 +226,11 @@ namespace Game
             };
 
             ref_newObject.Show();
+        }
+
+        private void Form_Center_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Props.shallClose = true;
         }
     }    
 }

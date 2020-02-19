@@ -44,6 +44,7 @@
             this.menu_createNewRule = new System.Windows.Forms.ToolStripMenuItem();
             this.menu_editRule = new System.Windows.Forms.ToolStripMenuItem();
             this.cob_chooseRuleToEdit = new System.Windows.Forms.ToolStripComboBox();
+            this.cmd_editRule = new System.Windows.Forms.ToolStripMenuItem();
             this.menu_deleteRule = new System.Windows.Forms.ToolStripMenuItem();
             this.cob_chooseRuleToDelete = new System.Windows.Forms.ToolStripComboBox();
             this.cmd_deleteRule = new System.Windows.Forms.ToolStripMenuItem();
@@ -59,7 +60,6 @@
             this.menu_deleteFunction = new System.Windows.Forms.ToolStripMenuItem();
             this.cob_deleteFunction = new System.Windows.Forms.ToolStripComboBox();
             this.cmd_deleteFunction = new System.Windows.Forms.ToolStripMenuItem();
-            this.cmd_editRule = new System.Windows.Forms.ToolStripMenuItem();
             this.grp_serialPort.SuspendLayout();
             this.main_menu.SuspendLayout();
             this.SuspendLayout();
@@ -91,7 +91,7 @@
             this.grp_serialPort.Controls.Add(this.cmd_openPort);
             this.grp_serialPort.Controls.Add(this.txt_simSerialInput);
             this.grp_serialPort.Controls.Add(this.cmd_closePort);
-            this.grp_serialPort.Location = new System.Drawing.Point(0, 27);
+            this.grp_serialPort.Location = new System.Drawing.Point(12, 547);
             this.grp_serialPort.Name = "grp_serialPort";
             this.grp_serialPort.Size = new System.Drawing.Size(200, 132);
             this.grp_serialPort.TabIndex = 9;
@@ -158,6 +158,7 @@
             this.cmd_openPlayground.Name = "cmd_openPlayground";
             this.cmd_openPlayground.Size = new System.Drawing.Size(192, 22);
             this.cmd_openPlayground.Text = "Arbeitsfläche öffnen";
+            this.cmd_openPlayground.Visible = false;
             this.cmd_openPlayground.Click += new System.EventHandler(this.cmd_openPlayground_Click);
             // 
             // toolStripSeparator2
@@ -202,6 +203,12 @@
             // 
             this.cob_chooseRuleToEdit.Name = "cob_chooseRuleToEdit";
             this.cob_chooseRuleToEdit.Size = new System.Drawing.Size(121, 23);
+            // 
+            // cmd_editRule
+            // 
+            this.cmd_editRule.Name = "cmd_editRule";
+            this.cmd_editRule.Size = new System.Drawing.Size(181, 22);
+            this.cmd_editRule.Text = "Regel bearbeiten";
             // 
             // menu_deleteRule
             // 
@@ -307,12 +314,6 @@
             this.cmd_deleteFunction.Size = new System.Drawing.Size(181, 22);
             this.cmd_deleteFunction.Text = "Löschen";
             // 
-            // cmd_editRule
-            // 
-            this.cmd_editRule.Name = "cmd_editRule";
-            this.cmd_editRule.Size = new System.Drawing.Size(181, 22);
-            this.cmd_editRule.Text = "Regel bearbeiten";
-            // 
             // Form_Center
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -323,7 +324,10 @@
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.main_menu;
             this.Name = "Form_Center";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DynTerm";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_Center_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.grp_serialPort.ResumeLayout(false);
             this.grp_serialPort.PerformLayout();

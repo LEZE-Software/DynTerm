@@ -12,6 +12,5 @@ namespace Game
         public int index;
         public string name;
         public List<dynamic> targetObjects = new List<dynamic>();
-        public List<TextBox> textboxes = new List<TextBox>();
     }
 }

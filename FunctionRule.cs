@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 
 namespace Game
 {
@@ -22,12 +23,23 @@ namespace Game
 
         public bool
             sendSerialMessage,
-            displaySomeContent;
+            displaySomeContent,
+            changeColorOfTargetObject,
+            interactWithPanel;
 
         public Function ParentFunction;
 
+        public Color
+            targetObjectColorPos,
+            targetObjectColorNeg,
+            targetPanelColorPos,
+            targetPanelColorNeg;
+
+        public ControlObject
+            targetObject;
+
         public dynamic
-            targetLabel,
+            targetStatusPanel,
             sourceObjectAnswerPos,
             sourceObjectAnswerNeg;
 
@@ -88,7 +100,10 @@ namespace Game
 
         public void ExecuteDisplayOperation(string serialAnswer, Form_Center mainFM)
         {
-            string outputText = "leer";       
+            string outputText = "leer";
+            Color
+                backColorToSet = targetObject.commonBackColor,
+                fontColorToSet = targetObject.commonFontColor;
 
             switch (displayOperationIndex)
             {
@@ -108,12 +123,12 @@ namespace Game
                         if (ExecuteOperation(serialAnswer))
                         {
                             outputText = "Ja";
-                            targetLabel.Text = "Ja";
+                            targetObject.rootObject.Text = "Ja";
                         }
                         else
                         {
                             outputText = "Nein";
-                            targetLabel.Text = "Nein";
+                            targetObject.rootObject.Text = "Nein";
                         }
                         break;
                     }
@@ -121,26 +136,28 @@ namespace Game
                     {
                         if (ExecuteOperation(serialAnswer))
                         {
-                            targetLabel.Text = displayTextPos;
+                            targetObject.rootObject.Text = displayTextPos;
                         }
                         else
                         {
-                            targetLabel.Text = displayTextNeg;
+                            targetObject.rootObject.Text = displayTextNeg;
                         }
                         break;
                     }
                 case (Int32)Props.DisplayOperation.RawData:
                     {
-                        targetLabel.Text = serialAnswer;
+                        targetObject.rootObject.Text = serialAnswer;
                         break;
                     }
             }
 
             foreach (dynamic d in mainFM.ref_playground.Controls)
             {
-                if (d.Name == targetLabel.Name)
+                if (d.Name == targetObject.rootObject.Name)
                 {
                     d.Text = outputText;
+                    d.BackColor = backColorToSet;
+                    d.ForeColor = fontColorToSet;
                 }
             }
         }
