@@ -316,6 +316,7 @@ namespace term
                             newLabel.AutoSize = true;
                         }
 
+                        newObject.parentFunction = mainFM.AllFunctions[parentFunctionIndex];
                         newRootObject = newLabel;
                         newObject.rootObject = newRootObject;
 

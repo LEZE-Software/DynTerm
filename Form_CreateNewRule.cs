@@ -150,6 +150,7 @@ namespace term
                 serial.sourceObjectPos = mainFM.AllFunctions[parentIndex].targetObjects[serialSourceIndexNeg];
             }
 
+            newF.key = key;
             newF.serial = serial;
             newF.target = target;
 
@@ -197,10 +198,20 @@ namespace term
             CheckBox senderBox = sender as CheckBox;
 
             // The display-function is locked if there are no target objects.
-            if(mainFM.AllObjects.Count==0 && senderBox.Checked==true)
+            if(mainFM.AllObjects.Count==0 && senderBox.Checked)
             {
                 MessageBox.Show(Messages.noTargetObjectAvailable, Messages.title);
                 senderBox.Checked = false;
+            }
+            else if(mainFM.AllObjects.Count>0 && senderBox.Checked)
+            {
+                foreach(ControlObject c in mainFM.AllObjects)
+                {
+                    if(c.parentFunction.index!=0)
+                    {
+                        cob_targetObject.Items.Add(c.rootObject.Name);
+                    }
+                }
             }
 
             grp_outputSettings.Enabled = senderBox.Checked;

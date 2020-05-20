@@ -75,28 +75,27 @@ namespace term
 
             foreach(FunctionRule rule in AllRules)
             {
-                switch(rule.displayOperationIndex)
+                if(rule.KeywordCheck(answer)==FunctionResultIndex.ResultYes)
                 {
-                    case (Int32)DisplayOperation.YesNo:
-                    case (Int32)DisplayOperation.YesNoIndiv:
-                    case (Int32)DisplayOperation.RawData:
-                    case (Int32)DisplayOperation.Keyword:
-                        {
-                            rule.ExecuteReaction(answer,this);
-
-                            break;
-                        }
-                    default:
-                        {
-                            if (rule.KeywordCheck(answer))
+                    switch (rule.target.DispIxd)
+                    {
+                        case DisplayOperation.YesNo:
+                        case DisplayOperation.RawData:
+                        case DisplayOperation.Keyword:
                             {
-                                rule.ExecuteReaction(answer,this);
+                                rule.ExecuteReaction(answer, this);
+                                break;
                             }
-
-                            break;
-                        }
+                        case DisplayOperation.DisplayText:
+                            {
+                                if (rule.KeywordCheck(answer) == FunctionResultIndex.ResultYes)
+                                {
+                                    rule.ExecuteReaction(answer, this);
+                                }
+                                break;
+                            }
+                    }
                 }
-
                 AllAnswers.Remove(answer);
             }
         }        
