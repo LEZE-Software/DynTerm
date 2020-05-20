@@ -81,6 +81,7 @@
     <Compile Include="Function.cs" />
     <Compile Include="FunctionRule.cs" />
     <Compile Include="LabelAction.cs" />
+    <Compile Include="Messages.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

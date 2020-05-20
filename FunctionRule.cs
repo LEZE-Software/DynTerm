@@ -77,12 +77,12 @@ namespace Game
 
             switch (answerOperationIndex)
             {
-                case (Int32)Props.SendOperation.Always:
+                case (Int32)Props.SendOperationIndex.Always:
                     {
                         Serial_functions.SendCommand(serialAnswerPos);
                         break;
                     }
-                case (Int32)Props.SendOperation.YesNo:
+                case (Int32)Props.SendOperationIndex.YesNo:
                     {
                         if (ExecuteOperation(serialAnswer))
                         {

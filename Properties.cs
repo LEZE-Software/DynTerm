@@ -72,7 +72,7 @@ namespace Game
         /// <summary>
         /// When shall a rule send a serial answer?
         /// </summary>
-        public enum SendOperation
+        public enum SendOperationIndex
         {
             YesNo,
             Always,

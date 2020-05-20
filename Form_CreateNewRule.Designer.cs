@@ -58,6 +58,8 @@
             this.lbl_displayText1 = new System.Windows.Forms.Label();
             this.grp_outputSettings = new System.Windows.Forms.GroupBox();
             this.cmd_createObject = new System.Windows.Forms.Button();
+            this.rad_fixSerialAnswer = new System.Windows.Forms.RadioButton();
+            this.rad_serialAnswerFromObject = new System.Windows.Forms.RadioButton();
             this.grp_sendSettings.SuspendLayout();
             this.grp_generals.SuspendLayout();
             this.grp_outputSettings.SuspendLayout();
@@ -69,7 +71,7 @@
             this.chb_sendSerial.Location = new System.Drawing.Point(13, 335);
             this.chb_sendSerial.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.chb_sendSerial.Name = "chb_sendSerial";
-            this.chb_sendSerial.Size = new System.Drawing.Size(15, 14);
+            this.chb_sendSerial.Size = new System.Drawing.Size(18, 17);
             this.chb_sendSerial.TabIndex = 26;
             this.chb_sendSerial.UseVisualStyleBackColor = true;
             this.chb_sendSerial.CheckedChanged += new System.EventHandler(this.chb_sendSerial_CheckedChanged);
@@ -82,10 +84,10 @@
             "Nichts senden",
             "Positiv / Negativ",
             "Immer senden"});
-            this.cob_negObject.Location = new System.Drawing.Point(191, 152);
+            this.cob_negObject.Location = new System.Drawing.Point(214, 167);
             this.cob_negObject.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cob_negObject.Name = "cob_negObject";
-            this.cob_negObject.Size = new System.Drawing.Size(156, 22);
+            this.cob_negObject.Size = new System.Drawing.Size(156, 26);
             this.cob_negObject.TabIndex = 25;
             // 
             // cob_posObject
@@ -96,20 +98,20 @@
             "Nichts senden",
             "Positiv / Negativ",
             "Immer senden"});
-            this.cob_posObject.Location = new System.Drawing.Point(8, 152);
+            this.cob_posObject.Location = new System.Drawing.Point(8, 167);
             this.cob_posObject.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cob_posObject.Name = "cob_posObject";
-            this.cob_posObject.Size = new System.Drawing.Size(156, 22);
+            this.cob_posObject.Size = new System.Drawing.Size(136, 26);
             this.cob_posObject.TabIndex = 24;
             // 
             // lbl_negFromObject
             // 
             this.lbl_negFromObject.AutoSize = true;
             this.lbl_negFromObject.BackColor = System.Drawing.SystemColors.Control;
-            this.lbl_negFromObject.Location = new System.Drawing.Point(188, 135);
+            this.lbl_negFromObject.Location = new System.Drawing.Point(211, 146);
             this.lbl_negFromObject.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_negFromObject.Name = "lbl_negFromObject";
-            this.lbl_negFromObject.Size = new System.Drawing.Size(139, 14);
+            this.lbl_negFromObject.Size = new System.Drawing.Size(166, 18);
             this.lbl_negFromObject.TabIndex = 23;
             this.lbl_negFromObject.Text = "Neg. Text von Objekt";
             // 
@@ -117,10 +119,10 @@
             // 
             this.lbl_posFromObject.AutoSize = true;
             this.lbl_posFromObject.BackColor = System.Drawing.SystemColors.Control;
-            this.lbl_posFromObject.Location = new System.Drawing.Point(8, 135);
+            this.lbl_posFromObject.Location = new System.Drawing.Point(31, 146);
             this.lbl_posFromObject.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_posFromObject.Name = "lbl_posFromObject";
-            this.lbl_posFromObject.Size = new System.Drawing.Size(137, 14);
+            this.lbl_posFromObject.Size = new System.Drawing.Size(164, 18);
             this.lbl_posFromObject.TabIndex = 22;
             this.lbl_posFromObject.Text = "Pos. Text von Objekt";
             // 
@@ -131,7 +133,7 @@
             this.lbl_sendOperation.Location = new System.Drawing.Point(8, 20);
             this.lbl_sendOperation.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_sendOperation.Name = "lbl_sendOperation";
-            this.lbl_sendOperation.Size = new System.Drawing.Size(112, 14);
+            this.lbl_sendOperation.Size = new System.Drawing.Size(130, 18);
             this.lbl_sendOperation.TabIndex = 19;
             this.lbl_sendOperation.Text = "Sende-Verhalten";
             // 
@@ -145,25 +147,25 @@
             this.cob_sendOption.Location = new System.Drawing.Point(8, 37);
             this.cob_sendOption.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cob_sendOption.Name = "cob_sendOption";
-            this.cob_sendOption.Size = new System.Drawing.Size(133, 22);
+            this.cob_sendOption.Size = new System.Drawing.Size(136, 26);
             this.cob_sendOption.TabIndex = 19;
             // 
             // txt_negText
             // 
-            this.txt_negText.Location = new System.Drawing.Point(191, 92);
+            this.txt_negText.Location = new System.Drawing.Point(214, 103);
             this.txt_negText.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_negText.Name = "txt_negText";
-            this.txt_negText.Size = new System.Drawing.Size(156, 22);
+            this.txt_negText.Size = new System.Drawing.Size(156, 26);
             this.txt_negText.TabIndex = 21;
             // 
             // lbl_negText
             // 
             this.lbl_negText.AutoSize = true;
             this.lbl_negText.BackColor = System.Drawing.SystemColors.Control;
-            this.lbl_negText.Location = new System.Drawing.Point(188, 75);
+            this.lbl_negText.Location = new System.Drawing.Point(211, 82);
             this.lbl_negText.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_negText.Name = "lbl_negText";
-            this.lbl_negText.Size = new System.Drawing.Size(117, 14);
+            this.lbl_negText.Size = new System.Drawing.Size(138, 18);
             this.lbl_negText.TabIndex = 20;
             this.lbl_negText.Text = "Negative Antwort";
             // 
@@ -171,23 +173,25 @@
             // 
             this.lbl_posText.AutoSize = true;
             this.lbl_posText.BackColor = System.Drawing.SystemColors.Control;
-            this.lbl_posText.Location = new System.Drawing.Point(8, 75);
+            this.lbl_posText.Location = new System.Drawing.Point(28, 82);
             this.lbl_posText.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_posText.Name = "lbl_posText";
-            this.lbl_posText.Size = new System.Drawing.Size(110, 14);
+            this.lbl_posText.Size = new System.Drawing.Size(130, 18);
             this.lbl_posText.TabIndex = 19;
             this.lbl_posText.Text = "Positive Antwort";
             // 
             // txt_posText
             // 
-            this.txt_posText.Location = new System.Drawing.Point(8, 92);
+            this.txt_posText.Location = new System.Drawing.Point(8, 103);
             this.txt_posText.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_posText.Name = "txt_posText";
-            this.txt_posText.Size = new System.Drawing.Size(133, 22);
+            this.txt_posText.Size = new System.Drawing.Size(136, 26);
             this.txt_posText.TabIndex = 4;
             // 
             // grp_sendSettings
             // 
+            this.grp_sendSettings.Controls.Add(this.rad_serialAnswerFromObject);
+            this.grp_sendSettings.Controls.Add(this.rad_fixSerialAnswer);
             this.grp_sendSettings.Controls.Add(this.cob_negObject);
             this.grp_sendSettings.Controls.Add(this.cob_posObject);
             this.grp_sendSettings.Controls.Add(this.lbl_negFromObject);
@@ -203,7 +207,7 @@
             this.grp_sendSettings.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.grp_sendSettings.Name = "grp_sendSettings";
             this.grp_sendSettings.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.grp_sendSettings.Size = new System.Drawing.Size(355, 182);
+            this.grp_sendSettings.Size = new System.Drawing.Size(386, 207);
             this.grp_sendSettings.TabIndex = 17;
             this.grp_sendSettings.TabStop = false;
             this.grp_sendSettings.Text = "Sende-Einstellungen";
@@ -213,17 +217,17 @@
             this.txt_keyword.Location = new System.Drawing.Point(8, 37);
             this.txt_keyword.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_keyword.Name = "txt_keyword";
-            this.txt_keyword.Size = new System.Drawing.Size(156, 22);
+            this.txt_keyword.Size = new System.Drawing.Size(159, 26);
             this.txt_keyword.TabIndex = 1;
             // 
             // lbl_operation
             // 
             this.lbl_operation.AutoSize = true;
             this.lbl_operation.BackColor = System.Drawing.SystemColors.Control;
-            this.lbl_operation.Location = new System.Drawing.Point(211, 20);
+            this.lbl_operation.Location = new System.Drawing.Point(242, 20);
             this.lbl_operation.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_operation.Name = "lbl_operation";
-            this.lbl_operation.Size = new System.Drawing.Size(70, 14);
+            this.lbl_operation.Size = new System.Drawing.Size(81, 18);
             this.lbl_operation.TabIndex = 11;
             this.lbl_operation.Text = "Operation";
             // 
@@ -234,7 +238,7 @@
             this.lbl_keyword.Location = new System.Drawing.Point(8, 20);
             this.lbl_keyword.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_keyword.Name = "lbl_keyword";
-            this.lbl_keyword.Size = new System.Drawing.Size(94, 14);
+            this.lbl_keyword.Size = new System.Drawing.Size(110, 18);
             this.lbl_keyword.TabIndex = 2;
             this.lbl_keyword.Text = "Schlüsselwort";
             // 
@@ -247,10 +251,10 @@
             "Enthält Key nicht",
             "Entspricht Key",
             "Informationsausgabe"});
-            this.cob_operation.Location = new System.Drawing.Point(214, 37);
+            this.cob_operation.Location = new System.Drawing.Point(245, 37);
             this.cob_operation.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cob_operation.Name = "cob_operation";
-            this.cob_operation.Size = new System.Drawing.Size(156, 22);
+            this.cob_operation.Size = new System.Drawing.Size(156, 26);
             this.cob_operation.TabIndex = 10;
             this.cob_operation.DropDown += new System.EventHandler(this.cob_operation_SelectedIndexChanged);
             // 
@@ -261,7 +265,7 @@
             this.cob_parentFunction.Location = new System.Drawing.Point(8, 92);
             this.cob_parentFunction.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cob_parentFunction.Name = "cob_parentFunction";
-            this.cob_parentFunction.Size = new System.Drawing.Size(156, 22);
+            this.cob_parentFunction.Size = new System.Drawing.Size(159, 26);
             this.cob_parentFunction.TabIndex = 5;
             this.cob_parentFunction.DropDown += new System.EventHandler(this.cob_chooseFunction_DropDown);
             // 
@@ -272,7 +276,7 @@
             this.lbl_function.Location = new System.Drawing.Point(8, 75);
             this.lbl_function.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_function.Name = "lbl_function";
-            this.lbl_function.Size = new System.Drawing.Size(61, 14);
+            this.lbl_function.Size = new System.Drawing.Size(72, 18);
             this.lbl_function.TabIndex = 7;
             this.lbl_function.Text = "Funktion";
             // 
@@ -288,7 +292,7 @@
             this.grp_generals.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.grp_generals.Name = "grp_generals";
             this.grp_generals.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.grp_generals.Size = new System.Drawing.Size(378, 128);
+            this.grp_generals.Size = new System.Drawing.Size(409, 128);
             this.grp_generals.TabIndex = 16;
             this.grp_generals.TabStop = false;
             this.grp_generals.Text = "Allgemeine Einstellungen";
@@ -299,17 +303,17 @@
             this.chb_useOutput.Location = new System.Drawing.Point(13, 149);
             this.chb_useOutput.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.chb_useOutput.Name = "chb_useOutput";
-            this.chb_useOutput.Size = new System.Drawing.Size(15, 14);
+            this.chb_useOutput.Size = new System.Drawing.Size(18, 17);
             this.chb_useOutput.TabIndex = 27;
             this.chb_useOutput.UseVisualStyleBackColor = true;
             this.chb_useOutput.CheckedChanged += new System.EventHandler(this.chb_useOutput_CheckedChanged);
             // 
             // txt_displayText2
             // 
-            this.txt_displayText2.Location = new System.Drawing.Point(191, 152);
+            this.txt_displayText2.Location = new System.Drawing.Point(222, 151);
             this.txt_displayText2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_displayText2.Name = "txt_displayText2";
-            this.txt_displayText2.Size = new System.Drawing.Size(156, 22);
+            this.txt_displayText2.Size = new System.Drawing.Size(156, 26);
             this.txt_displayText2.TabIndex = 15;
             // 
             // lbl_targetObject
@@ -319,7 +323,7 @@
             this.lbl_targetObject.Location = new System.Drawing.Point(8, 20);
             this.lbl_targetObject.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_targetObject.Name = "lbl_targetObject";
-            this.lbl_targetObject.Size = new System.Drawing.Size(69, 14);
+            this.lbl_targetObject.Size = new System.Drawing.Size(81, 18);
             this.lbl_targetObject.TabIndex = 9;
             this.lbl_targetObject.Text = "Zielobjekt";
             // 
@@ -327,10 +331,10 @@
             // 
             this.lbl_displayText2.AutoSize = true;
             this.lbl_displayText2.BackColor = System.Drawing.SystemColors.Control;
-            this.lbl_displayText2.Location = new System.Drawing.Point(188, 135);
+            this.lbl_displayText2.Location = new System.Drawing.Point(219, 130);
             this.lbl_displayText2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_displayText2.Name = "lbl_displayText2";
-            this.lbl_displayText2.Size = new System.Drawing.Size(122, 14);
+            this.lbl_displayText2.Size = new System.Drawing.Size(141, 18);
             this.lbl_displayText2.TabIndex = 16;
             this.lbl_displayText2.Text = "Negative Ausgabe";
             // 
@@ -341,7 +345,7 @@
             this.lbl_displayObject.Location = new System.Drawing.Point(8, 75);
             this.lbl_displayObject.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_displayObject.Name = "lbl_displayObject";
-            this.lbl_displayObject.Size = new System.Drawing.Size(101, 14);
+            this.lbl_displayObject.Size = new System.Drawing.Size(117, 18);
             this.lbl_displayObject.TabIndex = 13;
             this.lbl_displayObject.Text = "Angezeigt wird";
             // 
@@ -358,7 +362,7 @@
             this.cob_displayOperation.Location = new System.Drawing.Point(8, 92);
             this.cob_displayOperation.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cob_displayOperation.Name = "cob_displayOperation";
-            this.cob_displayOperation.Size = new System.Drawing.Size(133, 22);
+            this.cob_displayOperation.Size = new System.Drawing.Size(136, 26);
             this.cob_displayOperation.TabIndex = 14;
             this.cob_displayOperation.SelectedIndexChanged += new System.EventHandler(this.cob_displayOperation_SelectedIndexChanged);
             // 
@@ -369,26 +373,26 @@
             this.cob_targetObject.Location = new System.Drawing.Point(8, 37);
             this.cob_targetObject.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cob_targetObject.Name = "cob_targetObject";
-            this.cob_targetObject.Size = new System.Drawing.Size(133, 22);
+            this.cob_targetObject.Size = new System.Drawing.Size(136, 26);
             this.cob_targetObject.TabIndex = 8;
             this.cob_targetObject.DropDown += new System.EventHandler(this.cob_targetObject_DropDown);
             // 
             // txt_displayText1
             // 
-            this.txt_displayText1.Location = new System.Drawing.Point(8, 152);
+            this.txt_displayText1.Location = new System.Drawing.Point(11, 151);
             this.txt_displayText1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txt_displayText1.Name = "txt_displayText1";
-            this.txt_displayText1.Size = new System.Drawing.Size(133, 22);
+            this.txt_displayText1.Size = new System.Drawing.Size(133, 26);
             this.txt_displayText1.TabIndex = 3;
             // 
             // lbl_displayText1
             // 
             this.lbl_displayText1.AutoSize = true;
             this.lbl_displayText1.BackColor = System.Drawing.SystemColors.Control;
-            this.lbl_displayText1.Location = new System.Drawing.Point(8, 135);
+            this.lbl_displayText1.Location = new System.Drawing.Point(8, 130);
             this.lbl_displayText1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_displayText1.Name = "lbl_displayText1";
-            this.lbl_displayText1.Size = new System.Drawing.Size(115, 14);
+            this.lbl_displayText1.Size = new System.Drawing.Size(133, 18);
             this.lbl_displayText1.TabIndex = 4;
             this.lbl_displayText1.Text = "Positive Ausgabe";
             // 
@@ -407,14 +411,14 @@
             this.grp_outputSettings.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.grp_outputSettings.Name = "grp_outputSettings";
             this.grp_outputSettings.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.grp_outputSettings.Size = new System.Drawing.Size(355, 183);
+            this.grp_outputSettings.Size = new System.Drawing.Size(386, 183);
             this.grp_outputSettings.TabIndex = 15;
             this.grp_outputSettings.TabStop = false;
             this.grp_outputSettings.Text = "Ausgabe-Einstellungen";
             // 
             // cmd_createObject
             // 
-            this.cmd_createObject.Location = new System.Drawing.Point(227, 523);
+            this.cmd_createObject.Location = new System.Drawing.Point(250, 548);
             this.cmd_createObject.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cmd_createObject.Name = "cmd_createObject";
             this.cmd_createObject.Size = new System.Drawing.Size(164, 24);
@@ -423,11 +427,31 @@
             this.cmd_createObject.UseVisualStyleBackColor = true;
             this.cmd_createObject.Click += new System.EventHandler(this.cmd_addNewRule_Click);
             // 
+            // rad_fixSerialAnswer
+            // 
+            this.rad_fixSerialAnswer.AutoSize = true;
+            this.rad_fixSerialAnswer.Location = new System.Drawing.Point(7, 81);
+            this.rad_fixSerialAnswer.Name = "rad_fixSerialAnswer";
+            this.rad_fixSerialAnswer.Size = new System.Drawing.Size(17, 16);
+            this.rad_fixSerialAnswer.TabIndex = 26;
+            this.rad_fixSerialAnswer.TabStop = true;
+            this.rad_fixSerialAnswer.UseVisualStyleBackColor = true;
+            // 
+            // rad_serialAnswerFromObject
+            // 
+            this.rad_serialAnswerFromObject.AutoSize = true;
+            this.rad_serialAnswerFromObject.Location = new System.Drawing.Point(7, 148);
+            this.rad_serialAnswerFromObject.Name = "rad_serialAnswerFromObject";
+            this.rad_serialAnswerFromObject.Size = new System.Drawing.Size(17, 16);
+            this.rad_serialAnswerFromObject.TabIndex = 27;
+            this.rad_serialAnswerFromObject.TabStop = true;
+            this.rad_serialAnswerFromObject.UseVisualStyleBackColor = true;
+            // 
             // Form_CreateNewRule
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 14F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(402, 554);
+            this.ClientSize = new System.Drawing.Size(435, 584);
             this.Controls.Add(this.chb_sendSerial);
             this.Controls.Add(this.chb_useOutput);
             this.Controls.Add(this.cmd_createObject);
@@ -483,5 +507,7 @@
         private System.Windows.Forms.Label lbl_displayText1;
         private System.Windows.Forms.GroupBox grp_outputSettings;
         private System.Windows.Forms.Button cmd_createObject;
+        private System.Windows.Forms.RadioButton rad_serialAnswerFromObject;
+        private System.Windows.Forms.RadioButton rad_fixSerialAnswer;
     }
 }

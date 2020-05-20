@@ -77,6 +77,7 @@ namespace Game
 
         private void cmd_addNewRule_Click(object sender, EventArgs e)
         {
+            #region Variables.
             int
                 parentIndex = cob_parentFunction.SelectedIndex,
                 targetObjectIndex = cob_targetObject.SelectedIndex,
@@ -88,44 +89,54 @@ namespace Game
 
             bool
                 enableSerialAnswer = chb_sendSerial.Checked,
-                enableDisplayAction = chb_useOutput.Checked;
+                enableDisplayAction = chb_useOutput.Checked;         
+            #endregion
 
-            FunctionRule newFunction = new FunctionRule()
+            FunctionRule newF = new FunctionRule()
             {
+                // Values needed in every case.
+                ParentFunction = mainFM.AllFunctions[parentIndex],
                 keyWord = txt_keyword.Text,
-                displayTextPos = txt_displayText1.Text,
-                displayTextNeg = txt_displayText2.Text,
-
                 sendSerialMessage = enableSerialAnswer,
                 displaySomeContent = enableDisplayAction,
-                serialAnswerPos = txt_posText.Text,
-                serialAnswerNeg = txt_negText.Text,
-
-                displayOperationIndex = displayIndex,
                 keywordOperationIndex = operationIndex,
-
-                ParentFunction = mainFM.AllFunctions[parentIndex],//
-
-                targetObject = mainFM.AllObjects[targetObjectIndex]
             };
 
-            if(answerIndex!=-1)
+            // Creating a rule to display something.
+            if(enableDisplayAction)
             {
-                newFunction.answerOperationIndex = answerIndex;
+                newF.targetObject = mainFM.AllObjects[targetObjectIndex];
+                newF.displayOperationIndex = displayIndex;
+
+                if(displayIndex==(Int32)Props.DisplayOperation.YesNoIndiv)
+                {
+                    newF.displayTextPos = txt_displayText1.Text;
+                    newF.displayTextNeg = txt_displayText2.Text;
+                }
             }
 
+            if (enableSerialAnswer)
+            {
+                newF.answerOperationIndex = answerIndex;
+
+                if(answerIndex==(Int32)Props.SendOperationIndex.YesNo)
+                {
+                    newF.serialAnswerPos = txt_posText.Text;
+                    newF.serialAnswerNeg = txt_negText.Text;
+                }
+            }
 
 
             if(serialSourceIndexPos!=-1)
             {
-                newFunction.sourceObjectAnswerPos = mainFM.AllFunctions[parentIndex].targetObjects[serialSourceIndexPos];
+                newF.sourceObjectAnswerPos = mainFM.AllFunctions[parentIndex].targetObjects[serialSourceIndexPos];
             }
             if(serialSourceIndexNeg!=-1)
             {
-                newFunction.sourceObjectAnswerNeg = mainFM.AllFunctions[parentIndex].targetObjects[serialSourceIndexNeg];
+                newF.sourceObjectAnswerNeg = mainFM.AllFunctions[parentIndex].targetObjects[serialSourceIndexNeg];
             }
 
-            mainFM.AllRules.Add(newFunction);
+            mainFM.AllRules.Add(newF);
         }
 
         private void cob_operation_SelectedIndexChanged(object sender, EventArgs e)
@@ -150,29 +161,42 @@ namespace Game
 
         private void chb_sendSerial_CheckedChanged(object sender, EventArgs e)
         {
-            grp_sendSettings.Enabled = chb_sendSerial.Checked;
+            CheckBox senderBox = sender as CheckBox;
 
-            if(!chb_useOutput.Checked && !chb_sendSerial.Checked)
+            grp_sendSettings.Enabled = senderBox.Checked;
+
+            if (senderBox.Checked)
             {
-                cmd_createObject.Enabled = false;
+                cob_sendOption.SelectedIndex = 0;
             }
-            else
+            else if (!senderBox.Checked)
             {
-                cmd_createObject.Enabled = true;
+                cob_sendOption.SelectedIndex = -1;
             }
         }
 
         private void chb_useOutput_CheckedChanged(object sender, EventArgs e)
         {
-            grp_outputSettings.Enabled = chb_useOutput.Checked;
+            CheckBox senderBox = sender as CheckBox;
 
-            if (!chb_useOutput.Checked && !chb_sendSerial.Checked)
+            // The display-function is locked if there are no target objects.
+            if(mainFM.AllObjects.Count==0 && senderBox.Checked==true)
             {
-                cmd_createObject.Enabled = false;
+                MessageBox.Show(Messages.noTargetObjectAvailable, Messages.title);
+                senderBox.Checked = false;
             }
-            else
+
+            grp_outputSettings.Enabled = senderBox.Checked;
+
+            if (senderBox.Checked)
             {
-                cmd_createObject.Enabled = true;
+                cob_targetObject.SelectedIndex = 0;
+                cob_displayOperation.SelectedIndex = 0;
+            }
+            else if (!senderBox.Checked)
+            {
+                cob_targetObject.SelectedIndex = -1;
+                cob_displayOperation.SelectedIndex = -1;
             }
         }
 

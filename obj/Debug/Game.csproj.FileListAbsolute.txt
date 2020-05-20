@@ -22,3 +22,17 @@ C:\00 Repository\DynTerm\obj\Debug\Game.Form_Array.resources
 C:\00 Repository\DynTerm\obj\Debug\Game.Form_CreateNewObject.resources
 C:\00 Repository\DynTerm\obj\Debug\Game.Form_CreateNewRule.resources
 C:\00 Repository\DynTerm\obj\Debug\Game.Form_Playground.resources
+F:\DynTerm\obj\Debug\Game.csprojAssemblyReference.cache
+F:\DynTerm\obj\Debug\Game.Form_Center.resources
+F:\DynTerm\obj\Debug\Game.Form_Array.resources
+F:\DynTerm\obj\Debug\Game.Form_CreateNewObject.resources
+F:\DynTerm\obj\Debug\Game.Form_CreateNewRule.resources
+F:\DynTerm\obj\Debug\Game.Form_Playground.resources
+F:\DynTerm\obj\Debug\Game.Properties.Resources.resources
+F:\DynTerm\obj\Debug\Game.csproj.GenerateResource.cache
+F:\DynTerm\obj\Debug\Game.exe
+F:\DynTerm\obj\Debug\Game.pdb
+F:\DynTerm\obj\Debug\Game.csproj.CoreCompileInputs.cache
+F:\DynTerm\bin\Debug\Game.exe.config
+F:\DynTerm\bin\Debug\Game.exe
+F:\DynTerm\bin\Debug\Game.pdb
