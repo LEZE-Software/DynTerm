@@ -1,0 +1,14 @@
+W:\OneDrive\10 Programmierung\20_C#\DynTerm\obj\Debug\term.Properties.Resources.resources
+W:\OneDrive\10 Programmierung\20_C#\DynTerm\obj\Debug\DynTerm.csproj.GenerateResource.cache
+W:\OneDrive\10 Programmierung\20_C#\DynTerm\obj\Debug\DynTerm.csproj.CoreCompileInputs.cache
+W:\OneDrive\10 Programmierung\20_C#\DynTerm\bin\Debug\DynTerm.exe.config
+W:\OneDrive\10 Programmierung\20_C#\DynTerm\bin\Debug\DynTerm.exe
+W:\OneDrive\10 Programmierung\20_C#\DynTerm\bin\Debug\DynTerm.pdb
+W:\OneDrive\10 Programmierung\20_C#\DynTerm\obj\Debug\DynTerm.exe
+W:\OneDrive\10 Programmierung\20_C#\DynTerm\obj\Debug\DynTerm.pdb
+W:\OneDrive\10 Programmierung\20_C#\DynTerm\obj\Debug\DynTerm.csprojAssemblyReference.cache
+W:\OneDrive\10 Programmierung\20_C#\DynTerm\obj\Debug\term.Form_Center.resources
+W:\OneDrive\10 Programmierung\20_C#\DynTerm\obj\Debug\term.Form_Array.resources
+W:\OneDrive\10 Programmierung\20_C#\DynTerm\obj\Debug\term.Form_CreateNewObject.resources
+W:\OneDrive\10 Programmierung\20_C#\DynTerm\obj\Debug\term.Form_CreateNewRule.resources
+W:\OneDrive\10 Programmierung\20_C#\DynTerm\obj\Debug\term.Form_Playground.resources
