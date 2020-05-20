@@ -40,6 +40,8 @@
             this.lbl_posText = new System.Windows.Forms.Label();
             this.txt_posText = new System.Windows.Forms.TextBox();
             this.grp_sendSettings = new System.Windows.Forms.GroupBox();
+            this.rad_serialAnswerFromObject = new System.Windows.Forms.RadioButton();
+            this.rad_fixSerialAnswer = new System.Windows.Forms.RadioButton();
             this.txt_keyword = new System.Windows.Forms.TextBox();
             this.lbl_operation = new System.Windows.Forms.Label();
             this.lbl_keyword = new System.Windows.Forms.Label();
@@ -58,8 +60,6 @@
             this.lbl_displayText1 = new System.Windows.Forms.Label();
             this.grp_outputSettings = new System.Windows.Forms.GroupBox();
             this.cmd_createObject = new System.Windows.Forms.Button();
-            this.rad_fixSerialAnswer = new System.Windows.Forms.RadioButton();
-            this.rad_serialAnswerFromObject = new System.Windows.Forms.RadioButton();
             this.grp_sendSettings.SuspendLayout();
             this.grp_generals.SuspendLayout();
             this.grp_outputSettings.SuspendLayout();
@@ -211,6 +211,26 @@
             this.grp_sendSettings.TabIndex = 17;
             this.grp_sendSettings.TabStop = false;
             this.grp_sendSettings.Text = "Sende-Einstellungen";
+            // 
+            // rad_serialAnswerFromObject
+            // 
+            this.rad_serialAnswerFromObject.AutoSize = true;
+            this.rad_serialAnswerFromObject.Location = new System.Drawing.Point(7, 148);
+            this.rad_serialAnswerFromObject.Name = "rad_serialAnswerFromObject";
+            this.rad_serialAnswerFromObject.Size = new System.Drawing.Size(17, 16);
+            this.rad_serialAnswerFromObject.TabIndex = 27;
+            this.rad_serialAnswerFromObject.TabStop = true;
+            this.rad_serialAnswerFromObject.UseVisualStyleBackColor = true;
+            // 
+            // rad_fixSerialAnswer
+            // 
+            this.rad_fixSerialAnswer.AutoSize = true;
+            this.rad_fixSerialAnswer.Location = new System.Drawing.Point(7, 81);
+            this.rad_fixSerialAnswer.Name = "rad_fixSerialAnswer";
+            this.rad_fixSerialAnswer.Size = new System.Drawing.Size(17, 16);
+            this.rad_fixSerialAnswer.TabIndex = 26;
+            this.rad_fixSerialAnswer.TabStop = true;
+            this.rad_fixSerialAnswer.UseVisualStyleBackColor = true;
             // 
             // txt_keyword
             // 
@@ -427,26 +447,6 @@
             this.cmd_createObject.UseVisualStyleBackColor = true;
             this.cmd_createObject.Click += new System.EventHandler(this.cmd_addNewRule_Click);
             // 
-            // rad_fixSerialAnswer
-            // 
-            this.rad_fixSerialAnswer.AutoSize = true;
-            this.rad_fixSerialAnswer.Location = new System.Drawing.Point(7, 81);
-            this.rad_fixSerialAnswer.Name = "rad_fixSerialAnswer";
-            this.rad_fixSerialAnswer.Size = new System.Drawing.Size(17, 16);
-            this.rad_fixSerialAnswer.TabIndex = 26;
-            this.rad_fixSerialAnswer.TabStop = true;
-            this.rad_fixSerialAnswer.UseVisualStyleBackColor = true;
-            // 
-            // rad_serialAnswerFromObject
-            // 
-            this.rad_serialAnswerFromObject.AutoSize = true;
-            this.rad_serialAnswerFromObject.Location = new System.Drawing.Point(7, 148);
-            this.rad_serialAnswerFromObject.Name = "rad_serialAnswerFromObject";
-            this.rad_serialAnswerFromObject.Size = new System.Drawing.Size(17, 16);
-            this.rad_serialAnswerFromObject.TabIndex = 27;
-            this.rad_serialAnswerFromObject.TabStop = true;
-            this.rad_serialAnswerFromObject.UseVisualStyleBackColor = true;
-            // 
             // Form_CreateNewRule
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -463,7 +463,6 @@
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "Form_CreateNewRule";
             this.Text = "Neue Regel erstellen";
-            this.Load += new System.EventHandler(this.Form_CreateNewRule_Load);
             this.grp_sendSettings.ResumeLayout(false);
             this.grp_sendSettings.PerformLayout();
             this.grp_generals.ResumeLayout(false);

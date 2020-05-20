@@ -21,7 +21,7 @@ namespace term
         Contains,
         ContainsNot,
         IsEqual,
-        DisplayContent,
+        DisplayKeywordWithoutCheck,
         LAST_INDEX
     }
 
@@ -46,7 +46,6 @@ namespace term
         Keyword,
         DisplayText,
         YesNo,
-        YesNoIndiv,
         RawData,
         LAST_INDEX
     }
@@ -80,6 +79,25 @@ namespace term
     {
         YesNo,
         Always,
+        LAST_INDEX
+    }
+
+    public enum FunctionResultIndex
+    {
+        ResultYes,
+        ResultNo,
+        LAST_INDEX
+    }
+
+    /// <summary>
+    /// What kind of output shall a function create?
+    /// </summary>
+    public enum KindOfOutputIndex
+    {
+        Serial,
+        Visual,
+        Both,
+        None,
         LAST_INDEX
     }
 

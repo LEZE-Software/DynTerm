@@ -9,198 +9,142 @@ namespace term
 {
     public class FunctionRule
     {
-        public string
-            keyWord,
-            displayTextPos,
-            displayTextNeg,
-            serialAnswerPos,
-            serialAnswerNeg;
+        public KindOfOutputIndex kindOfOutput;
 
-        public int
-            keywordOperationIndex,
-            displayOperationIndex,
-            answerOperationIndex;
-
-        public bool
-            sendSerialMessage,
-            displaySomeContent,
-            changeColorOfTargetObject,
-            interactWithPanel;
+        public TargetProp target;
+        public SerialAnswer serial;
+        public Keyword key;
 
         public Function ParentFunction;
 
-        public Color
-            targetObjectColorPos,
-            targetObjectColorNeg,
-            targetPanelColorPos,
-            targetPanelColorNeg;
-
-        public ControlObject
-            targetObject;
-
-        public dynamic
-            targetStatusPanel,
-            sourceObjectAnswerPos,
-            sourceObjectAnswerNeg;
-
         public void ExecuteReaction(string serialAnswer, Form_Center mainFM)
         {
-            if(sendSerialMessage)
+            switch(kindOfOutput)
             {
-                ExecuteSendOperation(serialAnswer);
-            }
-            
-            if(displaySomeContent)
-            {
-                ExecuteDisplayOperation(serialAnswer, mainFM);
+                case KindOfOutputIndex.Serial:
+                    {
+                        ExecuteSendOperation(serialAnswer);
+                        break;
+                    }
+                case KindOfOutputIndex.Visual:
+                    {
+                        ExecuteDisplayOperation(serialAnswer, mainFM);
+                        break;
+                    }
+                case KindOfOutputIndex.Both:
+                    {
+                        ExecuteDisplayOperation(serialAnswer, mainFM);
+                        ExecuteSendOperation(serialAnswer);
+                        break;
+                    }
+                case KindOfOutputIndex.None:
+                    {
+                        // Nothing.
+                        break;
+                    }
             }
         }
 
         public void ExecuteSendOperation(string serialAnswer)
         {
-            try
+            switch(serial.sendIdx)
             {
-                if (sourceObjectAnswerPos != null)
-                {
-                    serialAnswerPos = sourceObjectAnswerPos.Text;
-                }
-
-                if (sourceObjectAnswerNeg != null)
-                {
-                    serialAnswerNeg = sourceObjectAnswerNeg.Text;
-                }
-            }
-            catch
-            {
-                // Malfunction detected.
-            }
-
-            switch (answerOperationIndex)
-            {
-                case (Int32)SendOperationIndex.Always:
+                case SendOperationIndex.Always:
                     {
-                        Serial_functions.SendCommand(serialAnswerPos);
+                        Serial_functions.SendCommand(serial.answer);
                         break;
                     }
-                case (Int32)SendOperationIndex.YesNo:
+                case SendOperationIndex.YesNo:
                     {
-                        if (ExecuteOperation(serialAnswer))
+                        if(KeywordCheck(serialAnswer)==FunctionResultIndex.ResultYes)
                         {
-                            Serial_functions.SendCommand(serialAnswerPos);
+                            Serial_functions.SendCommand(serial.answerPos);
                         }
                         else
                         {
-                            Serial_functions.SendCommand(serialAnswerPos);
+                            Serial_functions.SendCommand(serial.answerNeg);
                         }
                         break;
                     }
-
             }
         }
 
         public void ExecuteDisplayOperation(string serialAnswer, Form_Center mainFM)
         {
-            string outputText = "leer";
-            Color
-                backColorToSet = targetObject.commonBackColor,
-                fontColorToSet = targetObject.commonFontColor;
-
-            switch (displayOperationIndex)
+            switch (target.DispIxd)
             {
-                case (Int32)DisplayOperation.DisplayText:
+                case DisplayOperation.Keyword:
+                case DisplayOperation.DisplayText:
                     {
-                        outputText = displayTextPos;
+                        target.DisplayText(key);
                         break;
                     }
-                case (Int32)DisplayOperation.Keyword:
+                case DisplayOperation.YesNo:
                     {
-                        outputText = keyWord;
-                        //targetLabel.Text = keyWord;
-                        break;
-                    }
-                case (Int32)DisplayOperation.YesNo:
-                    {
-                        if (ExecuteOperation(serialAnswer))
+                        if (KeywordCheck(serialAnswer)==FunctionResultIndex.ResultYes)
                         {
-                            outputText = "Ja";
-                            targetObject.rootObject.Text = "Ja";
+                            target.DisplayTextPos();
                         }
-                        else
+                        else if (KeywordCheck(serialAnswer) == FunctionResultIndex.ResultNo)
                         {
-                            outputText = "Nein";
-                            targetObject.rootObject.Text = "Nein";
+                            target.DisplayTextPos();
                         }
                         break;
                     }
-                case (Int32)DisplayOperation.YesNoIndiv:
+                case DisplayOperation.RawData:
                     {
-                        if (ExecuteOperation(serialAnswer))
-                        {
-                            targetObject.rootObject.Text = displayTextPos;
-                        }
-                        else
-                        {
-                            targetObject.rootObject.Text = displayTextNeg;
-                        }
-                        break;
-                    }
-                case (Int32)DisplayOperation.RawData:
-                    {
-                        targetObject.rootObject.Text = serialAnswer;
+                        target.DisplaySerialAnswer(serialAnswer);
                         break;
                     }
             }
 
             foreach (dynamic d in mainFM.ref_playground.Controls)
             {
-                if (d.Name == targetObject.rootObject.Name)
+                /*if (d.Name == targetObject.rootObject.Name)
                 {
                     d.Text = outputText;
                     d.BackColor = backColorToSet;
                     d.ForeColor = fontColorToSet;
-                }
+                }*/
             }
         }
 
-        public bool ExecuteOperation(string serialAnswer)
+        public FunctionResultIndex KeywordCheck(string serialAnswer)
         {
-            switch (keywordOperationIndex)
+            switch (key.CheckIdx)
             {
-                case (Int32)KeywordCheckOperation.Contains:
+                case KeywordCheckOperation.Contains:
                     {
-                        if (serialAnswer.Contains(keyWord))
+                        if (serialAnswer.Contains(key.text))
                         {
-                            return true;
+                            return FunctionResultIndex.ResultYes;
                         }
-
-                        return false;
+                        break;
                     }
-                case (Int32)KeywordCheckOperation.ContainsNot:
+                case KeywordCheckOperation.ContainsNot:
                     {
-                        if (!serialAnswer.Contains(keyWord))
+                        if (!serialAnswer.Contains(key.text))
                         {
-                            return true;
+                            return FunctionResultIndex.ResultYes;
                         }
-
-                        return false;
+                        break;
                     }
-                case (Int32)KeywordCheckOperation.IsEqual:
+                case KeywordCheckOperation.IsEqual:
                     {
-                        if (serialAnswer == keyWord)
+                        if (serialAnswer == key.text)
                         {
-                            return true;
+                            return FunctionResultIndex.ResultYes;
                         }
-
-                        return false;
+                        break;
                     }
-                case (Int32)KeywordCheckOperation.DisplayContent:
+                case KeywordCheckOperation.DisplayKeywordWithoutCheck:
                     {
-                        return true;
+                        return FunctionResultIndex.ResultYes;
                         // This function is always true because it shall output the received string.
                     }
             }
 
-            return false;
+            return FunctionResultIndex.ResultNo;
         }
     }
 }

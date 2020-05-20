@@ -88,7 +88,7 @@ namespace term
                         }
                     default:
                         {
-                            if (rule.ExecuteOperation(answer))
+                            if (rule.KeywordCheck(answer))
                             {
                                 rule.ExecuteReaction(answer,this);
                             }

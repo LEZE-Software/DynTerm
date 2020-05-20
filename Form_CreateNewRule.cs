@@ -20,11 +20,6 @@ namespace term
 
         Form_Center mainFM;
 
-        private void Form_CreateNewRule_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void cob_displayOperation_SelectedIndexChanged(object sender, EventArgs e)
         {
             int index = cob_displayOperation.SelectedIndex;
@@ -40,16 +35,6 @@ namespace term
 
                         txt_displayText2.Visible = 
                             lbl_displayText2.Visible = false;
-
-                        break;
-                    }
-                case (Int32)DisplayOperation.YesNoIndiv:
-                    {
-                        lbl_displayText1.Text = "Positive Ausgabe";
-                        lbl_displayText1.Visible =
-                            lbl_displayText2.Visible = 
-                            txt_displayText1.Visible =
-                            txt_displayText2.Visible = true;
 
                         break;
                     }
@@ -75,6 +60,23 @@ namespace term
             }
         }
 
+        public KindOfOutputIndex CreateKindOfOutput(bool serial, bool display)
+        {
+            if (serial && display)
+            {
+                return KindOfOutputIndex.Both;
+            }
+            else if (serial && !display)
+            {
+                return KindOfOutputIndex.Serial;
+            }
+            else if (display && !serial)
+            {
+                return KindOfOutputIndex.Visual;
+            }
+            return KindOfOutputIndex.None;
+        }
+
         private void cmd_addNewRule_Click(object sender, EventArgs e)
         {
             #region Variables.
@@ -89,52 +91,67 @@ namespace term
 
             bool
                 enableSerialAnswer = chb_sendSerial.Checked,
-                enableDisplayAction = chb_useOutput.Checked;         
+                enableDisplayAction = chb_useOutput.Checked;
             #endregion
+
+            Keyword key = new Keyword
+            {
+                text = txt_keyword.Text,
+                CheckIdx = (KeywordCheckOperation)operationIndex
+            };
+
+            SerialAnswer serial = new SerialAnswer
+            {
+                sendIdx = (SendOperationIndex)answerIndex
+            };
+
+            TargetProp target = new TargetProp
+            {
+                DispIxd = (DisplayOperation)displayIndex,
+
+            };
 
             FunctionRule newF = new FunctionRule()
             {
                 // Values needed in every case.
                 ParentFunction = mainFM.AllFunctions[parentIndex],
-                keyWord = txt_keyword.Text,
-                sendSerialMessage = enableSerialAnswer,
-                displaySomeContent = enableDisplayAction,
-                keywordOperationIndex = operationIndex,
+                kindOfOutput = CreateKindOfOutput(enableSerialAnswer, enableDisplayAction)
             };
 
             // Creating a rule to display something.
             if(enableDisplayAction)
             {
-                newF.targetObject = mainFM.AllObjects[targetObjectIndex];
-                newF.displayOperationIndex = displayIndex;
+                target.targetObject = mainFM.AllObjects[targetObjectIndex];
 
-                if(displayIndex==(Int32)DisplayOperation.YesNoIndiv)
+                if(displayIndex==(Int32)DisplayOperation.YesNo)
                 {
-                    newF.displayTextPos = txt_displayText1.Text;
-                    newF.displayTextNeg = txt_displayText2.Text;
+                    target.displayTextPos = txt_displayText1.Text;
+                    target.displayTextNeg = txt_displayText2.Text;
                 }
             }
 
             if (enableSerialAnswer)
             {
-                newF.answerOperationIndex = answerIndex;
+                serial.sendIdx = (SendOperationIndex)answerIndex;
 
-                if(answerIndex==(Int32)SendOperationIndex.YesNo)
+                if(serial.sendIdx == SendOperationIndex.YesNo)
                 {
-                    newF.serialAnswerPos = txt_posText.Text;
-                    newF.serialAnswerNeg = txt_negText.Text;
+                    serial.answerPos = txt_posText.Text;
+                    serial.answerNeg = txt_negText.Text;
                 }
             }
 
-
             if(serialSourceIndexPos!=-1)
             {
-                newF.sourceObjectAnswerPos = mainFM.AllFunctions[parentIndex].targetObjects[serialSourceIndexPos];
+                serial.sourceObjectPos = mainFM.AllFunctions[parentIndex].targetObjects[serialSourceIndexPos];
             }
             if(serialSourceIndexNeg!=-1)
             {
-                newF.sourceObjectAnswerNeg = mainFM.AllFunctions[parentIndex].targetObjects[serialSourceIndexNeg];
+                serial.sourceObjectPos = mainFM.AllFunctions[parentIndex].targetObjects[serialSourceIndexNeg];
             }
+
+            newF.serial = serial;
+            newF.target = target;
 
             mainFM.AllRules.Add(newF);
         }
@@ -145,7 +162,7 @@ namespace term
 
             switch (index)
             {
-                case (Int32)KeywordCheckOperation.DisplayContent:
+                case (Int32)KeywordCheckOperation.DisplayKeywordWithoutCheck:
                     {
                         txt_keyword.Enabled = false;
                         cob_targetObject.SelectedIndex = (Int32)DisplayOperation.RawData;
