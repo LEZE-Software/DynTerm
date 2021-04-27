@@ -9,6 +9,11 @@ namespace term
 {
     public static class Props
     {
+        public static bool
+            previewMode = false,
+            resizeMode = false;
+
+        public static PreviewObjectIndex previewIndex;
         public static bool shallClose = false;
         public static SerialPort serialPort = new SerialPort();
     }
@@ -28,7 +33,7 @@ namespace term
     /// <summary>
     /// Kind of ControlObject.
     /// </summary>
-    public enum ObjectIndex
+    public enum PreviewObjectIndex
     {
         Label,
         Button,

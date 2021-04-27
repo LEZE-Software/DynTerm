@@ -12,3 +12,18 @@ W:\OneDrive\10 Programmierung\20_C#\DynTerm\obj\Debug\term.Form_Array.resources
 W:\OneDrive\10 Programmierung\20_C#\DynTerm\obj\Debug\term.Form_CreateNewObject.resources
 W:\OneDrive\10 Programmierung\20_C#\DynTerm\obj\Debug\term.Form_CreateNewRule.resources
 W:\OneDrive\10 Programmierung\20_C#\DynTerm\obj\Debug\term.Form_Playground.resources
+D:\DynTerm\bin\Debug\DynTerm.exe.config
+D:\DynTerm\bin\Debug\DynTerm.exe
+D:\DynTerm\bin\Debug\DynTerm.pdb
+D:\DynTerm\obj\Debug\DynTerm.csprojAssemblyReference.cache
+D:\DynTerm\obj\Debug\term.Form_Center.resources
+D:\DynTerm\obj\Debug\term.Form_Array.resources
+D:\DynTerm\obj\Debug\term.Form_CreateNewObject.resources
+D:\DynTerm\obj\Debug\term.Form_CreateNewRule.resources
+D:\DynTerm\obj\Debug\term.Form_Playground.resources
+D:\DynTerm\obj\Debug\term.Properties.Resources.resources
+D:\DynTerm\obj\Debug\DynTerm.csproj.GenerateResource.cache
+D:\DynTerm\obj\Debug\DynTerm.csproj.CoreCompileInputs.cache
+D:\DynTerm\obj\Debug\DynTerm.exe
+D:\DynTerm\obj\Debug\DynTerm.pdb
+W:\OneDrive\10 Programmierung\20_C#\DynTerm\obj\Debug\term.Form_ObjectProperties.resources
