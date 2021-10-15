@@ -6,4 +6,4 @@ Therefore I invented the "DynTerm"-tool. A tool which allows the user to build a
 
 Feel free to leave comments, issues or the participate on the project.
 
-For mor information feel free to contact me: MTB1Leo@GMX.de
+For mor information feel free to contact me: leze.software@gmail.com
