@@ -121,6 +121,7 @@ namespace term
             // Creating a rule to display something.
             if(enableDisplayAction)
             {
+                target.textToDisplay = txt_displayText1.Text;
                 target.targetObject = mainFM.AllObjects[targetObjectIndex];
 
                 if(displayIndex==(Int32)DisplayOperation.YesNo)

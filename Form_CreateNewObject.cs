@@ -22,6 +22,7 @@ namespace term
         Form_Center mainFM;
 
         int buttonAction = 0;
+        bool changingTabIndexFromCombo = false;
         #endregion
 
         private ControlObject GetTargetObjectForButton()
@@ -198,58 +199,40 @@ namespace term
         // Display preview element.
         private void cmd_preview_Click(object sender, EventArgs e)
         {
+            Props.previewIndex = (PreviewObjectIndex)cob_objectType.SelectedIndex;
+            Props.previewMode = true;
+
+            Point objectLocation = new Point(10,10);
             try
             {
-                if (txt_xPos.Text != "" && txt_width.Text != "" && txt_yPos.Text != "")
+                switch (Props.previewIndex)
                 {
-                    int
-                        x = Convert.ToInt32(txt_xPos.Text),
-                        y = Convert.ToInt32(txt_yPos.Text),
-                        width = Convert.ToInt32(txt_width.Text);
-
-                    Point newLocation = new Point(x, y);
-
-                    switch (cob_objectType.SelectedIndex)
-                    {
-                        case (Int32)ObjectIndex.Label:
-                            {
-                                if(!chb_autoSize.Checked)
-                                {
-                                    mainFM.ref_playground.lbl_preview.Width = width;
-                                    mainFM.ref_playground.lbl_preview.Height = Height;
-                                }
-                                else
-                                {
-                                    mainFM.ref_playground.lbl_preview.AutoSize = true;
-                                }
-
-                                mainFM.ref_playground.lbl_preview.Text = txt_content.Text;                               
-                                mainFM.ref_playground.lbl_preview.Visible = true;
-                                mainFM.ref_playground.lbl_preview.Location = newLocation;
-                                break;
-                            }
-                        case (Int32)ObjectIndex.Textbox:
-                            {
-                                mainFM.ref_playground.txt_preview.Width = width;
-                                mainFM.ref_playground.txt_preview.Visible = true;
-                                mainFM.ref_playground.txt_preview.Location = newLocation;
-                                break;
-                            }
-                        case (Int32)ObjectIndex.Button:
-                            {
-                                mainFM.ref_playground.cmd_preview.Width = width;
-                                mainFM.ref_playground.cmd_preview.Visible = true;
-                                mainFM.ref_playground.cmd_preview.Location = newLocation;
-                                break;
-                            }
-                        case (Int32)ObjectIndex.Combo:
-                            {
-                                mainFM.ref_playground.cob_preview.Width = width;
-                                mainFM.ref_playground.cob_preview.Visible = true;
-                                mainFM.ref_playground.cob_preview.Location = newLocation;
-                                break;
-                            }
-                    }
+                    case PreviewObjectIndex.Label:
+                        {
+                            mainFM.ref_playground.lbl_preview.Text = txt_content.Text;
+                            mainFM.ref_playground.lbl_preview.Visible = true;
+                            mainFM.ref_playground.lbl_preview.Location = objectLocation;
+                            break;
+                        }
+                    case PreviewObjectIndex.Textbox:
+                        {
+                            mainFM.ref_playground.txt_preview.Visible = true;
+                            mainFM.ref_playground.txt_preview.Location = objectLocation;
+                            break;
+                        }
+                    case PreviewObjectIndex.Button:
+                        {
+                            mainFM.ref_playground.cmd_preview.Text = txt_content.Text;
+                            mainFM.ref_playground.cmd_preview.Visible = true;
+                            mainFM.ref_playground.cmd_preview.Location = objectLocation;
+                            break;
+                        }
+                    case PreviewObjectIndex.Combo:
+                        {
+                            mainFM.ref_playground.cob_preview.Visible = true;
+                            mainFM.ref_playground.cob_preview.Location = objectLocation;
+                            break;
+                        }
                 }
             }
             catch
@@ -277,14 +260,8 @@ namespace term
 
             int
                 newObjectIndex = cob_objectType.SelectedIndex,
-                parentFunctionIndex = cob_chooseFunction.SelectedIndex,
-
-                x_pos = Convert.ToInt32(txt_xPos.Text),
-                y_pos = Convert.ToInt32(txt_yPos.Text),
-                width = Convert.ToInt32(txt_width.Text);
+                parentFunctionIndex = cob_chooseFunction.SelectedIndex;
             #endregion
-
-            Point newLocation = new Point(x_pos, y_pos);
 
             ControlObject newObject = new ControlObject()
             {
@@ -296,25 +273,18 @@ namespace term
 
             switch (newObjectIndex)
             {
-                case (Int32)ObjectIndex.Label:
+                case (Int32)PreviewObjectIndex.Label:
                     {
                         Label newLabel = new Label()
                         {
                             Name = "lbl_" + objectName,
                             Text = objectContent,
-                            Location = newLocation,
+                            Location = mainFM.ref_playground.lbl_preview.Location,
+                            Width = mainFM.ref_playground.lbl_preview.Width,
+                            Height = mainFM.ref_playground.lbl_preview.Height,
                             BackColor = backColor,
                             ForeColor = textColor
                         };
-
-                        if(!chb_autoSize.Checked)
-                        {
-                            newLabel.Width = width;
-                        }
-                        else
-                        {
-                            newLabel.AutoSize = true;
-                        }
 
                         newObject.parentFunction = mainFM.AllFunctions[parentFunctionIndex];
                         newRootObject = newLabel;
@@ -322,14 +292,15 @@ namespace term
 
                         break;
                     }
-                case (Int32)ObjectIndex.Textbox:
+                case (Int32)PreviewObjectIndex.Textbox:
                     {
                         TextBox newTextBox = new TextBox()
                         {
                             Name = "txt_" + objectName,
                             Text = objectContent,
-                            Location = newLocation,
-                            Width = width,
+                            Location = mainFM.ref_playground.txt_preview.Location,
+                            Width = mainFM.ref_playground.txt_preview.Width,
+                            Height = mainFM.ref_playground.txt_preview.Height,
                             BackColor = backColor,
                             ForeColor = textColor
                         };
@@ -339,18 +310,33 @@ namespace term
 
                         break;
                     }
-                case (Int32)ObjectIndex.Combo:
+                case (Int32)PreviewObjectIndex.Combo:
                     {
+                        ComboBox newCombo = new ComboBox()
+                        {
+                            Name = "cob_" + objectName,
+                            Text = objectContent,
+                            Location = mainFM.ref_playground.cob_preview.Location,
+                            Width = mainFM.ref_playground.cob_preview.Width,
+                            Height = mainFM.ref_playground.cob_preview.Height,
+                            BackColor = backColor,
+                            ForeColor = textColor,
+                        };
+
+                        newRootObject = newCombo;
+                        newObject.rootObject = newRootObject;
+
                         break;
                     }
-                case (Int32)ObjectIndex.Button:
+                case (Int32)PreviewObjectIndex.Button:
                     {
                         Button newButton = new Button()
                         {
                             Name = "cmd_" + objectName,
                             Text = objectContent,
-                            Location = newLocation,
-                            Width = width,
+                            Location = mainFM.ref_playground.cmd_preview.Location,
+                            Width = mainFM.ref_playground.cmd_preview.Width,
+                            Height = mainFM.ref_playground.cmd_preview.Height,
                             BackColor = backColor,
                             ForeColor = textColor,
                         };
@@ -374,7 +360,7 @@ namespace term
 
                         break;
                     }
-                case (Int32)ObjectIndex.Invalid:
+                case (Int32)PreviewObjectIndex.Invalid:
                     {
                         // Object is invalid and will not be created.
                         break;
@@ -425,8 +411,9 @@ namespace term
         private void cob_objectType_SelectedIndexChanged(object sender, EventArgs e)
         {
             int index = cob_objectType.SelectedIndex;
-
+            changingTabIndexFromCombo = true;
             tabC_object.SelectedIndex = index;
+            changingTabIndexFromCombo = false;
         }
 
         // Select where the content to send comes from.
@@ -450,7 +437,7 @@ namespace term
 
                         foreach (ControlObject c in mainFM.AllObjects)
                         {
-                            if (c.objectIndex == (Int32)ObjectIndex.Combo)
+                            if (c.objectIndex == (Int32)PreviewObjectIndex.Combo)
                             {
                                 cob_sendSerialSource.Items.Add(c.rootObject.Name);
                             }
@@ -465,7 +452,7 @@ namespace term
 
                         foreach (ControlObject c in mainFM.AllObjects)
                         {
-                            if (c.objectIndex == (Int32)ObjectIndex.Textbox)
+                            if (c.objectIndex == (Int32)PreviewObjectIndex.Textbox)
                             {
                                 cob_sendSerialSource.Items.Add(c.rootObject.Name);
                             }
@@ -476,10 +463,12 @@ namespace term
         }
         #endregion
 
-        private void chb_autoSize_CheckedChanged(object sender, EventArgs e)
+        private void tabC_object_SelectedIndexChanged(object sender, EventArgs e)
         {
-            txt_width.Enabled =
-                txt_height.Enabled = chb_autoSize.Checked;
+            if(changingTabIndexFromCombo==false)
+            {
+                cob_objectType.SelectedIndex = tabC_object.SelectedIndex;
+            }
         }
     }
 }

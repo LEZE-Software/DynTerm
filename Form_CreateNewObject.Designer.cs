@@ -28,16 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lbl_width = new System.Windows.Forms.Label();
-            this.txt_width = new System.Windows.Forms.TextBox();
             this.lbl_content = new System.Windows.Forms.Label();
             this.txt_content = new System.Windows.Forms.TextBox();
-            this.lbl_xPos = new System.Windows.Forms.Label();
-            this.lbl_yPos = new System.Windows.Forms.Label();
-            this.txt_xPos = new System.Windows.Forms.TextBox();
             this.cmd_createObject = new System.Windows.Forms.Button();
             this.cob_chooseFunction = new System.Windows.Forms.ComboBox();
-            this.txt_yPos = new System.Windows.Forms.TextBox();
             this.lbl_name = new System.Windows.Forms.Label();
             this.txt_objectName = new System.Windows.Forms.TextBox();
             this.cob_objectType = new System.Windows.Forms.ComboBox();
@@ -46,9 +40,7 @@
             this.pan_backColor = new System.Windows.Forms.Panel();
             this.cmd_preview = new System.Windows.Forms.Button();
             this.lbl_backColor = new System.Windows.Forms.Label();
-            this.txt_height = new System.Windows.Forms.TextBox();
             this.pan_textColor = new System.Windows.Forms.Panel();
-            this.lbl_height = new System.Windows.Forms.Label();
             this.lbl_txtColor = new System.Windows.Forms.Label();
             this.grp_generals = new System.Windows.Forms.GroupBox();
             this.lbl_function = new System.Windows.Forms.Label();
@@ -74,7 +66,6 @@
             this.page_comboBox = new System.Windows.Forms.TabPage();
             this.page_textBox = new System.Windows.Forms.TabPage();
             this.chb_textBoxIsReadOnly = new System.Windows.Forms.CheckBox();
-            this.chb_autoSize = new System.Windows.Forms.CheckBox();
             this.grp_sizePosition.SuspendLayout();
             this.grp_generals.SuspendLayout();
             this.tabC_object.SuspendLayout();
@@ -84,28 +75,6 @@
             this.grp_chooseButtonAction.SuspendLayout();
             this.page_textBox.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // lbl_width
-            // 
-            this.lbl_width.AutoSize = true;
-            this.lbl_width.BackColor = System.Drawing.SystemColors.Control;
-            this.lbl_width.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_width.Location = new System.Drawing.Point(8, 56);
-            this.lbl_width.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbl_width.Name = "lbl_width";
-            this.lbl_width.Size = new System.Drawing.Size(44, 14);
-            this.lbl_width.TabIndex = 26;
-            this.lbl_width.Text = "Breite";
-            // 
-            // txt_width
-            // 
-            this.txt_width.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_width.Location = new System.Drawing.Point(92, 53);
-            this.txt_width.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.txt_width.Name = "txt_width";
-            this.txt_width.Size = new System.Drawing.Size(52, 22);
-            this.txt_width.TabIndex = 25;
-            this.txt_width.Text = "35";
             // 
             // lbl_content
             // 
@@ -127,40 +96,6 @@
             this.txt_content.Name = "txt_content";
             this.txt_content.Size = new System.Drawing.Size(141, 22);
             this.txt_content.TabIndex = 22;
-            // 
-            // lbl_xPos
-            // 
-            this.lbl_xPos.AutoSize = true;
-            this.lbl_xPos.BackColor = System.Drawing.SystemColors.Control;
-            this.lbl_xPos.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_xPos.Location = new System.Drawing.Point(8, 24);
-            this.lbl_xPos.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbl_xPos.Name = "lbl_xPos";
-            this.lbl_xPos.Size = new System.Drawing.Size(70, 14);
-            this.lbl_xPos.TabIndex = 21;
-            this.lbl_xPos.Text = "X-Position";
-            // 
-            // lbl_yPos
-            // 
-            this.lbl_yPos.AutoSize = true;
-            this.lbl_yPos.BackColor = System.Drawing.SystemColors.Control;
-            this.lbl_yPos.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_yPos.Location = new System.Drawing.Point(159, 24);
-            this.lbl_yPos.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbl_yPos.Name = "lbl_yPos";
-            this.lbl_yPos.Size = new System.Drawing.Size(68, 14);
-            this.lbl_yPos.TabIndex = 20;
-            this.lbl_yPos.Text = "Y-Position";
-            // 
-            // txt_xPos
-            // 
-            this.txt_xPos.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_xPos.Location = new System.Drawing.Point(92, 21);
-            this.txt_xPos.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.txt_xPos.Name = "txt_xPos";
-            this.txt_xPos.Size = new System.Drawing.Size(52, 22);
-            this.txt_xPos.TabIndex = 19;
-            this.txt_xPos.Text = "10";
             // 
             // cmd_createObject
             // 
@@ -185,16 +120,6 @@
             this.cob_chooseFunction.Size = new System.Drawing.Size(141, 22);
             this.cob_chooseFunction.TabIndex = 17;
             this.cob_chooseFunction.DropDown += new System.EventHandler(this.cob_chooseFunction_DropDown);
-            // 
-            // txt_yPos
-            // 
-            this.txt_yPos.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_yPos.Location = new System.Drawing.Point(235, 21);
-            this.txt_yPos.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.txt_yPos.Name = "txt_yPos";
-            this.txt_yPos.Size = new System.Drawing.Size(52, 22);
-            this.txt_yPos.TabIndex = 18;
-            this.txt_yPos.Text = "10";
             // 
             // lbl_name
             // 
@@ -248,25 +173,16 @@
             // 
             // grp_sizePosition
             // 
-            this.grp_sizePosition.Controls.Add(this.chb_autoSize);
             this.grp_sizePosition.Controls.Add(this.pan_backColor);
             this.grp_sizePosition.Controls.Add(this.cmd_preview);
             this.grp_sizePosition.Controls.Add(this.lbl_backColor);
-            this.grp_sizePosition.Controls.Add(this.txt_height);
             this.grp_sizePosition.Controls.Add(this.pan_textColor);
-            this.grp_sizePosition.Controls.Add(this.lbl_height);
             this.grp_sizePosition.Controls.Add(this.lbl_txtColor);
-            this.grp_sizePosition.Controls.Add(this.lbl_xPos);
-            this.grp_sizePosition.Controls.Add(this.txt_xPos);
-            this.grp_sizePosition.Controls.Add(this.lbl_width);
-            this.grp_sizePosition.Controls.Add(this.txt_yPos);
-            this.grp_sizePosition.Controls.Add(this.txt_width);
-            this.grp_sizePosition.Controls.Add(this.lbl_yPos);
             this.grp_sizePosition.Location = new System.Drawing.Point(343, 12);
             this.grp_sizePosition.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.grp_sizePosition.Name = "grp_sizePosition";
             this.grp_sizePosition.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.grp_sizePosition.Size = new System.Drawing.Size(295, 194);
+            this.grp_sizePosition.Size = new System.Drawing.Size(295, 137);
             this.grp_sizePosition.TabIndex = 30;
             this.grp_sizePosition.TabStop = false;
             this.grp_sizePosition.Text = "Ansicht-Optionen";
@@ -276,7 +192,7 @@
             this.pan_backColor.BackColor = System.Drawing.SystemColors.Control;
             this.pan_backColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pan_backColor.ForeColor = System.Drawing.SystemColors.Window;
-            this.pan_backColor.Location = new System.Drawing.Point(235, 85);
+            this.pan_backColor.Location = new System.Drawing.Point(84, 48);
             this.pan_backColor.Name = "pan_backColor";
             this.pan_backColor.Size = new System.Drawing.Size(52, 22);
             this.pan_backColor.TabIndex = 3;
@@ -285,10 +201,10 @@
             // cmd_preview
             // 
             this.cmd_preview.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmd_preview.Location = new System.Drawing.Point(145, 163);
+            this.cmd_preview.Location = new System.Drawing.Point(148, 104);
             this.cmd_preview.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cmd_preview.Name = "cmd_preview";
-            this.cmd_preview.Size = new System.Drawing.Size(142, 25);
+            this.cmd_preview.Size = new System.Drawing.Size(142, 27);
             this.cmd_preview.TabIndex = 32;
             this.cmd_preview.Text = "Anzeigen";
             this.cmd_preview.UseVisualStyleBackColor = true;
@@ -297,52 +213,30 @@
             // lbl_backColor
             // 
             this.lbl_backColor.AutoSize = true;
-            this.lbl_backColor.Location = new System.Drawing.Point(159, 88);
+            this.lbl_backColor.Location = new System.Drawing.Point(7, 51);
             this.lbl_backColor.Name = "lbl_backColor";
-            this.lbl_backColor.Size = new System.Drawing.Size(61, 14);
+            this.lbl_backColor.Size = new System.Drawing.Size(66, 14);
             this.lbl_backColor.TabIndex = 2;
-            this.lbl_backColor.Text = "Füllfarbe";
-            // 
-            // txt_height
-            // 
-            this.txt_height.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_height.Location = new System.Drawing.Point(235, 53);
-            this.txt_height.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.txt_height.Name = "txt_height";
-            this.txt_height.Size = new System.Drawing.Size(52, 22);
-            this.txt_height.TabIndex = 28;
-            this.txt_height.Text = "10";
+            this.lbl_backColor.Text = "Füllfarbe:";
             // 
             // pan_textColor
             // 
             this.pan_textColor.BackColor = System.Drawing.Color.Black;
             this.pan_textColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pan_textColor.Location = new System.Drawing.Point(92, 85);
+            this.pan_textColor.Location = new System.Drawing.Point(84, 20);
             this.pan_textColor.Name = "pan_textColor";
             this.pan_textColor.Size = new System.Drawing.Size(52, 22);
             this.pan_textColor.TabIndex = 1;
             this.pan_textColor.Click += new System.EventHandler(this.pan_Color_Click);
             // 
-            // lbl_height
-            // 
-            this.lbl_height.AutoSize = true;
-            this.lbl_height.BackColor = System.Drawing.SystemColors.Control;
-            this.lbl_height.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_height.Location = new System.Drawing.Point(159, 56);
-            this.lbl_height.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbl_height.Name = "lbl_height";
-            this.lbl_height.Size = new System.Drawing.Size(40, 14);
-            this.lbl_height.TabIndex = 27;
-            this.lbl_height.Text = "Höhe";
-            // 
             // lbl_txtColor
             // 
             this.lbl_txtColor.AutoSize = true;
-            this.lbl_txtColor.Location = new System.Drawing.Point(8, 88);
+            this.lbl_txtColor.Location = new System.Drawing.Point(7, 23);
             this.lbl_txtColor.Name = "lbl_txtColor";
-            this.lbl_txtColor.Size = new System.Drawing.Size(33, 14);
+            this.lbl_txtColor.Size = new System.Drawing.Size(71, 14);
             this.lbl_txtColor.TabIndex = 0;
-            this.lbl_txtColor.Text = "Text";
+            this.lbl_txtColor.Text = "Textfarbe:";
             // 
             // grp_generals
             // 
@@ -396,6 +290,7 @@
             this.tabC_object.SelectedIndex = 0;
             this.tabC_object.Size = new System.Drawing.Size(622, 306);
             this.tabC_object.TabIndex = 34;
+            this.tabC_object.SelectedIndexChanged += new System.EventHandler(this.tabC_object_SelectedIndexChanged);
             // 
             // page_label
             // 
@@ -628,17 +523,6 @@
             this.chb_textBoxIsReadOnly.Text = "Keine Bearbeitung möglich";
             this.chb_textBoxIsReadOnly.UseVisualStyleBackColor = true;
             // 
-            // chb_autoSize
-            // 
-            this.chb_autoSize.AutoSize = true;
-            this.chb_autoSize.Location = new System.Drawing.Point(8, 120);
-            this.chb_autoSize.Name = "chb_autoSize";
-            this.chb_autoSize.Size = new System.Drawing.Size(144, 18);
-            this.chb_autoSize.TabIndex = 33;
-            this.chb_autoSize.Text = "Größe automatisch";
-            this.chb_autoSize.UseVisualStyleBackColor = true;
-            this.chb_autoSize.CheckedChanged += new System.EventHandler(this.chb_autoSize_CheckedChanged);
-            // 
             // Form_CreateNewObject
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 14F);
@@ -672,17 +556,10 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label lbl_width;
-        private System.Windows.Forms.TextBox txt_width;
         private System.Windows.Forms.Label lbl_content;
         private System.Windows.Forms.TextBox txt_content;
-        private System.Windows.Forms.Label lbl_xPos;
-        private System.Windows.Forms.Label lbl_yPos;
-        private System.Windows.Forms.TextBox txt_xPos;
         private System.Windows.Forms.Button cmd_createObject;
         private System.Windows.Forms.ComboBox cob_chooseFunction;
-        private System.Windows.Forms.TextBox txt_yPos;
         private System.Windows.Forms.Label lbl_name;
         private System.Windows.Forms.TextBox txt_objectName;
         private System.Windows.Forms.ComboBox cob_objectType;
@@ -690,8 +567,6 @@
         private System.Windows.Forms.GroupBox grp_sizePosition;
         private System.Windows.Forms.GroupBox grp_generals;
         private System.Windows.Forms.Label lbl_function;
-        private System.Windows.Forms.TextBox txt_height;
-        private System.Windows.Forms.Label lbl_height;
         private System.Windows.Forms.Button cmd_preview;
         private System.Windows.Forms.Panel pan_textColor;
         private System.Windows.Forms.Label lbl_txtColor;
@@ -719,6 +594,5 @@
         private System.Windows.Forms.RadioButton rad_lblIndivContent;
         private System.Windows.Forms.RadioButton rad_serialPortLabel;
         private System.Windows.Forms.GroupBox grp_lblDisplayOptions;
-        private System.Windows.Forms.CheckBox chb_autoSize;
     }
 }
