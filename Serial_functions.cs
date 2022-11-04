@@ -15,6 +15,7 @@ namespace term
 
         public static void OpenClosePort()
         {
+            throw new NotImplementedException();
             // Open close port.
         }
     }

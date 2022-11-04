@@ -45,7 +45,7 @@
             this.lbl_preview.Location = new System.Drawing.Point(13, 77);
             this.lbl_preview.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_preview.Name = "lbl_preview";
-            this.lbl_preview.Size = new System.Drawing.Size(111, 18);
+            this.lbl_preview.Size = new System.Drawing.Size(96, 14);
             this.lbl_preview.TabIndex = 1;
             this.lbl_preview.Text = "Preview-Label";
             this.lbl_preview.Visible = false;
@@ -54,7 +54,7 @@
             // 
             this.txt_preview.Location = new System.Drawing.Point(12, 113);
             this.txt_preview.Name = "txt_preview";
-            this.txt_preview.Size = new System.Drawing.Size(100, 26);
+            this.txt_preview.Size = new System.Drawing.Size(100, 22);
             this.txt_preview.TabIndex = 2;
             this.txt_preview.Visible = false;
             // 
@@ -67,13 +67,14 @@
             this.cmd_preview.Text = "button1";
             this.cmd_preview.UseVisualStyleBackColor = true;
             this.cmd_preview.Visible = false;
+            this.cmd_preview.Click += new System.EventHandler(this.cmd_preview_Click);
             // 
             // cob_preview
             // 
             this.cob_preview.FormattingEnabled = true;
             this.cob_preview.Location = new System.Drawing.Point(12, 161);
             this.cob_preview.Name = "cob_preview";
-            this.cob_preview.Size = new System.Drawing.Size(121, 26);
+            this.cob_preview.Size = new System.Drawing.Size(121, 22);
             this.cob_preview.TabIndex = 4;
             this.cob_preview.Visible = false;
             // 
@@ -92,7 +93,7 @@
             // lbl_newObjectPos
             // 
             this.lbl_newObjectPos.Name = "lbl_newObjectPos";
-            this.lbl_newObjectPos.Size = new System.Drawing.Size(15, 21);
+            this.lbl_newObjectPos.Size = new System.Drawing.Size(12, 21);
             this.lbl_newObjectPos.Text = "-";
             // 
             // cmd_displayMainForm
@@ -100,12 +101,12 @@
             this.cmd_displayMainForm.Image = ((System.Drawing.Image)(resources.GetObject("cmd_displayMainForm.Image")));
             this.cmd_displayMainForm.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmd_displayMainForm.Name = "cmd_displayMainForm";
-            this.cmd_displayMainForm.Size = new System.Drawing.Size(180, 24);
+            this.cmd_displayMainForm.Size = new System.Drawing.Size(149, 24);
             this.cmd_displayMainForm.Text = "Bearbeitungsmodus";
             // 
             // Form_Playground
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(575, 293);
             this.Controls.Add(this.infoStrip_playground);

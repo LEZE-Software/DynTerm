@@ -31,11 +31,7 @@ namespace term
                     OnAdd(this, null);
                 }
             }
-        }
-
-        public Form_Playground ref_playground { get; set; }
-        public Form_CreateNewObject ref_newObject { get; set; }
-        public Form_CreateNewRule ref_newRule{ get; set; }
+        }       
 
         public List<FunctionRule> AllRules = new List<FunctionRule>();
         public ExtendedList<string> AllAnswers = new ExtendedList<string>();
@@ -53,12 +49,7 @@ namespace term
 
             AllAnswers.OnAdd += new EventHandler(ParseReceivedAnswer);
 
-            ref_playground = new Form_Playground(this)
-            {
-                MdiParent = this
-            };
-
-            ref_playground.Show();
+            SubFormManager.OpenSubForm(SubFormManager.SubFormIndex.Playground, this);
 
             // Create Displayfunction.
             Function displayFunction = new Function()
@@ -151,7 +142,7 @@ namespace term
 
         private void cmd_createFunction_Click(object sender, EventArgs e)
         {
-            string functionName = txt_newFunctionName.Text;
+            string functionName = "";// txt_newFunctionName.Text;
 
             if(functionName!="")
             {
@@ -165,7 +156,7 @@ namespace term
 
                     AllFunctions.Add(newFunction);
 
-                    txt_newFunctionName.Text = "";
+                    //txt_newFunctionName.Text = "";
                 }
                 else
                 {
@@ -209,27 +200,97 @@ namespace term
 
         private void menu_createNewRule_Click(object sender, EventArgs e)
         {
-            ref_newRule = new Form_CreateNewRule(this)
-            {
-                MdiParent = this
-            };
-
-            ref_newRule.Show();
+            SubFormManager.OpenSubForm(SubFormManager.SubFormIndex.NewRule, this);
         }
 
         private void cmd_createNewObject_Click(object sender, EventArgs e)
         {
-            ref_newObject = new Form_CreateNewObject(this)
-            {
-                MdiParent = this
-            };
-
-            ref_newObject.Show();
+            SubFormManager.OpenSubForm(SubFormManager.SubFormIndex.NewObject, this);
         }
 
         private void Form_Center_FormClosing(object sender, FormClosingEventArgs e)
         {
             Props.shallClose = true;
+        }
+
+        private void cmd_openConnectionSettings_Click(object sender, EventArgs e)
+        {
+            SubFormManager.OpenSubForm(SubFormManager.SubFormIndex.SerialSettings, this);
+        }
+
+        private void cmd_About_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("DynTerm Version 0.1.2\n04. Nov. 2022\n\nLEZE-Software - 2022 \n https://github.com/LEZE-Software ", "Versionsinformation", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void OpenSubForm(object sender, EventArgs e)
+        {
+            ToolStripMenuItem senderItem = sender as ToolStripMenuItem;
+            SubFormManager.SubFormIndex idx = (SubFormManager.SubFormIndex)senderItem.Tag;
+
+            if (SubFormManager.IsFormOpen(idx))
+            {
+                SubFormManager.CloseSubForm(idx);
+            }
+            else
+            {
+                SubFormManager.OpenSubForm(idx, this);
+            }
+        }
+
+        private void cmd_showSerialTraffic_Click(object sender, EventArgs e)
+        {
+            if(SubFormManager.IsFormOpen(SubFormManager.SubFormIndex.Traffic))
+            {
+                SubFormManager.CloseSubForm(SubFormManager.SubFormIndex.Traffic);
+            }
+            else
+            {
+                SubFormManager.OpenSubForm(SubFormManager.SubFormIndex.Traffic, this);
+            }
+        }
+
+        private void cmd_connect_Click(object sender, EventArgs e)
+        {
+            Serial_functions.OpenClosePort();
+        }
+
+        private void cmd_editRule_Click(object sender, EventArgs e)
+        {
+            if (SubFormManager.IsFormOpen(SubFormManager.SubFormIndex.Traffic))
+            {
+                SubFormManager.CloseSubForm(SubFormManager.SubFormIndex.Traffic);
+            }
+            else
+            {
+                SubFormManager.OpenSubForm(SubFormManager.SubFormIndex.Traffic, this);
+            }
+
+            SubFormManager.OpenSubForm(SubFormManager.SubFormIndex.NewRule, this);
+        }
+
+        private void cmd_editFunction_Click(object sender, EventArgs e)
+        {
+            if (SubFormManager.IsFormOpen(SubFormManager.SubFormIndex.EditFunction))
+            {
+                SubFormManager.CloseSubForm(SubFormManager.SubFormIndex.EditFunction);
+            }
+            else
+            {
+                SubFormManager.OpenSubForm(SubFormManager.SubFormIndex.EditFunction, this);
+            }
+        }
+
+        private void cmd_createNewFunction_Click(object sender, EventArgs e)
+        {
+            if (SubFormManager.IsFormOpen(SubFormManager.SubFormIndex.NewFunction))
+            {
+                SubFormManager.CloseSubForm(SubFormManager.SubFormIndex.NewFunction);
+            }
+            else
+            {
+                SubFormManager.OpenSubForm(SubFormManager.SubFormIndex.NewFunction, this);
+            }
         }
     }    
 }

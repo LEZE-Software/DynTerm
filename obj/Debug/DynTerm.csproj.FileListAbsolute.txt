@@ -27,3 +27,21 @@ D:\DynTerm\obj\Debug\DynTerm.csproj.CoreCompileInputs.cache
 D:\DynTerm\obj\Debug\DynTerm.exe
 D:\DynTerm\obj\Debug\DynTerm.pdb
 W:\OneDrive\10 Programmierung\20_C#\DynTerm\obj\Debug\term.Form_ObjectProperties.resources
+J:\Git Repository\DynTerm\bin\Debug\DynTerm.exe.config
+J:\Git Repository\DynTerm\bin\Debug\DynTerm.exe
+J:\Git Repository\DynTerm\bin\Debug\DynTerm.pdb
+J:\Git Repository\DynTerm\obj\Debug\DynTerm.csprojAssemblyReference.cache
+J:\Git Repository\DynTerm\obj\Debug\term.Form_Center.resources
+J:\Git Repository\DynTerm\obj\Debug\term.Form_Array.resources
+J:\Git Repository\DynTerm\obj\Debug\term.Form_CreateNewObject.resources
+J:\Git Repository\DynTerm\obj\Debug\term.Form_CreateNewRule.resources
+J:\Git Repository\DynTerm\obj\Debug\term.Form_ObjectProperties.resources
+J:\Git Repository\DynTerm\obj\Debug\term.Form_Playground.resources
+J:\Git Repository\DynTerm\obj\Debug\term.Properties.Resources.resources
+J:\Git Repository\DynTerm\obj\Debug\DynTerm.csproj.GenerateResource.cache
+J:\Git Repository\DynTerm\obj\Debug\DynTerm.csproj.CoreCompileInputs.cache
+J:\Git Repository\DynTerm\obj\Debug\DynTerm.exe
+J:\Git Repository\DynTerm\obj\Debug\DynTerm.pdb
+J:\Git Repository\DynTerm\obj\Debug\term.Form_NewEditFunction.resources
+J:\Git Repository\DynTerm\obj\Debug\term.Form_SerialConnection.resources
+J:\Git Repository\DynTerm\obj\Debug\term.Form_SerialTraffic.resources

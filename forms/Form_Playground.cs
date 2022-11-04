@@ -110,5 +110,10 @@ namespace term
         {
 
         }
+
+        private void cmd_preview_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

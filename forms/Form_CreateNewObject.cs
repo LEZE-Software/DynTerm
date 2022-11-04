@@ -89,10 +89,7 @@ namespace term
 
         private void Form_CreateNewObject_FormClosing(object sender, FormClosingEventArgs e)
         {
-            mainFM.ref_playground.lbl_preview.Visible =
-                mainFM.ref_playground.txt_preview.Visible = false;
-
-            mainFM.ref_newObject = null;         
+    
         }
 
         private void rad_buttonAction_CheckedChanged(object sender, EventArgs e)
@@ -209,28 +206,28 @@ namespace term
                 {
                     case PreviewObjectIndex.Label:
                         {
-                            mainFM.ref_playground.lbl_preview.Text = txt_content.Text;
-                            mainFM.ref_playground.lbl_preview.Visible = true;
-                            mainFM.ref_playground.lbl_preview.Location = objectLocation;
+                            SubFormManager.form_playground.lbl_preview.Text = txt_content.Text;
+                            SubFormManager.form_playground.lbl_preview.Visible = true;
+                            SubFormManager.form_playground.lbl_preview.Location = objectLocation;
                             break;
                         }
                     case PreviewObjectIndex.Textbox:
                         {
-                            mainFM.ref_playground.txt_preview.Visible = true;
-                            mainFM.ref_playground.txt_preview.Location = objectLocation;
+                            SubFormManager.form_playground.txt_preview.Visible = true;
+                            SubFormManager.form_playground.txt_preview.Location = objectLocation;
                             break;
                         }
                     case PreviewObjectIndex.Button:
                         {
-                            mainFM.ref_playground.cmd_preview.Text = txt_content.Text;
-                            mainFM.ref_playground.cmd_preview.Visible = true;
-                            mainFM.ref_playground.cmd_preview.Location = objectLocation;
+                            SubFormManager.form_playground.cmd_preview.Text = txt_content.Text;
+                            SubFormManager.form_playground.cmd_preview.Visible = true;
+                            SubFormManager.form_playground.cmd_preview.Location = objectLocation;
                             break;
                         }
                     case PreviewObjectIndex.Combo:
                         {
-                            mainFM.ref_playground.cob_preview.Visible = true;
-                            mainFM.ref_playground.cob_preview.Location = objectLocation;
+                            SubFormManager.form_playground.cob_preview.Visible = true;
+                            SubFormManager.form_playground.cob_preview.Location = objectLocation;
                             break;
                         }
                 }
@@ -279,9 +276,9 @@ namespace term
                         {
                             Name = "lbl_" + objectName,
                             Text = objectContent,
-                            Location = mainFM.ref_playground.lbl_preview.Location,
-                            Width = mainFM.ref_playground.lbl_preview.Width,
-                            Height = mainFM.ref_playground.lbl_preview.Height,
+                            Location = SubFormManager.form_playground.lbl_preview.Location,
+                            Width = SubFormManager.form_playground.lbl_preview.Width,
+                            Height = SubFormManager.form_playground.lbl_preview.Height,
                             BackColor = backColor,
                             ForeColor = textColor
                         };
@@ -298,9 +295,9 @@ namespace term
                         {
                             Name = "txt_" + objectName,
                             Text = objectContent,
-                            Location = mainFM.ref_playground.txt_preview.Location,
-                            Width = mainFM.ref_playground.txt_preview.Width,
-                            Height = mainFM.ref_playground.txt_preview.Height,
+                            Location = SubFormManager.form_playground.txt_preview.Location,
+                            Width = SubFormManager.form_playground.txt_preview.Width,
+                            Height = SubFormManager.form_playground.txt_preview.Height,
                             BackColor = backColor,
                             ForeColor = textColor
                         };
@@ -316,9 +313,9 @@ namespace term
                         {
                             Name = "cob_" + objectName,
                             Text = objectContent,
-                            Location = mainFM.ref_playground.cob_preview.Location,
-                            Width = mainFM.ref_playground.cob_preview.Width,
-                            Height = mainFM.ref_playground.cob_preview.Height,
+                            Location = SubFormManager.form_playground.cob_preview.Location,
+                            Width = SubFormManager.form_playground.cob_preview.Width,
+                            Height = SubFormManager.form_playground.cob_preview.Height,
                             BackColor = backColor,
                             ForeColor = textColor,
                         };
@@ -334,9 +331,9 @@ namespace term
                         {
                             Name = "cmd_" + objectName,
                             Text = objectContent,
-                            Location = mainFM.ref_playground.cmd_preview.Location,
-                            Width = mainFM.ref_playground.cmd_preview.Width,
-                            Height = mainFM.ref_playground.cmd_preview.Height,
+                            Location = SubFormManager.form_playground.cmd_preview.Location,
+                            Width = SubFormManager.form_playground.cmd_preview.Width,
+                            Height = SubFormManager.form_playground.cmd_preview.Height,
                             BackColor = backColor,
                             ForeColor = textColor,
                         };
@@ -368,13 +365,13 @@ namespace term
             }
 
             mainFM.AllObjects.Add(newObject);
-            mainFM.ref_playground.Controls.Add(newRootObject);
+            SubFormManager.form_playground.Controls.Add(newRootObject);
             mainFM.AllFunctions[parentFunctionIndex].targetObjects.Add(newRootObject);
 
             // Hide preview items on the playground.
-            mainFM.ref_playground.lbl_preview.Visible =
-                mainFM.ref_playground.cmd_preview.Visible =
-                mainFM.ref_playground.txt_preview.Visible = false;
+            SubFormManager.form_playground.lbl_preview.Visible =
+                SubFormManager.form_playground.cmd_preview.Visible =
+                SubFormManager.form_playground.txt_preview.Visible = false;
 
             // Restore objects on the form.
             txt_content.Text =

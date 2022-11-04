@@ -98,7 +98,7 @@ namespace term
                     }
             }
 
-            foreach (dynamic d in mainFM.ref_playground.Controls)
+            foreach (dynamic d in SubFormManager.form_playground.Controls)
             {
                 /*if (d.Name == targetObject.rootObject.Name)
                 {

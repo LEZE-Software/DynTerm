@@ -11,6 +11,8 @@ namespace term
     {
         public int index;
         public string name;
+        public string comment;
+        public bool active;
         public List<dynamic> targetObjects = new List<dynamic>();
     }
 }
