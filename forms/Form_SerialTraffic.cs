@@ -25,9 +25,9 @@ namespace term
             list_traffic.Items.Add(text);
         }
 
-        private void Form_SerialTraffic_Load(object sender, EventArgs e)
+        private void Form_SerialTraffic_FormClosing(object sender, FormClosingEventArgs e)
         {
-
+            SubFormManager.ExternCloseSubForm(SubFormManager.SubFormIndex.Traffic);
         }
     }
 }

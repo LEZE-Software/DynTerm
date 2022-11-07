@@ -80,7 +80,7 @@
             this.Name = "Form_SerialTraffic";
             this.ShowIcon = false;
             this.Text = "Serieller Datenverkehr";
-            this.Load += new System.EventHandler(this.Form_SerialTraffic_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_SerialTraffic_FormClosing);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);

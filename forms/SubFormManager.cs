@@ -15,6 +15,19 @@ namespace term
         public static Form_SerialTraffic form_traffic;
         public static Form_Playground form_playground;
 
+        /// <summary>
+        /// Use this function to reset the check value in the list of forms.
+        /// </summary>
+        /// <param name="idx"></param>
+        public static void ExternCloseSubForm(SubFormIndex idx)
+        {
+            listOfForms[(int)idx] = false;
+        }
+
+        /// <summary>
+        /// Use this funciton to close a subform via the main menu.
+        /// </summary>
+        /// <param name="idx"></param>
         public static void CloseSubForm(SubFormIndex idx)
         {
             switch(idx)
@@ -30,7 +43,7 @@ namespace term
                     }
             }
 
-            listOfForms[(int)idx] = false;
+            ExternCloseSubForm(idx);         
         }
 
         public static void OpenSubForm(SubFormIndex idx, Form_Center main)

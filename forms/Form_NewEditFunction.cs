@@ -36,6 +36,9 @@ namespace term
                 list_show.Items.Add(f.name);
             }
 
+            chb_activate.Checked = false;
+            chb_activate.Image = images_activate.Images[0];
+
             if(FunctionManager.GetListOfFunctions.Count == 0)
             {
                 SwitchMode(Mode.New);
