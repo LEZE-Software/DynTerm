@@ -37,6 +37,11 @@
             this.txt_simSerialInput = new System.Windows.Forms.TextBox();
             this.main_menu = new System.Windows.Forms.MenuStrip();
             this.menuItem_file = new System.Windows.Forms.ToolStripMenuItem();
+            this.neuesProjektToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.projektSpeichernToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.projektSpeichernUnterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.projektÖffnenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.einstellungenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cmd_About = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItem_connection = new System.Windows.Forms.ToolStripMenuItem();
             this.cmd_connect = new System.Windows.Forms.ToolStripMenuItem();
@@ -83,7 +88,7 @@
             this.grp_serialPort.Controls.Add(this.cmd_openPort);
             this.grp_serialPort.Controls.Add(this.txt_simSerialInput);
             this.grp_serialPort.Controls.Add(this.cmd_closePort);
-            this.grp_serialPort.Location = new System.Drawing.Point(12, 640);
+            this.grp_serialPort.Location = new System.Drawing.Point(74, 351);
             this.grp_serialPort.Name = "grp_serialPort";
             this.grp_serialPort.Size = new System.Drawing.Size(200, 132);
             this.grp_serialPort.TabIndex = 9;
@@ -125,8 +130,8 @@
             this.menuItem_file,
             this.menuItem_connection,
             this.menuItem_view,
-            this.menuItem_rules,
-            this.menuItem_functions});
+            this.menuItem_functions,
+            this.menuItem_rules});
             this.main_menu.Location = new System.Drawing.Point(0, 0);
             this.main_menu.Name = "main_menu";
             this.main_menu.Size = new System.Drawing.Size(1585, 32);
@@ -136,17 +141,58 @@
             // menuItem_file
             // 
             this.menuItem_file.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.neuesProjektToolStripMenuItem,
+            this.projektSpeichernToolStripMenuItem,
+            this.projektSpeichernUnterToolStripMenuItem,
+            this.projektÖffnenToolStripMenuItem,
+            this.einstellungenToolStripMenuItem,
             this.cmd_About});
             this.menuItem_file.Image = ((System.Drawing.Image)(resources.GetObject("menuItem_file.Image")));
             this.menuItem_file.Name = "menuItem_file";
             this.menuItem_file.Size = new System.Drawing.Size(73, 28);
             this.menuItem_file.Text = "Datei";
             // 
+            // neuesProjektToolStripMenuItem
+            // 
+            this.neuesProjektToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("neuesProjektToolStripMenuItem.Image")));
+            this.neuesProjektToolStripMenuItem.Name = "neuesProjektToolStripMenuItem";
+            this.neuesProjektToolStripMenuItem.Size = new System.Drawing.Size(222, 30);
+            this.neuesProjektToolStripMenuItem.Text = "Neues Projekt...";
+            // 
+            // projektSpeichernToolStripMenuItem
+            // 
+            this.projektSpeichernToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("projektSpeichernToolStripMenuItem.Image")));
+            this.projektSpeichernToolStripMenuItem.Name = "projektSpeichernToolStripMenuItem";
+            this.projektSpeichernToolStripMenuItem.Size = new System.Drawing.Size(222, 30);
+            this.projektSpeichernToolStripMenuItem.Text = "Projekt speichern";
+            // 
+            // projektSpeichernUnterToolStripMenuItem
+            // 
+            this.projektSpeichernUnterToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("projektSpeichernUnterToolStripMenuItem.Image")));
+            this.projektSpeichernUnterToolStripMenuItem.Name = "projektSpeichernUnterToolStripMenuItem";
+            this.projektSpeichernUnterToolStripMenuItem.Size = new System.Drawing.Size(222, 30);
+            this.projektSpeichernUnterToolStripMenuItem.Text = "Projekt speichern unter...";
+            // 
+            // projektÖffnenToolStripMenuItem
+            // 
+            this.projektÖffnenToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("projektÖffnenToolStripMenuItem.Image")));
+            this.projektÖffnenToolStripMenuItem.Name = "projektÖffnenToolStripMenuItem";
+            this.projektÖffnenToolStripMenuItem.Size = new System.Drawing.Size(222, 30);
+            this.projektÖffnenToolStripMenuItem.Text = "Projekt öffnen...";
+            // 
+            // einstellungenToolStripMenuItem
+            // 
+            this.einstellungenToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("einstellungenToolStripMenuItem.Image")));
+            this.einstellungenToolStripMenuItem.Name = "einstellungenToolStripMenuItem";
+            this.einstellungenToolStripMenuItem.Size = new System.Drawing.Size(222, 30);
+            this.einstellungenToolStripMenuItem.Text = "Einstellungen";
+            this.einstellungenToolStripMenuItem.Click += new System.EventHandler(this.cmd_Settings_Click);
+            // 
             // cmd_About
             // 
             this.cmd_About.Image = ((System.Drawing.Image)(resources.GetObject("cmd_About.Image")));
             this.cmd_About.Name = "cmd_About";
-            this.cmd_About.Size = new System.Drawing.Size(170, 30);
+            this.cmd_About.Size = new System.Drawing.Size(222, 30);
             this.cmd_About.Text = "Versionshinweis";
             this.cmd_About.Click += new System.EventHandler(this.cmd_About_Click);
             // 
@@ -200,7 +246,7 @@
             // 
             this.cmd_showTraffic.Image = ((System.Drawing.Image)(resources.GetObject("cmd_showTraffic.Image")));
             this.cmd_showTraffic.Name = "cmd_showTraffic";
-            this.cmd_showTraffic.Size = new System.Drawing.Size(188, 30);
+            this.cmd_showTraffic.Size = new System.Drawing.Size(161, 30);
             this.cmd_showTraffic.Tag = "";
             this.cmd_showTraffic.Text = "Serial Monitor";
             this.cmd_showTraffic.Click += new System.EventHandler(this.cmd_showSerialTraffic_Click);
@@ -209,9 +255,8 @@
             // 
             this.cmd_showPlayground.Image = ((System.Drawing.Image)(resources.GetObject("cmd_showPlayground.Image")));
             this.cmd_showPlayground.Name = "cmd_showPlayground";
-            this.cmd_showPlayground.Size = new System.Drawing.Size(188, 30);
+            this.cmd_showPlayground.Size = new System.Drawing.Size(161, 30);
             this.cmd_showPlayground.Text = "Arbeitsfläche";
-            this.cmd_showPlayground.Visible = false;
             this.cmd_showPlayground.Click += new System.EventHandler(this.cmd_openPlayground_Click);
             // 
             // menuItem_rules
@@ -223,6 +268,7 @@
             this.menuItem_rules.Name = "menuItem_rules";
             this.menuItem_rules.Size = new System.Drawing.Size(82, 28);
             this.menuItem_rules.Text = "Regeln";
+            this.menuItem_rules.Click += new System.EventHandler(this.menuItem_rules_Click);
             // 
             // cmd_createNewRule
             // 
@@ -235,6 +281,7 @@
             // 
             // cmd_editRule
             // 
+            this.cmd_editRule.Enabled = false;
             this.cmd_editRule.Image = ((System.Drawing.Image)(resources.GetObject("cmd_editRule.Image")));
             this.cmd_editRule.Name = "cmd_editRule";
             this.cmd_editRule.Size = new System.Drawing.Size(194, 30);
@@ -250,6 +297,7 @@
             this.menuItem_functions.Name = "menuItem_functions";
             this.menuItem_functions.Size = new System.Drawing.Size(106, 28);
             this.menuItem_functions.Text = "Funktionen";
+            this.menuItem_functions.Click += new System.EventHandler(this.menuItem_functions_Click);
             // 
             // cmd_createNewFunction
             // 
@@ -261,6 +309,7 @@
             // 
             // cmd_editFunction
             // 
+            this.cmd_editFunction.Enabled = false;
             this.cmd_editFunction.Image = ((System.Drawing.Image)(resources.GetObject("cmd_editFunction.Image")));
             this.cmd_editFunction.Name = "cmd_editFunction";
             this.cmd_editFunction.Size = new System.Drawing.Size(218, 30);
@@ -325,6 +374,11 @@
         private System.Windows.Forms.ToolStripMenuItem cmd_About;
         private System.Windows.Forms.ToolStripMenuItem cmd_showSerialTraffic;
         private System.Windows.Forms.ToolStripMenuItem cmd_showTraffic;
+        private System.Windows.Forms.ToolStripMenuItem neuesProjektToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem projektSpeichernToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem projektSpeichernUnterToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem projektÖffnenToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem einstellungenToolStripMenuItem;
     }
 }
 

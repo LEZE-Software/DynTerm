@@ -16,8 +16,17 @@ namespace term
         public static PreviewObjectIndex previewIndex;
         public static bool shallClose = false;
         public static SerialPort serialPort = new SerialPort();
+        public static LineEndIndex lineEnd = LineEndIndex.None;
     }
 
+    public enum LineEndIndex
+    {
+        None,
+        CR,
+        LF,
+        CRLF,
+        LAST_INDEX
+    }
     /// <summary>
     /// The way the keyword is checked by a rule.
     /// </summary>
@@ -26,7 +35,7 @@ namespace term
         Contains,
         ContainsNot,
         IsEqual,
-        DisplayKeywordWithoutCheck,
+        ExecuteAlways,
         LAST_INDEX
     }
 
@@ -97,7 +106,7 @@ namespace term
     /// <summary>
     /// What kind of output shall a function create?
     /// </summary>
-    public enum KindOfOutputIndex
+    public enum RuleOutputType
     {
         Serial,
         Visual,

@@ -14,6 +14,7 @@ namespace term
         // MDI childs.
         public static Form_SerialTraffic form_traffic;
         public static Form_Playground form_playground;
+        public static Form_Settings form_settings;
 
         /// <summary>
         /// Use this function to reset the check value in the list of forms.
@@ -35,18 +36,30 @@ namespace term
                 case SubFormIndex.Traffic:
                     {
                         form_traffic.Close();
+                        ExternCloseSubForm(idx);
+                        break;
+                    }
+                case SubFormIndex.Playground:
+                    {
+                        form_playground.Close();
+                        ExternCloseSubForm(idx);
+                        break;
+                    }
+                case SubFormIndex.Settings:
+                    {
+                        form_settings.Close();
+                        ExternCloseSubForm(idx);
                         break;
                     }
                 default:
                     {
-                        throw new NotImplementedException();
+                        //throw new NotImplementedException();
+                        break;
                     }
             }
-
-            ExternCloseSubForm(idx);         
         }
 
-        public static void OpenSubForm(SubFormIndex idx, Form_Center main)
+        public static void OpenSubForm(SubFormIndex idx, Form_Center main, bool openToEdit)
         {
             bool usePreform = false;
             bool openDialog = false;
@@ -59,11 +72,12 @@ namespace term
             {
                 case SubFormIndex.Playground:
                     {
-                        usePreform = true;
-                        formToOpen = new Form_Playground(main)
+                        form_playground = new Form_Playground(main)
                         {
                             MdiParent = main
                         };
+
+                        form_playground.Show();
                         break;
                     }
                 case SubFormIndex.Traffic:
@@ -84,27 +98,35 @@ namespace term
                         formToOpen = new Form_SerialConnection();
                         break;
                     }
-                case SubFormIndex.NewRule:
+                case SubFormIndex.RuleEditor:
                     {
                         usePreform = true;
-                        formToOpen = new Form_CreateNewRule(main)
+                        formToOpen = new Form_NewEditRule(main, openToEdit)
                         {
                             MdiParent = main
                         };
                         break;
                     }
-                case SubFormIndex.NewFunction:
-                case SubFormIndex.EditFunction:
+                case SubFormIndex.FunctionEditor: 
+                    {                  
+                        usePreform = true;
+                        formToOpen = new Form_NewEditFunction(openToEdit)
+                        {
+                            MdiParent = main
+                        };
+                        break;
+                    }
+                case SubFormIndex.Settings:
                     {
-                        bool edit = (idx == SubFormIndex.EditFunction);
+                        form_settings = new Form_Settings(main)
+                        {
+                            MdiParent = main
+                        };
 
-                        usePreform = true;
-                        formToOpen = new Form_NewEditFunction(edit)
-                        {
-                            MdiParent = main
-                        };
+                        form_settings.Show();
                         break;
                     }
+
                 default:
                     {
                         throw new NotImplementedException();
@@ -126,26 +148,18 @@ namespace term
 
         public static bool IsFormOpen(SubFormIndex idx)
         {
-            switch(idx)
-            {
-                case SubFormIndex.Traffic:
-                    {
-                        return listOfForms[(int)idx];
-                    }
-            }
-
-            return false;
+            return listOfForms[(int)idx];
         }
 
         public enum SubFormIndex
         {
             Playground,
             NewObject,
-            NewRule,
-            NewFunction,
-            EditFunction,
+            RuleEditor,
+            FunctionEditor,
             Traffic,
             SerialSettings,
+            Settings,
             LAST_INDEX
         }
     }

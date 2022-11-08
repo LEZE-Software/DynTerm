@@ -63,3 +63,5 @@ C:\Repository\DynTerm\obj\Debug\DynTerm.csproj.GenerateResource.cache
 C:\Repository\DynTerm\obj\Debug\DynTerm.csproj.CoreCompileInputs.cache
 C:\Repository\DynTerm\obj\Debug\DynTerm.exe
 C:\Repository\DynTerm\obj\Debug\DynTerm.pdb
+J:\Git Repository\DynTerm\obj\Debug\term.Form_NewEditRule.resources
+J:\Git Repository\DynTerm\obj\Debug\term.Form_Settings.resources

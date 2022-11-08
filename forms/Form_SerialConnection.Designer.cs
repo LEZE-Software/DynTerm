@@ -86,6 +86,7 @@
             this.textBox1.Size = new System.Drawing.Size(129, 23);
             this.textBox1.TabIndex = 906;
             this.textBox1.Text = "N/A";
+            this.textBox1.Visible = false;
             // 
             // cob_lineEnd
             // 
@@ -108,6 +109,10 @@
             this.cob_baudrate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cob_baudrate.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cob_baudrate.FormattingEnabled = true;
+            this.cob_baudrate.Items.AddRange(new object[] {
+            "9600",
+            "12500",
+            "125500"});
             this.cob_baudrate.Location = new System.Drawing.Point(15, 112);
             this.cob_baudrate.Name = "cob_baudrate";
             this.cob_baudrate.Size = new System.Drawing.Size(128, 23);
@@ -137,6 +142,7 @@
             this.cmd_saveSettings.TabIndex = 7;
             this.cmd_saveSettings.Text = "OK!";
             this.cmd_saveSettings.UseVisualStyleBackColor = false;
+            this.cmd_saveSettings.Click += new System.EventHandler(this.cmd_saveSettings_Click);
             // 
             // label1
             // 
@@ -158,6 +164,7 @@
             this.cmd_refresh.Size = new System.Drawing.Size(23, 23);
             this.cmd_refresh.TabIndex = 17;
             this.cmd_refresh.UseVisualStyleBackColor = true;
+            this.cmd_refresh.Click += new System.EventHandler(this.cmd_refresh_Click);
             // 
             // lbl_baudrate
             // 
@@ -190,6 +197,7 @@
             this.cob_category.Size = new System.Drawing.Size(129, 23);
             this.cob_category.TabIndex = 4;
             this.cob_category.Text = "N/A";
+            this.cob_category.Visible = false;
             // 
             // txt_comment
             // 
@@ -200,6 +208,7 @@
             this.txt_comment.Size = new System.Drawing.Size(129, 23);
             this.txt_comment.TabIndex = 2;
             this.txt_comment.Text = "N/A";
+            this.txt_comment.Visible = false;
             // 
             // txt_idx
             // 
@@ -210,6 +219,7 @@
             this.txt_idx.Size = new System.Drawing.Size(129, 23);
             this.txt_idx.TabIndex = 5;
             this.txt_idx.Text = "N/A";
+            this.txt_idx.Visible = false;
             // 
             // label6
             // 
@@ -220,6 +230,7 @@
             this.label6.Size = new System.Drawing.Size(29, 16);
             this.label6.TabIndex = 6;
             this.label6.Text = "TBA";
+            this.label6.Visible = false;
             // 
             // label5
             // 
@@ -230,6 +241,7 @@
             this.label5.Size = new System.Drawing.Size(29, 16);
             this.label5.TabIndex = 5;
             this.label5.Text = "TBA";
+            this.label5.Visible = false;
             // 
             // label4
             // 
@@ -240,6 +252,7 @@
             this.label4.Size = new System.Drawing.Size(29, 16);
             this.label4.TabIndex = 4;
             this.label4.Text = "TBA";
+            this.label4.Visible = false;
             // 
             // label3
             // 
@@ -250,6 +263,7 @@
             this.label3.Size = new System.Drawing.Size(29, 16);
             this.label3.TabIndex = 3;
             this.label3.Text = "TBA";
+            this.label3.Visible = false;
             // 
             // lbl_lineEnd
             // 

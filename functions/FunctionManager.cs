@@ -10,6 +10,11 @@ namespace term
     {
         private static List<Function> allFunctions = new List<Function>();
 
+        public static int FunctionCount
+        {
+            get { return allFunctions.Count; }
+        }
+
         public static List<Function> GetListOfFunctions
         {
             get { return allFunctions; }
@@ -31,6 +36,19 @@ namespace term
         public static void UpdateFunction(Function item)
         {
             // TODO: Keep index and update all necessary values.
+        }
+
+        public static void RemoveFunction(int idx, string name)
+        {
+            if(allFunctions[idx].name == name)
+            {
+                allFunctions.RemoveAt(idx);
+            }
+            else
+            {
+                Function f = GetFunctionFromName(name);
+                allFunctions.Remove(f);
+            }
         }
 
         public static void AddFunction(Function item)

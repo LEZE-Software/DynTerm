@@ -10,6 +10,8 @@ using System.Windows.Forms;
 
 namespace term
 {
+    // OLD CLASS
+
     public partial class Form_CreateNewRule : Form
     {
         public Form_CreateNewRule(Form_Center mainFM)
@@ -60,102 +62,26 @@ namespace term
             }
         }
 
-        public KindOfOutputIndex CreateKindOfOutput(bool serial, bool display)
+        public RuleOutputType CreateKindOfOutput(bool serial, bool display)
         {
             if (serial && display)
             {
-                return KindOfOutputIndex.Both;
+                return RuleOutputType.Both;
             }
             else if (serial && !display)
             {
-                return KindOfOutputIndex.Serial;
+                return RuleOutputType.Serial;
             }
             else if (display && !serial)
             {
-                return KindOfOutputIndex.Visual;
+                return RuleOutputType.Visual;
             }
-            return KindOfOutputIndex.None;
+            return RuleOutputType.None;
         }
 
         private void cmd_addNewRule_Click(object sender, EventArgs e)
         {
-            #region Variables.
-            int
-                parentIndex = cob_parentFunction.SelectedIndex,
-                targetObjectIndex = cob_targetObject.SelectedIndex,
-                operationIndex = cob_operation.SelectedIndex,
-                displayIndex = cob_displayOperation.SelectedIndex,
-                answerIndex = cob_sendOption.SelectedIndex,
-                serialSourceIndexPos = cob_posObject.SelectedIndex,
-                serialSourceIndexNeg = cob_negObject.SelectedIndex;
-
-            bool
-                enableSerialAnswer = chb_sendSerial.Checked,
-                enableDisplayAction = chb_useOutput.Checked;
-            #endregion
-
-            Keyword key = new Keyword
-            {
-                text = txt_keyword.Text,
-                CheckIdx = (KeywordCheckOperation)operationIndex
-            };
-
-            SerialAnswer serial = new SerialAnswer
-            {
-                sendIdx = (SendOperationIndex)answerIndex
-            };
-
-            TargetProp target = new TargetProp
-            {
-                DispIxd = (DisplayOperation)displayIndex,
-
-            };
-
-            FunctionRule newF = new FunctionRule()
-            {
-                // Values needed in every case.
-                ParentFunction = mainFM.AllFunctions[parentIndex],
-                kindOfOutput = CreateKindOfOutput(enableSerialAnswer, enableDisplayAction)
-            };
-
-            // Creating a rule to display something.
-            if(enableDisplayAction)
-            {
-                target.textToDisplay = txt_displayText1.Text;
-                target.targetObject = mainFM.AllObjects[targetObjectIndex];
-
-                if(displayIndex==(Int32)DisplayOperation.YesNo)
-                {
-                    target.displayTextPos = txt_displayText1.Text;
-                    target.displayTextNeg = txt_displayText2.Text;
-                }
-            }
-
-            if (enableSerialAnswer)
-            {
-                serial.sendIdx = (SendOperationIndex)answerIndex;
-
-                if(serial.sendIdx == SendOperationIndex.YesNo)
-                {
-                    serial.answerPos = txt_posText.Text;
-                    serial.answerNeg = txt_negText.Text;
-                }
-            }
-
-            if(serialSourceIndexPos!=-1)
-            {
-                serial.sourceObjectPos = mainFM.AllFunctions[parentIndex].targetObjects[serialSourceIndexPos];
-            }
-            if(serialSourceIndexNeg!=-1)
-            {
-                serial.sourceObjectPos = mainFM.AllFunctions[parentIndex].targetObjects[serialSourceIndexNeg];
-            }
-
-            newF.key = key;
-            newF.serial = serial;
-            newF.target = target;
-
-            mainFM.AllRules.Add(newF);
+         
         }
 
         private void cob_operation_SelectedIndexChanged(object sender, EventArgs e)
@@ -164,7 +90,7 @@ namespace term
 
             switch (index)
             {
-                case (Int32)KeywordCheckOperation.DisplayKeywordWithoutCheck:
+                case (Int32)KeywordCheckOperation.ExecuteAlways:
                     {
                         txt_keyword.Enabled = false;
                         cob_targetObject.SelectedIndex = (Int32)DisplayOperation.RawData;

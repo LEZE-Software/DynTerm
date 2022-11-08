@@ -16,7 +16,7 @@ namespace term
         {
             InitializeComponent();
 
-            if(edit)
+            if(edit && FunctionManager.GetListOfFunctions.Count > 0)
             {
                 SwitchMode(Mode.View);
             }
@@ -38,11 +38,6 @@ namespace term
 
             chb_activate.Checked = false;
             chb_activate.Image = images_activate.Images[0];
-
-            if(FunctionManager.GetListOfFunctions.Count == 0)
-            {
-                SwitchMode(Mode.New);
-            }
         }
 
         private void SwitchMode(Mode m)
@@ -92,13 +87,27 @@ namespace term
 
         private void list_show_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SwitchMode(Mode.Edit);
+            if(list_show.SelectedIndex != -1)
+            {
+                SwitchMode(Mode.Edit);
 
-            selectedFunction = FunctionManager.GetFunctionFromName(list_show.SelectedItem.ToString());
+                selectedFunction = FunctionManager.GetFunctionFromName(list_show.SelectedItem.ToString());
 
-            txt_name.Text = selectedFunction.name;
-            txt_comment.Text = selectedFunction.comment;
-            chb_activate.Checked = selectedFunction.active;
+                txt_name.Text = selectedFunction.name;
+                txt_comment.Text = selectedFunction.comment;
+                chb_activate.Checked = selectedFunction.active;
+            }
+            else
+            {
+                if(list_show.Items.Count > 0)
+                {
+                    SwitchMode(Mode.View);
+                }
+                else
+                {
+                    SwitchMode(Mode.New);
+                }
+            }          
         }
 
         private void cmd_save_Click(object sender, EventArgs e)
@@ -132,6 +141,10 @@ namespace term
             {
                 list_show.Items.Add(f.name);
             }
+
+            txt_name.Text = "";
+            txt_comment.Text = "< leer >";
+            chb_activate.Checked = false;
         }
 
         private void chb_activate_CheckedChanged(object sender, EventArgs e)
@@ -139,6 +152,19 @@ namespace term
             int index = Convert.ToInt32(chb_activate.Checked);
 
             chb_activate.Image = images_activate.Images[index];
+        }
+
+        private void cmd_delete_Click(object sender, EventArgs e)
+        {
+            txt_name.Text = "";
+            txt_comment.Text = "< leer >";
+            chb_activate.Checked = false;
+
+            int idx = list_show.SelectedIndex;
+            FunctionManager.RemoveFunction(idx, list_show.SelectedItem.ToString());
+            list_show.Items.RemoveAt(idx);
+
+
         }
     }
 }
