@@ -12,9 +12,19 @@ namespace term
 {
     public partial class Form_PanelWizard : Form
     {
-        public Form_PanelWizard(Form_Center mainFM)
+        public Form_PanelWizard(Form_Center mainFM, bool edit)
         {
             this.mainFM = mainFM;
+
+            if(edit)
+            {
+                SwitchMode(Mode.Edit);
+            }
+            else
+            {
+                SwitchMode(Mode.New);
+            }
+
             InitializeComponent();
         }
 
@@ -41,11 +51,32 @@ namespace term
 
         private void SwitchMode(Mode m)
         {
+            currentMode = m;
 
+            switch(currentMode)
+            {
+                case Mode.Edit:
+                    {
+                        EnterValuesFromPanel();
+                        break;
+                    }
+                case Mode.New:
+                    {
+                        
+                        break;
+                    }
+            }
+        }
+
+        private void EnterValuesFromPanel()
+        {
+            txt_Title.Text = Props.PanelToEdit.Controls["lbl_title"].Text;
         }
 
         private void SwitchType(PanelType t)
         {
+            newType = t;
+
             switch(t)
             {
                 case PanelType.Display:
@@ -69,6 +100,226 @@ namespace term
             }
         }
 
+        private void cob_PanelType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int idx = cob_PanelType.SelectedIndex;
+
+            SwitchType((PanelType)idx);
+        }
+
+        private void cmd_save_Click(object sender, EventArgs e)
+        {
+            string title = txt_Title.Text;
+            string subTitle = txt_SubTitle.Text;
+            int functionIndex = cob_ParentFunction.SelectedIndex;
+
+            if(title != "" && subTitle != "" && functionIndex != -1)
+            {
+                Function connectedFunction = FunctionManager.GetFunctionFromIndex(functionIndex);
+                Point newLocation = Props.PanelToEdit.Location;
+                SubFormManager.form_playground.Controls.Remove(Props.PanelToEdit);
+                Panel newPanel = new Panel();
+
+                switch (newType)
+                {
+                    case PanelType.Display:
+                        {
+                            newPanel = CreateNewDisplayPanel(newLocation, title, subTitle);
+
+                            connectedFunction.AddPanel(newPanel);
+                            break;
+                        }
+                    case PanelType.Input:
+                        {
+                            newPanel = CreateNewInputPanel(newLocation, title, subTitle);
+
+                            break;
+                        }
+                    case PanelType.Select:
+                        {
+                            newPanel = CreateNewSelectPanel(newLocation, title, subTitle);
+
+                            break;
+                        }
+                    case PanelType.Button:
+                        {
+                            throw new NotImplementedException();
+                        }
+                }
+
+                newPanel.Tag = "set";
+                SubFormManager.form_playground.Controls.Add(newPanel);
+
+                foreach (Control c in SubFormManager.form_playground.Controls)
+                {
+                    c.Show();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Prüfen Sie Ihre Eingaben!", "Warnung", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }          
+        }
+
+        private Panel CreateNewDisplayPanel(Point newLocation, string title, string subTitle)
+        {
+            Panel ret = new Panel()
+            {
+                BackColor = SystemColors.ControlLight,
+                Name = "panel_frank",
+                Size = new Size(157, 90),
+                BorderStyle = BorderStyle.FixedSingle,
+                Tag = newType.ToString(),
+                Location = newLocation,
+                ContextMenuStrip = SubFormManager.form_playground.context_panel
+            };
+
+            Label titleLable = new Label()
+            {
+                Name = "lbl_title",
+                Text = title,
+                Font = new Font("Microsoft YaHei",9.75f,FontStyle.Bold),
+                ForeColor = Color.Crimson,
+                Location = new Point(5,5),
+                BackColor = SystemColors.ControlLight
+            };
+
+            Label subTitleLabel = new Label()
+            {
+                Name = "lbl_SubTitle",
+                Text = subTitle,
+                Font = new Font("Microsoft YaHei", 8.00f, FontStyle.Underline),
+                ForeColor = Color.Black,
+                Location = new Point(10, 35),
+                BackColor = SystemColors.ControlLight,
+                TextAlign = ContentAlignment.TopLeft,
+                Height = 16
+            };
+
+            TextBox txt_content = new TextBox()
+            {
+                Name = "txt_content",
+                Text = "",
+                Font = new Font("Consolas", 10.00f),
+                ForeColor = Color.Black,
+                Location = new Point(15, 52),
+                Size = new Size(129, 23),
+                ReadOnly = true,
+                BackColor = SystemColors.Window
+            };
+
+            ret.Controls.Add(titleLable);
+            ret.Controls.Add(subTitleLabel);
+            ret.Controls.Add(txt_content);
+            return ret;
+        }
+
+        private Panel CreateNewInputPanel(Point newLocation, string title, string subTitle)
+        {
+            Panel ret = new Panel()
+            {
+                BackColor = SystemColors.ControlLight,
+                Name = "panel_frank",
+                Size = new Size(157, 90),
+                BorderStyle = BorderStyle.FixedSingle,
+                Tag = newType.ToString(),
+                Location = newLocation,
+                ContextMenuStrip = SubFormManager.form_playground.context_panel
+            };
+
+            Label titleLable = new Label()
+            {
+                Name = "lbl_title",
+                Text = title,
+                Font = new Font("Microsoft YaHei", 9.75f, FontStyle.Bold),
+                ForeColor = Color.Crimson,
+                Location = new Point(5, 5),
+                BackColor = SystemColors.ControlLight
+            };
+
+            Label subTitleLabel = new Label()
+            {
+                Name = "lbl_SubTitle",
+                Text = subTitle,
+                Font = new Font("Microsoft YaHei", 8.00f, FontStyle.Underline),
+                ForeColor = Color.Black,
+                Location = new Point(10, 35),
+                BackColor = SystemColors.ControlLight,
+                TextAlign = ContentAlignment.TopLeft,
+                Height = 16
+            };
+
+            TextBox txt_content = new TextBox()
+            {
+                Name = "txt_content",
+                Text = "",
+                Font = new Font("Consolas", 10.00f),
+                ForeColor = Color.Black,
+                Location = new Point(15, 52),
+                Size = new Size(129, 23),
+                ReadOnly = false,
+                BackColor = SystemColors.Window
+            };
+
+            ret.Controls.Add(titleLable);
+            ret.Controls.Add(subTitleLabel);
+            ret.Controls.Add(txt_content);
+            return ret;
+        }
+
+        private Panel CreateNewSelectPanel(Point newLocation, string title, string subTitle)
+        {
+            Panel ret = new Panel()
+            {
+                BackColor = SystemColors.ControlLight,
+                Name = "panel_frank",
+                Size = new Size(157, 90),
+                BorderStyle = BorderStyle.FixedSingle,
+                Tag = newType.ToString(),
+                Location = newLocation,
+                ContextMenuStrip = SubFormManager.form_playground.context_panel
+            };
+
+            Label titleLable = new Label()
+            {
+                Name = "lbl_title",
+                Text = title,
+                Font = new Font("Microsoft YaHei", 9.75f, FontStyle.Bold),
+                ForeColor = Color.Crimson,
+                Location = new Point(5, 5),
+                BackColor = SystemColors.ControlLight
+            };
+
+            Label subTitleLabel = new Label()
+            {
+                Name = "lbl_SubTitle",
+                Text = subTitle,
+                Font = new Font("Microsoft YaHei", 8.00f, FontStyle.Underline),
+                ForeColor = Color.Black,
+                Location = new Point(10, 35),
+                BackColor = SystemColors.ControlLight,
+                TextAlign = ContentAlignment.TopLeft,
+                Height = 16
+            };
+
+            ComboBox cob_select = new ComboBox()
+            {
+                Name = "cob_select",
+                Text = "",
+                Font = new Font("Consolas", 10.00f),
+                ForeColor = Color.Black,
+                Location = new Point(15, 52),
+                Size = new Size(129, 23),
+                BackColor = SystemColors.Window,
+                ContextMenuStrip = SubFormManager.form_playground.context_select
+            };
+
+            ret.Controls.Add(titleLable);
+            ret.Controls.Add(subTitleLabel);
+            ret.Controls.Add(cob_select);
+            return ret;
+        }
+
         private enum ClickAction
         {
             SendSerial,
@@ -89,63 +340,6 @@ namespace term
             New,
             Edit,
             LAST_INDEX
-        }
-
-        private void cob_PanelType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            int idx = cob_PanelType.SelectedIndex;
-
-            SwitchType((PanelType)idx);
-        }
-
-        private void cmd_save_Click(object sender, EventArgs e)
-        {
-            SubFormManager.form_playground.Text = "Gurke";
-
-            string title = txt_Title.Text;
-            string subTitle = txt_SubTitle.Text;
-
-            Point newLocation = Props.PanelToEdit.Location;
-
-            SubFormManager.form_playground.Controls.Remove(Props.PanelToEdit);
-            SubFormManager.form_playground.Controls.Add(CreateNewDisplayPanel(newLocation, title, subTitle));
-
-            foreach( Control c in SubFormManager.form_playground.Controls)
-            {
-                c.Show();
-            }
-
-            // TODO: Add object to function.
-            // TODO: Add all other types of panels.
-        }
-
-        private Panel CreateNewDisplayPanel(Point newLocation, string title, string subTitle)
-        {
-            Panel ret = new Panel()
-            {
-                BackColor = SystemColors.ControlLight,
-                Name = "panel_frank",
-                Size = new Size(157, 90),
-                BorderStyle = BorderStyle.FixedSingle,
-                Tag = newType.ToString(),
-                Location = newLocation
-            };
-
-            Label titleLable = new Label()
-            {
-                Name = "lbl_title",
-                Text = title,
-                Font = new Font("Microsoft YaHei",9.75f,FontStyle.Bold),
-                ForeColor = Color.Crimson,
-                Location = new Point(5,5),
-                BackColor = SystemColors.ControlLight
-            };
-
-            // TODO: Add all other parts of the panel.
-
-            ret.Controls.Add(titleLable);
-
-            return ret;
         }
     }
 }

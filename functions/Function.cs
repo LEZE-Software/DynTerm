@@ -13,6 +13,11 @@ namespace term
         public string name;
         public string comment;
         public bool active;
-        public List<dynamic> targetObjects = new List<dynamic>();
+        public List<Panel> targetObjects = new List<Panel>();
+
+        public void AddPanel(Panel p)
+        {
+            targetObjects.Add(p);
+        }
     }
 }

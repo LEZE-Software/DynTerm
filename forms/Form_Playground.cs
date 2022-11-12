@@ -19,7 +19,6 @@ namespace term
         }
 
         Form_Center mainFM;
-        public Panel PanelToEdit;
 
         private void Form_Playground_Load(object sender, EventArgs e)
         {
@@ -41,7 +40,12 @@ namespace term
 
         private void context_panel_Opening(object sender, CancelEventArgs e)
         {
-            PanelToEdit = context_panel.Parent as Panel;
+            bool edit = (Props.PanelToEdit.Tag.ToString() == "set");
+
+            cmd_EditPanel.Enabled =
+                cmd_ActivatePanel.Enabled =
+                cmd_LockPanel.Enabled =
+                cmd_DeletePanel.Enabled = edit;
         }
 
         private void cmd_CreateNewPanel_Click(object sender, EventArgs e)
@@ -49,17 +53,17 @@ namespace term
             SubFormManager.OpenSubForm(SubFormManager.SubFormIndex.PanelEditor, mainFM, false);
         }
 
-        private void PrePanel_MouseClick(object sender, MouseEventArgs e)
-        {
-            
-        }
-
-        private void PrePanel9_MouseDown(object sender, MouseEventArgs e)
+        private void PrePanel_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
             {
                 Props.PanelToEdit = sender as Panel;
             }
+        }
+
+        private void cmd_EditPanel_Click(object sender, EventArgs e)
+        {
+            SubFormManager.OpenSubForm(SubFormManager.SubFormIndex.PanelEditor, mainFM, true);
         }
     }
 }

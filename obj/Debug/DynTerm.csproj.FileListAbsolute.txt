@@ -62,3 +62,20 @@ C:\Repository\DynTerm\obj\Debug\DynTerm.pdb
 J:\Git Repository\DynTerm\obj\Debug\term.Form_NewEditRule.resources
 J:\Git Repository\DynTerm\obj\Debug\term.Form_Settings.resources
 J:\Git Repository\DynTerm\obj\Debug\term.Form_PanelWizard.resources
+E:\Repositorys\DynTerm\bin\Debug\DynTerm.exe.config
+E:\Repositorys\DynTerm\bin\Debug\DynTerm.exe
+E:\Repositorys\DynTerm\bin\Debug\DynTerm.pdb
+E:\Repositorys\DynTerm\obj\Debug\DynTerm.csprojAssemblyReference.cache
+E:\Repositorys\DynTerm\obj\Debug\term.Form_Center.resources
+E:\Repositorys\DynTerm\obj\Debug\term.Form_PanelWizard.resources
+E:\Repositorys\DynTerm\obj\Debug\term.Form_NewEditFunction.resources
+E:\Repositorys\DynTerm\obj\Debug\term.Form_NewEditRule.resources
+E:\Repositorys\DynTerm\obj\Debug\term.Form_Playground.resources
+E:\Repositorys\DynTerm\obj\Debug\term.Form_SerialConnection.resources
+E:\Repositorys\DynTerm\obj\Debug\term.Form_SerialTraffic.resources
+E:\Repositorys\DynTerm\obj\Debug\term.Form_Settings.resources
+E:\Repositorys\DynTerm\obj\Debug\term.Properties.Resources.resources
+E:\Repositorys\DynTerm\obj\Debug\DynTerm.csproj.GenerateResource.cache
+E:\Repositorys\DynTerm\obj\Debug\DynTerm.csproj.CoreCompileInputs.cache
+E:\Repositorys\DynTerm\obj\Debug\DynTerm.exe
+E:\Repositorys\DynTerm\obj\Debug\DynTerm.pdb

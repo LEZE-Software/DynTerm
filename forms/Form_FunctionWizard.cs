@@ -112,39 +112,55 @@ namespace term
 
         private void cmd_save_Click(object sender, EventArgs e)
         {
-            selectedFunction.name = txt_name.Text;
-            selectedFunction.comment = txt_comment.Text;
-            selectedFunction.active = chb_activate.Checked;
-
-            switch(currentMode)
+            if(txt_name.Text != "")
             {
-                case Mode.Edit:
-                    {
-                        FunctionManager.UpdateFunction(selectedFunction);
-                        break;
-                    }
-                case Mode.New:
-                    {
-                        FunctionManager.AddFunction(selectedFunction);
-                        break;
-                    }
-                case Mode.View:
-                    {
-                        MessageBox.Show("Es gibt nichts zu speichern.");
-                        break;
-                    }
-            }
+                selectedFunction.name = txt_name.Text;
+                
+                selectedFunction.active = chb_activate.Checked;
 
-            list_show.Items.Clear();
-            
-            foreach(Function f in FunctionManager.GetListOfFunctions)
+                if(txt_comment.Text.Contains("leer") || txt_comment.Text=="")
+                {
+                    selectedFunction.comment = "N/A";
+                }
+                else
+                {
+                    selectedFunction.comment = txt_comment.Text;
+                }
+
+                switch (currentMode)
+                {
+                    case Mode.Edit:
+                        {
+                            FunctionManager.UpdateFunction(selectedFunction);
+                            break;
+                        }
+                    case Mode.New:
+                        {
+                            FunctionManager.AddFunction(selectedFunction);
+                            break;
+                        }
+                    case Mode.View:
+                        {
+                            MessageBox.Show("Es gibt nichts zu speichern.");
+                            break;
+                        }
+                }
+
+                list_show.Items.Clear();
+
+                foreach (Function f in FunctionManager.GetListOfFunctions)
+                {
+                    list_show.Items.Add(f.name);
+                }
+
+                txt_name.Text = "";
+                txt_comment.Text = "< leer >";
+                chb_activate.Checked = false;
+            }
+            else
             {
-                list_show.Items.Add(f.name);
-            }
-
-            txt_name.Text = "";
-            txt_comment.Text = "< leer >";
-            chb_activate.Checked = false;
+                MessageBox.Show("Der Funktionsbezeichner darf nicht leer sein!", "Warnung", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }            
         }
 
         private void chb_activate_CheckedChanged(object sender, EventArgs e)

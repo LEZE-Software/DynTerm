@@ -52,16 +52,23 @@ namespace term
             string comment = "No comment.";
             bool active = chb_activate.Checked;
 
-            fRule newRule = new fRule(
+            if(key != "" && cob_function.SelectedIndex != -1 && cob_CheckOperation.SelectedIndex != -1)
+            {
+                fRule newRule = new fRule(
                 key,
                 (KeywordCheckOperation)cob_CheckOperation.SelectedIndex,
-                GetSerialPart(), 
-                GetOutputPart(), 
-                comment, 
-                active,               
+                GetSerialPart(),
+                GetOutputPart(),
+                comment,
+                active,
                 FunctionManager.GetFunctionFromName(cob_function.Text));
 
-            RuleManager.AddRule(newRule);
+                RuleManager.AddRule(newRule);
+            }
+            else
+            {
+                MessageBox.Show("Prüfen Sie Ihre Eingaben!", "Warnung", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }          
         }
 
         private OutputOption GetOutputPart()

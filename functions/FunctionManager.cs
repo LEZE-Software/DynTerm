@@ -20,6 +20,11 @@ namespace term
             get { return allFunctions; }
         }
 
+        public static Function GetFunctionFromIndex(int idx)
+        {
+            return allFunctions[idx];
+        }
+
         public static Function GetFunctionFromName(string name)
         {
             foreach (Function f in allFunctions)

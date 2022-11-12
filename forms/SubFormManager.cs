@@ -129,7 +129,7 @@ namespace term
                 case SubFormIndex.PanelEditor:
                     {
                         usePreform = true;
-                        formToOpen = new Form_PanelWizard(main)
+                        formToOpen = new Form_PanelWizard(main, openToEdit)
                         {
                             MdiParent = main
                         };

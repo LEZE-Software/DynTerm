@@ -84,6 +84,14 @@
             this.label20 = new System.Windows.Forms.Label();
             this.PrePanel4 = new System.Windows.Forms.Panel();
             this.label21 = new System.Windows.Forms.Label();
+            this.context_select = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.con_addEntryToComboBox = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
+            this.cmd_addEntryToComboBox = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmd_removeComboBoxEntry = new System.Windows.Forms.ToolStripMenuItem();
+            this.con_editComboBoxEntry = new System.Windows.Forms.ToolStripMenuItem();
+            this.txt_editComboBoxEntry = new System.Windows.Forms.ToolStripTextBox();
+            this.cmd_editComboBoxEntry = new System.Windows.Forms.ToolStripMenuItem();
             this.infoStrip_playground.SuspendLayout();
             this.pan_preview.SuspendLayout();
             this.context_panel.SuspendLayout();
@@ -106,6 +114,7 @@
             this.panel2.SuspendLayout();
             this.PrePanel7.SuspendLayout();
             this.PrePanel4.SuspendLayout();
+            this.context_select.SuspendLayout();
             this.SuspendLayout();
             // 
             // infoStrip_playground
@@ -187,7 +196,7 @@
             this.cmd_LockPanel,
             this.cmd_DeletePanel});
             this.context_panel.Name = "context_panel";
-            this.context_panel.Size = new System.Drawing.Size(201, 154);
+            this.context_panel.Size = new System.Drawing.Size(201, 176);
             this.context_panel.Opening += new System.ComponentModel.CancelEventHandler(this.context_panel_Opening);
             // 
             // cmd_CreateNewPanel
@@ -204,6 +213,7 @@
             this.cmd_EditPanel.Name = "cmd_EditPanel";
             this.cmd_EditPanel.Size = new System.Drawing.Size(200, 30);
             this.cmd_EditPanel.Text = "Bearbeiten...";
+            this.cmd_EditPanel.Click += new System.EventHandler(this.cmd_EditPanel_Click);
             // 
             // cmd_ActivatePanel
             // 
@@ -235,7 +245,8 @@
             this.PrePanel1.Name = "PrePanel1";
             this.PrePanel1.Size = new System.Drawing.Size(157, 90);
             this.PrePanel1.TabIndex = 908;
-            this.PrePanel1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PrePanel_MouseClick);
+            this.PrePanel1.Tag = "new";
+            this.PrePanel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PrePanel_MouseDown);
             // 
             // label2
             // 
@@ -278,7 +289,8 @@
             this.PrePanel2.Name = "PrePanel2";
             this.PrePanel2.Size = new System.Drawing.Size(157, 90);
             this.PrePanel2.TabIndex = 909;
-            this.PrePanel2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PrePanel_MouseClick);
+            this.PrePanel2.Tag = "new";
+            this.PrePanel2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PrePanel_MouseDown);
             // 
             // label12
             // 
@@ -300,7 +312,8 @@
             this.PrePanel3.Name = "PrePanel3";
             this.PrePanel3.Size = new System.Drawing.Size(157, 90);
             this.PrePanel3.TabIndex = 909;
-            this.PrePanel3.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PrePanel_MouseClick);
+            this.PrePanel3.Tag = "new";
+            this.PrePanel3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PrePanel_MouseDown);
             // 
             // label3
             // 
@@ -322,7 +335,8 @@
             this.PrePanel6.Name = "PrePanel6";
             this.PrePanel6.Size = new System.Drawing.Size(157, 90);
             this.PrePanel6.TabIndex = 910;
-            this.PrePanel6.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PrePanel_MouseClick);
+            this.PrePanel6.Tag = "new";
+            this.PrePanel6.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PrePanel_MouseDown);
             // 
             // label4
             // 
@@ -344,7 +358,8 @@
             this.PrePanel5.Name = "PrePanel5";
             this.PrePanel5.Size = new System.Drawing.Size(157, 90);
             this.PrePanel5.TabIndex = 911;
-            this.PrePanel5.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PrePanel_MouseClick);
+            this.PrePanel5.Tag = "new";
+            this.PrePanel5.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PrePanel_MouseDown);
             // 
             // label22
             // 
@@ -366,8 +381,8 @@
             this.PrePanel9.Name = "PrePanel9";
             this.PrePanel9.Size = new System.Drawing.Size(157, 90);
             this.PrePanel9.TabIndex = 912;
-            this.PrePanel9.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PrePanel_MouseClick);
-            this.PrePanel9.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PrePanel9_MouseDown);
+            this.PrePanel9.Tag = "new";
+            this.PrePanel9.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PrePanel_MouseDown);
             // 
             // label5
             // 
@@ -389,7 +404,8 @@
             this.PrePanel8.Name = "PrePanel8";
             this.PrePanel8.Size = new System.Drawing.Size(157, 90);
             this.PrePanel8.TabIndex = 913;
-            this.PrePanel8.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PrePanel_MouseClick);
+            this.PrePanel8.Tag = "new";
+            this.PrePanel8.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PrePanel_MouseDown);
             // 
             // label19
             // 
@@ -576,7 +592,6 @@
             this.textBox2.Size = new System.Drawing.Size(129, 23);
             this.textBox2.TabIndex = 909;
             this.textBox2.Text = "Textbox";
-            this.textBox2.Visible = false;
             // 
             // label10
             // 
@@ -651,7 +666,8 @@
             this.PrePanel7.Name = "PrePanel7";
             this.PrePanel7.Size = new System.Drawing.Size(157, 90);
             this.PrePanel7.TabIndex = 921;
-            this.PrePanel7.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PrePanel_MouseClick);
+            this.PrePanel7.Tag = "new";
+            this.PrePanel7.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PrePanel_MouseDown);
             // 
             // label20
             // 
@@ -673,7 +689,8 @@
             this.PrePanel4.Name = "PrePanel4";
             this.PrePanel4.Size = new System.Drawing.Size(157, 90);
             this.PrePanel4.TabIndex = 922;
-            this.PrePanel4.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PrePanel_MouseClick);
+            this.PrePanel4.Tag = "new";
+            this.PrePanel4.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PrePanel_MouseDown);
             // 
             // label21
             // 
@@ -685,6 +702,74 @@
             this.label21.TabIndex = 1;
             this.label21.Text = "Panel 4";
             this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // context_select
+            // 
+            this.context_select.BackColor = System.Drawing.SystemColors.Window;
+            this.context_select.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.context_select.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.con_addEntryToComboBox,
+            this.cmd_removeComboBoxEntry,
+            this.con_editComboBoxEntry});
+            this.context_select.Name = "context_select";
+            this.context_select.Size = new System.Drawing.Size(183, 94);
+            // 
+            // con_addEntryToComboBox
+            // 
+            this.con_addEntryToComboBox.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripTextBox1,
+            this.cmd_addEntryToComboBox});
+            this.con_addEntryToComboBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.con_addEntryToComboBox.Image = ((System.Drawing.Image)(resources.GetObject("con_addEntryToComboBox.Image")));
+            this.con_addEntryToComboBox.Name = "con_addEntryToComboBox";
+            this.con_addEntryToComboBox.Size = new System.Drawing.Size(182, 30);
+            this.con_addEntryToComboBox.Text = "Eintrag hinzufügen";
+            // 
+            // toolStripTextBox1
+            // 
+            this.toolStripTextBox1.Name = "toolStripTextBox1";
+            this.toolStripTextBox1.Size = new System.Drawing.Size(100, 23);
+            // 
+            // cmd_addEntryToComboBox
+            // 
+            this.cmd_addEntryToComboBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmd_addEntryToComboBox.Image = ((System.Drawing.Image)(resources.GetObject("cmd_addEntryToComboBox.Image")));
+            this.cmd_addEntryToComboBox.Name = "cmd_addEntryToComboBox";
+            this.cmd_addEntryToComboBox.Size = new System.Drawing.Size(160, 22);
+            this.cmd_addEntryToComboBox.Text = "Hinzufügen";
+            // 
+            // cmd_removeComboBoxEntry
+            // 
+            this.cmd_removeComboBoxEntry.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmd_removeComboBoxEntry.Image = ((System.Drawing.Image)(resources.GetObject("cmd_removeComboBoxEntry.Image")));
+            this.cmd_removeComboBoxEntry.Name = "cmd_removeComboBoxEntry";
+            this.cmd_removeComboBoxEntry.Size = new System.Drawing.Size(182, 30);
+            this.cmd_removeComboBoxEntry.Text = "Eintrag entfernen";
+            // 
+            // con_editComboBoxEntry
+            // 
+            this.con_editComboBoxEntry.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.txt_editComboBoxEntry,
+            this.cmd_editComboBoxEntry});
+            this.con_editComboBoxEntry.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.con_editComboBoxEntry.Image = ((System.Drawing.Image)(resources.GetObject("con_editComboBoxEntry.Image")));
+            this.con_editComboBoxEntry.Name = "con_editComboBoxEntry";
+            this.con_editComboBoxEntry.Size = new System.Drawing.Size(182, 30);
+            this.con_editComboBoxEntry.Text = "Eintrag bearbeiten";
+            // 
+            // txt_editComboBoxEntry
+            // 
+            this.txt_editComboBoxEntry.BackColor = System.Drawing.SystemColors.Window;
+            this.txt_editComboBoxEntry.Name = "txt_editComboBoxEntry";
+            this.txt_editComboBoxEntry.Size = new System.Drawing.Size(100, 23);
+            // 
+            // cmd_editComboBoxEntry
+            // 
+            this.cmd_editComboBoxEntry.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.cmd_editComboBoxEntry.Image = ((System.Drawing.Image)(resources.GetObject("cmd_editComboBoxEntry.Image")));
+            this.cmd_editComboBoxEntry.Name = "cmd_editComboBoxEntry";
+            this.cmd_editComboBoxEntry.Size = new System.Drawing.Size(160, 22);
+            this.cmd_editComboBoxEntry.Text = "Übernehmen";
             // 
             // Form_Playground
             // 
@@ -765,6 +850,7 @@
             this.PrePanel7.PerformLayout();
             this.PrePanel4.ResumeLayout(false);
             this.PrePanel4.PerformLayout();
+            this.context_select.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -776,7 +862,6 @@
         private System.Windows.Forms.Label title_workbench;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cob_serialPort;
-        private System.Windows.Forms.ContextMenuStrip context_panel;
         private System.Windows.Forms.ToolStripMenuItem cmd_DeletePanel;
         private System.Windows.Forms.ToolStripMenuItem cmd_EditPanel;
         private System.Windows.Forms.ToolStripMenuItem cmd_ActivatePanel;
@@ -825,5 +910,14 @@
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label21;
+        public System.Windows.Forms.ContextMenuStrip context_panel;
+        private System.Windows.Forms.ToolStripMenuItem con_addEntryToComboBox;
+        private System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
+        private System.Windows.Forms.ToolStripMenuItem cmd_addEntryToComboBox;
+        private System.Windows.Forms.ToolStripMenuItem cmd_removeComboBoxEntry;
+        private System.Windows.Forms.ToolStripMenuItem con_editComboBoxEntry;
+        private System.Windows.Forms.ToolStripTextBox txt_editComboBoxEntry;
+        private System.Windows.Forms.ToolStripMenuItem cmd_editComboBoxEntry;
+        public System.Windows.Forms.ContextMenuStrip context_select;
     }
 }
