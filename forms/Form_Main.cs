@@ -200,11 +200,6 @@ namespace term
             }
         }
 
-        private void cmd_createNewObject_Click(object sender, EventArgs e)
-        {
-            SubFormManager.OpenSubForm(SubFormManager.SubFormIndex.NewObject, this, false);
-        }
-
         private void Form_Center_FormClosing(object sender, FormClosingEventArgs e)
         {
             Props.shallClose = true;

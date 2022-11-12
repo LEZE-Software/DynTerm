@@ -19,6 +19,7 @@ namespace term
         }
 
         Form_Center mainFM;
+        public Panel PanelToEdit;
 
         private void Form_Playground_Load(object sender, EventArgs e)
         {
@@ -33,24 +34,32 @@ namespace term
             //}
         }
 
-        private void Form_Playground_MouseMove(object sender, MouseEventArgs e)
+        private void cmd_Help_Click(object sender, EventArgs e)
         {
-
+            MessageBox.Show("Öffnen Sie das Panelmenü mit einem Rechtsklick, um Panele zu bearbeiten.", "Hinweis", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void Form_Playground_Click(object sender, EventArgs e)
+        private void context_panel_Opening(object sender, CancelEventArgs e)
         {
-
+            PanelToEdit = context_panel.Parent as Panel;
         }
 
-        private void toolStripSplitButton1_ButtonClick(object sender, EventArgs e)
+        private void cmd_CreateNewPanel_Click(object sender, EventArgs e)
         {
-
+            SubFormManager.OpenSubForm(SubFormManager.SubFormIndex.PanelEditor, mainFM, false);
         }
 
-        private void cmd_preview_Click(object sender, EventArgs e)
+        private void PrePanel_MouseClick(object sender, MouseEventArgs e)
         {
+            
+        }
 
+        private void PrePanel9_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                Props.PanelToEdit = sender as Panel;
+            }
         }
     }
 }

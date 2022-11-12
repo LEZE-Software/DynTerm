@@ -4,11 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO.Ports;
+using System.Windows.Forms;
 
 namespace term
 {
     public static class Props
     {
+        public static Panel PanelToEdit;
+
         public static bool
             previewMode = false,
             resizeMode = false;

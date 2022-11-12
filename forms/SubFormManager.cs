@@ -126,7 +126,15 @@ namespace term
                         form_settings.Show();
                         break;
                     }
-
+                case SubFormIndex.PanelEditor:
+                    {
+                        usePreform = true;
+                        formToOpen = new Form_PanelWizard(main)
+                        {
+                            MdiParent = main
+                        };
+                        break;
+                    }
                 default:
                     {
                         throw new NotImplementedException();
@@ -154,7 +162,7 @@ namespace term
         public enum SubFormIndex
         {
             Playground,
-            NewObject,
+            PanelEditor,
             RuleEditor,
             FunctionEditor,
             Traffic,

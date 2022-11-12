@@ -263,7 +263,8 @@
             this.MaximizeBox = false;
             this.Name = "Form_NewEditFunction";
             this.ShowIcon = false;
-            this.Text = "Funktionen";
+            this.ShowInTaskbar = false;
+            this.Text = "Funktionseditor";
             this.Load += new System.EventHandler(this.Form_NewEditFunction_Load);
             this.pan_workbench.ResumeLayout(false);
             this.pan_workbench.PerformLayout();

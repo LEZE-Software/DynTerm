@@ -54,41 +54,23 @@
     <Compile Include="forms\Form_Main.Designer.cs">
       <DependentUpon>Form_Main.cs</DependentUpon>
     </Compile>
-    <Compile Include="forms\Form_Array.cs">
+    <Compile Include="forms\Form_PanelWizard.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\Form_Array.Designer.cs">
-      <DependentUpon>Form_Array.cs</DependentUpon>
+    <Compile Include="forms\Form_PanelWizard.Designer.cs">
+      <DependentUpon>Form_PanelWizard.cs</DependentUpon>
     </Compile>
-    <Compile Include="forms\Form_CreateNewObject.cs">
+    <Compile Include="forms\Form_FunctionWizard.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\Form_CreateNewObject.Designer.cs">
-      <DependentUpon>Form_CreateNewObject.cs</DependentUpon>
+    <Compile Include="forms\Form_FunctionWizard.Designer.cs">
+      <DependentUpon>Form_FunctionWizard.cs</DependentUpon>
     </Compile>
-    <Compile Include="forms\Form_CreateNewRule.cs">
+    <Compile Include="forms\Form_RuleWizard.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\Form_CreateNewRule.Designer.cs">
-      <DependentUpon>Form_CreateNewRule.cs</DependentUpon>
-    </Compile>
-    <Compile Include="forms\Form_NewEditFunction.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="forms\Form_NewEditFunction.Designer.cs">
-      <DependentUpon>Form_NewEditFunction.cs</DependentUpon>
-    </Compile>
-    <Compile Include="forms\Form_NewEditRule.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="forms\Form_NewEditRule.Designer.cs">
-      <DependentUpon>Form_NewEditRule.cs</DependentUpon>
-    </Compile>
-    <Compile Include="forms\Form_ObjectProperties.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="forms\Form_ObjectProperties.Designer.cs">
-      <DependentUpon>Form_ObjectProperties.cs</DependentUpon>
+    <Compile Include="forms\Form_RuleWizard.Designer.cs">
+      <DependentUpon>Form_RuleWizard.cs</DependentUpon>
     </Compile>
     <Compile Include="forms\Form_Playground.cs">
       <SubType>Form</SubType>
@@ -130,23 +112,14 @@
     <EmbeddedResource Include="forms\Form_Main.resx">
       <DependentUpon>Form_Main.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\Form_Array.resx">
-      <DependentUpon>Form_Array.cs</DependentUpon>
+    <EmbeddedResource Include="forms\Form_PanelWizard.resx">
+      <DependentUpon>Form_PanelWizard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\Form_CreateNewObject.resx">
-      <DependentUpon>Form_CreateNewObject.cs</DependentUpon>
+    <EmbeddedResource Include="forms\Form_FunctionWizard.resx">
+      <DependentUpon>Form_FunctionWizard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\Form_CreateNewRule.resx">
-      <DependentUpon>Form_CreateNewRule.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="forms\Form_NewEditFunction.resx">
-      <DependentUpon>Form_NewEditFunction.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="forms\Form_NewEditRule.resx">
-      <DependentUpon>Form_NewEditRule.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="forms\Form_ObjectProperties.resx">
-      <DependentUpon>Form_ObjectProperties.cs</DependentUpon>
+    <EmbeddedResource Include="forms\Form_RuleWizard.resx">
+      <DependentUpon>Form_RuleWizard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Form_Playground.resx">
       <DependentUpon>Form_Playground.cs</DependentUpon>
