@@ -52,12 +52,11 @@ namespace term
         {
             string name = cob_serialPort.Text;
             int baudrate = Convert.ToInt32(cob_baudrate.Text);
+            LineEndIndex lineEnd = (LineEndIndex)cob_lineEnd.SelectedIndex;
 
-            Props.serialPort = new SerialPort(cob_serialPort.Text, baudrate);
-            Props.lineEnd = (LineEndIndex)cob_lineEnd.SelectedIndex;
 
-            // TODO: Set the selected connection settings.
-            // TODO: Save the serial connection in the external serial.xml.
+            Serial_Manager.SetPortSettings(name, baudrate, lineEnd);
+            Serial_Manager.SavePortSettings();
         }
     }
 }

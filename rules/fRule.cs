@@ -4,12 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace term
 {
     public class fRule
     {
-        // Constructor.
+        /// <summary>
+        /// Generate a new instance of fRule.
+        /// </summary>
         public fRule(string _keyWord, KeywordCheckOperation _opx, SerialOption _serial, OutputOption _output, string _comment, bool _active, Function _parent)
         {
             keyWord = _keyWord;
@@ -29,11 +32,50 @@ namespace term
         public SerialOption SerialAction { get; private set; }
         public OutputOption OutputAction { get; private set; }
         public Function ParentFunction { get; private set; }
+
+        private List<string> connectedPanels = new List<string>();
         #endregion
 
-        public void ExecuteReaction(string serialAnswer, Form_Center mainFM)
+        public void AddPanelToFunction(string val)
         {
+            connectedPanels.Add(val);
+        }
 
+        public void RemovePanelFromFunction(string val)
+        {
+            connectedPanels.Remove(val);
+        }
+
+        public bool IsPanelConnectedToFunction(string val)
+        {
+            return connectedPanels.Contains(val);
+        }
+
+        public void ExecuteReaction(string serialAnswer)
+        {
+            switch(SerialAction.serialOutputIndex)
+            {
+                // No serial action expected.
+                case SerialIndex.None:
+                    {
+                        break;
+                    }
+                // Action expected when positive.
+                case SerialIndex.Positive:
+                    {
+                        break;
+                    }
+                // Action expected when negative.
+                case SerialIndex.Negative:
+                    {
+                        break;
+                    }
+                // Action expected when positive or negative.
+                case SerialIndex.Both:
+                    {
+                        break;
+                    }
+            }
         }
 
         public void ExecuteSendOperation(string serialAnswer)
@@ -46,23 +88,80 @@ namespace term
 
         }
 
-        public FunctionResultIndex KeywordCheck(string serialAnswer)
+        /// <summary>
+        /// Run a check with the serial answer. 
+        /// Depending on the functionality of this rule a result is returned.
+        /// </summary>
+        public void ExecuteRule(string serialAnswer)
         {
             switch (OperationIndex)
             {
+                // Message contains keyword.
                 case KeywordCheckOperation.Contains:
                     {
+                        // Contains.
                         if (serialAnswer.Contains(keyWord))
                         {
-                            return FunctionResultIndex.ResultYes;
+                            // Execute positive serial action.
+                            if (SerialAction.serialOutputIndex == SerialIndex.Positive)
+                            {
+                                throw new NotImplementedException();
+                            }
+
+                            // Execute positive output action.
+                            if (OutputAction.postiveIndex != OutputIndex.None)
+                            {
+                                throw new NotImplementedException();
+                            }
+                        }
+                        // Contains not.
+                        else
+                        {
+                            // Execute negative serial action.
+                            if (SerialAction.serialOutputIndex == SerialIndex.Negative)
+                            {
+                                throw new NotImplementedException();
+                            }
+
+                            // Execute negative output action.
+                            if (OutputAction.negativeIndex != OutputIndex.None)
+                            {
+                                throw new NotImplementedException();
+                            }
                         }
                         break;
                     }
                 case KeywordCheckOperation.ContainsNot:
                     {
-                        if (!serialAnswer.Contains(keyWord))
+                        // Contains. This is the negative part here.
+                        if (serialAnswer.Contains(keyWord))
                         {
-                            return FunctionResultIndex.ResultYes;
+                            // Execute negative serial action.
+                            if (SerialAction.serialOutputIndex == SerialIndex.Negative)
+                            {
+                                throw new NotImplementedException();
+                            }
+
+                            // Execute positive output action.
+                            if (OutputAction.negativeIndex != OutputIndex.None)
+                            {
+                                throw new NotImplementedException();
+                            }
+                        }
+                        // Contains not. This is the positive part here.
+                        else
+                        {
+                            // Execute positive serial action.
+                            if (SerialAction.serialOutputIndex == SerialIndex.Positive)
+                            {
+                                throw new NotImplementedException();
+                            }
+
+                            // Execute positive output action.
+                            if (OutputAction.postiveIndex != OutputIndex.None)
+                            {
+                                throw new NotImplementedException();
+                            }
                         }
                         break;
                     }
@@ -70,18 +169,39 @@ namespace term
                     {
                         if (serialAnswer == keyWord)
                         {
-                            return FunctionResultIndex.ResultYes;
+                            // Execute positive serial action.
+                            if (SerialAction.serialOutputIndex == SerialIndex.Positive)
+                            {
+
+                            }
+
+                            // Execute positive output action.
+                            if (OutputAction.postiveIndex != OutputIndex.None)
+                            {
+
+                            }
+                        }
+                        else
+                        {
+                            // Execute positive serial action.
+                            if (SerialAction.serialOutputIndex == SerialIndex.Positive)
+                            {
+
+                            }
+
+                            // Execute positive output action.
+                            if (OutputAction.postiveIndex != OutputIndex.None)
+                            {
+
+                            }
                         }
                         break;
                     }
                 case KeywordCheckOperation.ExecuteAlways:
                     {
-                        return FunctionResultIndex.ResultYes;
-                        // This function is always true because it shall output the received string.
+                        break;
                     }
             }
-
-            return FunctionResultIndex.ResultNo;
         }
     }
 

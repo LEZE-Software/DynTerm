@@ -152,8 +152,9 @@ namespace term
         private void CheckBox_CheckedChanged(object sender, EventArgs e)
         {
             CheckBox senderBox = sender as CheckBox;
-
+            KeywordCheckOperation checkOp = (KeywordCheckOperation)cob_CheckOperation.SelectedIndex;
             int idx = Convert.ToInt32(senderBox.Checked);
+
             senderBox.Image = images_activate.Images[idx];
 
             switch(senderBox.Tag.ToString())
@@ -171,7 +172,11 @@ namespace term
                 case "serial":
                     {
                         chb_sendIfPositive.Enabled = senderBox.Checked;
-                        chb_sendIfNegative.Enabled = senderBox.Checked;                      
+
+                        if(checkOp != KeywordCheckOperation.ExecuteAlways)
+                        {
+                            chb_sendIfNegative.Enabled = senderBox.Checked;
+                        }                                        
 
                         if(senderBox.Checked == false)
                         {
@@ -186,14 +191,20 @@ namespace term
                     }
                 case "active":
                     {
+                        // Nothing happens here.
                         break;
                     }
                 case "output":
                     {
                         cob_positiveOutput.Enabled = senderBox.Checked;
-                        cob_negativeOutput.Enabled = senderBox.Checked;
                         cob_outputElementPos.Enabled = senderBox.Checked;
-                        cob_outputElementNeg.Enabled = senderBox.Checked;
+
+                        if (checkOp != KeywordCheckOperation.ExecuteAlways)
+                        {
+                            cob_outputElementNeg.Enabled = senderBox.Checked;
+                            cob_negativeOutput.Enabled = senderBox.Checked;
+                        }
+
                         break;
                     }
             }
@@ -217,6 +228,39 @@ namespace term
 
             chb_serialOption.Checked = (edit.SerialAction.serialOutputIndex != SerialIndex.None);
             chb_output.Checked = ( (edit.OutputAction.negativeIndex != OutputIndex.None) && (edit.OutputAction.postiveIndex != OutputIndex.None));
+        }
+
+        private void cob_CheckOperation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int idx = cob_CheckOperation.SelectedIndex;
+
+            bool allowNegativeOption = ((KeywordCheckOperation)idx != KeywordCheckOperation.ExecuteAlways);
+
+            if(allowNegativeOption)
+            {
+                if(chb_output.Checked)
+                {
+                    cob_negativeOutput.Enabled =
+                    lbl_negOutput_Title.Enabled =
+                    lbl_negOutputElement.Enabled = true;
+                }
+
+                if(chb_serialOption.Checked)
+                {
+                    lbl_sendNeg.Enabled =
+                    chb_sendIfNegative.Enabled = true;
+                }
+            }
+            else
+            {
+                cob_negativeOutput.Enabled =
+                    lbl_negOutput_Title.Enabled =
+                    lbl_negOutputElement.Enabled =
+                     lbl_sendNeg.Enabled =
+                    chb_sendIfNegative.Enabled =
+                    chb_sendIfNegative.Checked =
+                    txt_sendIfNegative.Enabled = false;
+            }            
         }
     }
 }

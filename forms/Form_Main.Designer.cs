@@ -29,12 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_Center));
-            this.cmd_openPort = new System.Windows.Forms.Button();
-            this.cmd_closePort = new System.Windows.Forms.Button();
-            this.grp_serialPort = new System.Windows.Forms.GroupBox();
-            this.cmd_addSimSerialAnswer = new System.Windows.Forms.Button();
-            this.lbl_simulateSerialInput_A = new System.Windows.Forms.Label();
-            this.txt_simSerialInput = new System.Windows.Forms.TextBox();
             this.main_menu = new System.Windows.Forms.MenuStrip();
             this.menuItem_file = new System.Windows.Forms.ToolStripMenuItem();
             this.neuesProjektToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,76 +44,15 @@
             this.menuItem_view = new System.Windows.Forms.ToolStripMenuItem();
             this.cmd_showTraffic = new System.Windows.Forms.ToolStripMenuItem();
             this.cmd_showPlayground = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuItem_rules = new System.Windows.Forms.ToolStripMenuItem();
-            this.cmd_createNewRule = new System.Windows.Forms.ToolStripMenuItem();
-            this.cmd_editRule = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItem_functions = new System.Windows.Forms.ToolStripMenuItem();
             this.cmd_createNewFunction = new System.Windows.Forms.ToolStripMenuItem();
             this.cmd_editFunction = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItem_rules = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmd_createNewRule = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmd_editRule = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.grp_serialPort.SuspendLayout();
             this.main_menu.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // cmd_openPort
-            // 
-            this.cmd_openPort.Location = new System.Drawing.Point(6, 19);
-            this.cmd_openPort.Name = "cmd_openPort";
-            this.cmd_openPort.Size = new System.Drawing.Size(75, 23);
-            this.cmd_openPort.TabIndex = 7;
-            this.cmd_openPort.Text = "Connect";
-            this.cmd_openPort.UseVisualStyleBackColor = true;
-            this.cmd_openPort.Click += new System.EventHandler(this.cmd_openPort_Click);
-            // 
-            // cmd_closePort
-            // 
-            this.cmd_closePort.Location = new System.Drawing.Point(119, 19);
-            this.cmd_closePort.Name = "cmd_closePort";
-            this.cmd_closePort.Size = new System.Drawing.Size(75, 23);
-            this.cmd_closePort.TabIndex = 8;
-            this.cmd_closePort.Text = "Disconnect";
-            this.cmd_closePort.UseVisualStyleBackColor = true;
-            this.cmd_closePort.Click += new System.EventHandler(this.cmd_closePort_Click);
-            // 
-            // grp_serialPort
-            // 
-            this.grp_serialPort.Controls.Add(this.cmd_addSimSerialAnswer);
-            this.grp_serialPort.Controls.Add(this.lbl_simulateSerialInput_A);
-            this.grp_serialPort.Controls.Add(this.cmd_openPort);
-            this.grp_serialPort.Controls.Add(this.txt_simSerialInput);
-            this.grp_serialPort.Controls.Add(this.cmd_closePort);
-            this.grp_serialPort.Location = new System.Drawing.Point(74, 351);
-            this.grp_serialPort.Name = "grp_serialPort";
-            this.grp_serialPort.Size = new System.Drawing.Size(200, 132);
-            this.grp_serialPort.TabIndex = 9;
-            this.grp_serialPort.TabStop = false;
-            this.grp_serialPort.Text = "Serielle Schnittstelle";
-            // 
-            // cmd_addSimSerialAnswer
-            // 
-            this.cmd_addSimSerialAnswer.Location = new System.Drawing.Point(119, 99);
-            this.cmd_addSimSerialAnswer.Name = "cmd_addSimSerialAnswer";
-            this.cmd_addSimSerialAnswer.Size = new System.Drawing.Size(75, 23);
-            this.cmd_addSimSerialAnswer.TabIndex = 12;
-            this.cmd_addSimSerialAnswer.Text = "Ausführen";
-            this.cmd_addSimSerialAnswer.UseVisualStyleBackColor = true;
-            this.cmd_addSimSerialAnswer.Click += new System.EventHandler(this.cmd_addSimSerialAnswer_Click);
-            // 
-            // lbl_simulateSerialInput_A
-            // 
-            this.lbl_simulateSerialInput_A.AutoSize = true;
-            this.lbl_simulateSerialInput_A.Location = new System.Drawing.Point(3, 57);
-            this.lbl_simulateSerialInput_A.Name = "lbl_simulateSerialInput_A";
-            this.lbl_simulateSerialInput_A.Size = new System.Drawing.Size(95, 13);
-            this.lbl_simulateSerialInput_A.TabIndex = 11;
-            this.lbl_simulateSerialInput_A.Text = "Eingabe simulieren";
-            // 
-            // txt_simSerialInput
-            // 
-            this.txt_simSerialInput.Location = new System.Drawing.Point(6, 73);
-            this.txt_simSerialInput.Name = "txt_simSerialInput";
-            this.txt_simSerialInput.Size = new System.Drawing.Size(188, 20);
-            this.txt_simSerialInput.TabIndex = 10;
             // 
             // main_menu
             // 
@@ -259,6 +192,34 @@
             this.cmd_showPlayground.Text = "Arbeitsfläche";
             this.cmd_showPlayground.Click += new System.EventHandler(this.cmd_openPlayground_Click);
             // 
+            // menuItem_functions
+            // 
+            this.menuItem_functions.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cmd_createNewFunction,
+            this.cmd_editFunction});
+            this.menuItem_functions.Image = ((System.Drawing.Image)(resources.GetObject("menuItem_functions.Image")));
+            this.menuItem_functions.Name = "menuItem_functions";
+            this.menuItem_functions.Size = new System.Drawing.Size(106, 28);
+            this.menuItem_functions.Text = "Funktionen";
+            this.menuItem_functions.Click += new System.EventHandler(this.menuItem_functions_Click);
+            // 
+            // cmd_createNewFunction
+            // 
+            this.cmd_createNewFunction.Image = ((System.Drawing.Image)(resources.GetObject("cmd_createNewFunction.Image")));
+            this.cmd_createNewFunction.Name = "cmd_createNewFunction";
+            this.cmd_createNewFunction.Size = new System.Drawing.Size(218, 30);
+            this.cmd_createNewFunction.Text = "Neu...";
+            this.cmd_createNewFunction.Click += new System.EventHandler(this.cmd_createNewFunction_Click);
+            // 
+            // cmd_editFunction
+            // 
+            this.cmd_editFunction.Enabled = false;
+            this.cmd_editFunction.Image = ((System.Drawing.Image)(resources.GetObject("cmd_editFunction.Image")));
+            this.cmd_editFunction.Name = "cmd_editFunction";
+            this.cmd_editFunction.Size = new System.Drawing.Size(218, 30);
+            this.cmd_editFunction.Text = "Funktionen bearbeiten...";
+            this.cmd_editFunction.Click += new System.EventHandler(this.cmd_editFunction_Click);
+            // 
             // menuItem_rules
             // 
             this.menuItem_rules.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -288,34 +249,6 @@
             this.cmd_editRule.Text = "Regeln bearbeiten...";
             this.cmd_editRule.Click += new System.EventHandler(this.cmd_editRule_Click);
             // 
-            // menuItem_functions
-            // 
-            this.menuItem_functions.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cmd_createNewFunction,
-            this.cmd_editFunction});
-            this.menuItem_functions.Image = ((System.Drawing.Image)(resources.GetObject("menuItem_functions.Image")));
-            this.menuItem_functions.Name = "menuItem_functions";
-            this.menuItem_functions.Size = new System.Drawing.Size(106, 28);
-            this.menuItem_functions.Text = "Funktionen";
-            this.menuItem_functions.Click += new System.EventHandler(this.menuItem_functions_Click);
-            // 
-            // cmd_createNewFunction
-            // 
-            this.cmd_createNewFunction.Image = ((System.Drawing.Image)(resources.GetObject("cmd_createNewFunction.Image")));
-            this.cmd_createNewFunction.Name = "cmd_createNewFunction";
-            this.cmd_createNewFunction.Size = new System.Drawing.Size(218, 30);
-            this.cmd_createNewFunction.Text = "Neu...";
-            this.cmd_createNewFunction.Click += new System.EventHandler(this.cmd_createNewFunction_Click);
-            // 
-            // cmd_editFunction
-            // 
-            this.cmd_editFunction.Enabled = false;
-            this.cmd_editFunction.Image = ((System.Drawing.Image)(resources.GetObject("cmd_editFunction.Image")));
-            this.cmd_editFunction.Name = "cmd_editFunction";
-            this.cmd_editFunction.Size = new System.Drawing.Size(218, 30);
-            this.cmd_editFunction.Text = "Funktionen bearbeiten...";
-            this.cmd_editFunction.Click += new System.EventHandler(this.cmd_editFunction_Click);
-            // 
             // statusStrip1
             // 
             this.statusStrip1.Location = new System.Drawing.Point(0, 793);
@@ -330,7 +263,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1585, 815);
             this.Controls.Add(this.statusStrip1);
-            this.Controls.Add(this.grp_serialPort);
             this.Controls.Add(this.main_menu);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.IsMdiContainer = true;
@@ -341,8 +273,6 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_Center_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.grp_serialPort.ResumeLayout(false);
-            this.grp_serialPort.PerformLayout();
             this.main_menu.ResumeLayout(false);
             this.main_menu.PerformLayout();
             this.ResumeLayout(false);
@@ -351,12 +281,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button cmd_openPort;
-        private System.Windows.Forms.Button cmd_closePort;
-        private System.Windows.Forms.GroupBox grp_serialPort;
-        private System.Windows.Forms.Button cmd_addSimSerialAnswer;
-        private System.Windows.Forms.Label lbl_simulateSerialInput_A;
-        private System.Windows.Forms.TextBox txt_simSerialInput;
         private System.Windows.Forms.MenuStrip main_menu;
         private System.Windows.Forms.ToolStripMenuItem menuItem_file;
         private System.Windows.Forms.ToolStripMenuItem menuItem_view;

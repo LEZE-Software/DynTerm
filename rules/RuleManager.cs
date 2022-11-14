@@ -10,6 +10,11 @@ namespace term
     {
         private static List<fRule> allRules = new List<fRule>();
 
+        public static void Initialize()
+        {
+            // Nothing happens here.
+        }
+
         public static int RuleCount
         {
             get { return allRules.Count; }

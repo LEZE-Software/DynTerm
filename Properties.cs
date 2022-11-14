@@ -18,18 +18,9 @@ namespace term
 
         public static PreviewObjectIndex previewIndex;
         public static bool shallClose = false;
-        public static SerialPort serialPort = new SerialPort();
-        public static LineEndIndex lineEnd = LineEndIndex.None;
     }
 
-    public enum LineEndIndex
-    {
-        None,
-        CR,
-        LF,
-        CRLF,
-        LAST_INDEX
-    }
+    
     /// <summary>
     /// The way the keyword is checked by a rule.
     /// </summary>
@@ -99,6 +90,9 @@ namespace term
         LAST_INDEX
     }
 
+    /// <summary>
+    /// Return if a function shall be executed or not.
+    /// </summary>
     public enum FunctionResultIndex
     {
         ResultYes,

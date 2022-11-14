@@ -52,10 +52,10 @@
             this.cob_negativeOutput = new System.Windows.Forms.ComboBox();
             this.cob_positiveOutput = new System.Windows.Forms.ComboBox();
             this.cob_outputElementNeg = new System.Windows.Forms.ComboBox();
-            this.label10 = new System.Windows.Forms.Label();
+            this.lbl_negOutputElement = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.cob_outputElementPos = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lbl_negOutput_Title = new System.Windows.Forms.Label();
             this.chb_output = new System.Windows.Forms.CheckBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -116,6 +116,7 @@
             this.cob_CheckOperation.Name = "cob_CheckOperation";
             this.cob_CheckOperation.Size = new System.Drawing.Size(129, 23);
             this.cob_CheckOperation.TabIndex = 920;
+            this.cob_CheckOperation.SelectedIndexChanged += new System.EventHandler(this.cob_CheckOperation_SelectedIndexChanged);
             // 
             // cob_function
             // 
@@ -305,10 +306,10 @@
             this.pan_output.Controls.Add(this.cob_negativeOutput);
             this.pan_output.Controls.Add(this.cob_positiveOutput);
             this.pan_output.Controls.Add(this.cob_outputElementNeg);
-            this.pan_output.Controls.Add(this.label10);
+            this.pan_output.Controls.Add(this.lbl_negOutputElement);
             this.pan_output.Controls.Add(this.label7);
             this.pan_output.Controls.Add(this.cob_outputElementPos);
-            this.pan_output.Controls.Add(this.label3);
+            this.pan_output.Controls.Add(this.lbl_negOutput_Title);
             this.pan_output.Controls.Add(this.chb_output);
             this.pan_output.Controls.Add(this.label8);
             this.pan_output.Controls.Add(this.label9);
@@ -360,15 +361,15 @@
             this.cob_outputElementNeg.Size = new System.Drawing.Size(129, 23);
             this.cob_outputElementNeg.TabIndex = 921;
             // 
-            // label10
+            // lbl_negOutputElement
             // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft YaHei", 8F, System.Drawing.FontStyle.Underline);
-            this.label10.Location = new System.Drawing.Point(195, 122);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(79, 16);
-            this.label10.TabIndex = 920;
-            this.label10.Text = "auf Element...";
+            this.lbl_negOutputElement.AutoSize = true;
+            this.lbl_negOutputElement.Font = new System.Drawing.Font("Microsoft YaHei", 8F, System.Drawing.FontStyle.Underline);
+            this.lbl_negOutputElement.Location = new System.Drawing.Point(195, 122);
+            this.lbl_negOutputElement.Name = "lbl_negOutputElement";
+            this.lbl_negOutputElement.Size = new System.Drawing.Size(79, 16);
+            this.lbl_negOutputElement.TabIndex = 920;
+            this.lbl_negOutputElement.Text = "auf Element...";
             // 
             // label7
             // 
@@ -392,15 +393,15 @@
             this.cob_outputElementPos.Size = new System.Drawing.Size(129, 23);
             this.cob_outputElementPos.TabIndex = 918;
             // 
-            // label3
+            // lbl_negOutput_Title
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft YaHei", 8F, System.Drawing.FontStyle.Underline);
-            this.label3.Location = new System.Drawing.Point(10, 122);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(157, 16);
-            this.label3.TabIndex = 915;
-            this.label3.Text = "Ausgabe, wenn nicht zutrifft";
+            this.lbl_negOutput_Title.AutoSize = true;
+            this.lbl_negOutput_Title.Font = new System.Drawing.Font("Microsoft YaHei", 8F, System.Drawing.FontStyle.Underline);
+            this.lbl_negOutput_Title.Location = new System.Drawing.Point(10, 122);
+            this.lbl_negOutput_Title.Name = "lbl_negOutput_Title";
+            this.lbl_negOutput_Title.Size = new System.Drawing.Size(157, 16);
+            this.lbl_negOutput_Title.TabIndex = 915;
+            this.lbl_negOutput_Title.Text = "Ausgabe, wenn nicht zutrifft";
             // 
             // chb_output
             // 
@@ -606,45 +607,45 @@
 
         #endregion
 
-        private System.Windows.Forms.Panel pan_workbench;
-        private System.Windows.Forms.CheckBox chb_activate;
-        private System.Windows.Forms.Button cmd_delete;
-        private System.Windows.Forms.ListBox list_show;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txt_keyword;
-        private System.Windows.Forms.Button cmd_save;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label lbl_list;
-        private System.Windows.Forms.Label lbl_saveSettings;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label lbl_activate;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label title_workbench;
-        private System.Windows.Forms.TabControl tab_options;
-        private System.Windows.Forms.TabPage page_display;
-        private System.Windows.Forms.TabPage page_send;
-        private System.Windows.Forms.Panel pan_send;
-        private System.Windows.Forms.TextBox txt_sendIfNegative;
-        private System.Windows.Forms.Label lbl_sendNeg;
-        private System.Windows.Forms.CheckBox chb_serialOption;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label lbl_sendPos;
-        private System.Windows.Forms.TextBox txt_sendIfPositive;
-        private System.Windows.Forms.Panel pan_output;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.CheckBox chb_output;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.ImageList images_activate;
-        private System.Windows.Forms.ComboBox cob_outputElementNeg;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ComboBox cob_outputElementPos;
-        private System.Windows.Forms.ComboBox cob_negativeOutput;
-        private System.Windows.Forms.ComboBox cob_positiveOutput;
-        private System.Windows.Forms.ComboBox cob_function;
-        private System.Windows.Forms.CheckBox chb_sendIfNegative;
-        private System.Windows.Forms.CheckBox chb_sendIfPositive;
-        private System.Windows.Forms.ComboBox cob_CheckOperation;
+        public System.Windows.Forms.Panel pan_workbench;
+        public System.Windows.Forms.CheckBox chb_activate;
+        public System.Windows.Forms.Button cmd_delete;
+        public System.Windows.Forms.ListBox list_show;
+        public System.Windows.Forms.Label label2;
+        public System.Windows.Forms.TextBox txt_keyword;
+        public System.Windows.Forms.Button cmd_save;
+        public System.Windows.Forms.Label label1;
+        public System.Windows.Forms.Label lbl_list;
+        public System.Windows.Forms.Label lbl_saveSettings;
+        public System.Windows.Forms.Label label6;
+        public System.Windows.Forms.Label lbl_activate;
+        public System.Windows.Forms.Label label4;
+        public System.Windows.Forms.Label title_workbench;
+        public System.Windows.Forms.TabControl tab_options;
+        public System.Windows.Forms.TabPage page_display;
+        public System.Windows.Forms.TabPage page_send;
+        public System.Windows.Forms.Panel pan_send;
+        public System.Windows.Forms.TextBox txt_sendIfNegative;
+        public System.Windows.Forms.Label lbl_sendNeg;
+        public System.Windows.Forms.CheckBox chb_serialOption;
+        public System.Windows.Forms.Label label5;
+        public System.Windows.Forms.Label lbl_sendPos;
+        public System.Windows.Forms.TextBox txt_sendIfPositive;
+        public System.Windows.Forms.Panel pan_output;
+        public System.Windows.Forms.Label lbl_negOutput_Title;
+        public System.Windows.Forms.CheckBox chb_output;
+        public System.Windows.Forms.Label label8;
+        public System.Windows.Forms.Label label9;
+        public System.Windows.Forms.ImageList images_activate;
+        public System.Windows.Forms.ComboBox cob_outputElementNeg;
+        public System.Windows.Forms.Label lbl_negOutputElement;
+        public System.Windows.Forms.Label label7;
+        public System.Windows.Forms.ComboBox cob_outputElementPos;
+        public System.Windows.Forms.ComboBox cob_negativeOutput;
+        public System.Windows.Forms.ComboBox cob_positiveOutput;
+        public System.Windows.Forms.ComboBox cob_function;
+        public System.Windows.Forms.CheckBox chb_sendIfNegative;
+        public System.Windows.Forms.CheckBox chb_sendIfPositive;
+        public System.Windows.Forms.ComboBox cob_CheckOperation;
     }
 }

@@ -13,28 +13,16 @@ namespace term
 {
     public partial class Form_Center : Form
     {
+        // TODO: Add AllAnswers to the SerialManager class.
+
         public Form_Center()
         {
             InitializeComponent();
         }
 
-        public class ExtendedList<T> : List<T>
-        {
-            public event EventHandler OnAdd;
-
-            public new void Add(T item) // "new" to avoid compiler-warnings, because we're hiding a method from base-class
-            {
-                base.Add(item);
-
-                if (null != OnAdd)
-                {
-                    OnAdd(this, null);
-                }
-            }
-        }       
+          
 
         public List<fRule> AllRules = new List<fRule>();
-        public ExtendedList<string> AllAnswers = new ExtendedList<string>();
         public List<Function> AllFunctions = new List<Function>();
         public List<ControlObject> AllObjects = new List<ControlObject>();
         public List<TextBox> AllTextBoxes = new List<TextBox>();
@@ -45,11 +33,8 @@ namespace term
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            AllAnswers = new ExtendedList<string>();
+            Serial_Manager.Initialize();
 
-            AllAnswers.OnAdd += new EventHandler(ParseReceivedAnswer);
-
-            //SubFormManager.OpenSubForm(SubFormManager.SubFormIndex.Playground, this);
 
             // Create Displayfunction.
             Function displayFunction = new Function()
@@ -59,123 +44,7 @@ namespace term
             };
             AllFunctions.Add(displayFunction);
         }
-        
-        void ParseReceivedAnswer(object sender, EventArgs e)
-        {
-            string answer = AllAnswers[0];
 
-            foreach(fRule rule in AllRules)
-            {
-                if(rule.KeywordCheck(answer)==FunctionResultIndex.ResultYes)
-                {
-
-                }
-                AllAnswers.Remove(answer);
-            }
-        }        
-
-        public void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
-        {
-            #region Locales
-            SerialPort port = (SerialPort)sender;
-            string
-                receivedAnswer;
-
-            int
-                bufferSize = 0,
-                timeOut = 0;
-            #endregion
-
-            bufferSize = port.ReadBufferSize;
-            timeOut = port.ReadTimeout;
-
-            receivedAnswer = port.ReadLine();
-
-            AllAnswers.Add(receivedAnswer);
-        }
-
-        private void cmd_openPort_Click(object sender, EventArgs e)
-        {
-            Props.serialPort.PortName = "COM7";
-            Props.serialPort.BaudRate = 9600;
-
-            Props.serialPort.Open();
-
-            Props.serialPort.DataReceived += new SerialDataReceivedEventHandler(this.DataReceivedHandler);
-        }
-
-        private void cmd_closePort_Click(object sender, EventArgs e)
-        {
-            Props.serialPort.Close();
-        }
-
-        private void cmd_addSimSerialAnswer_Click(object sender, EventArgs e)
-        {
-            string answer = txt_simSerialInput.Text;
-
-            if(answer!="")
-            {
-                AllAnswers.Add(answer);
-            }
-            else
-            {
-                MessageBox.Show("Eingabe fehlt!");
-            }
-        }
-
-        private void cmd_createFunction_Click(object sender, EventArgs e)
-        {
-            string functionName = "";// txt_newFunctionName.Text;
-
-            if(functionName!="")
-            {
-                if(!DoesFunctionExist(functionName))
-                {
-                    Function newFunction = new Function()
-                    {
-                        name = functionName,
-                        index = AllFunctions.Count
-                    };
-
-                    AllFunctions.Add(newFunction);
-
-                    //txt_newFunctionName.Text = "";
-                }
-                else
-                {
-                    MessageBox.Show("Besteht schon!");
-                }
-            }
-            else
-            {
-                MessageBox.Show("Eingabe fehlt");
-            }
-        }
-
-        private void cob_chooseFunction_DropDown(object sender, EventArgs e)
-        {
-            ComboBox senderBox = sender as ComboBox;
-
-            senderBox.Items.Clear();
-            foreach(Function f in AllFunctions)
-            {
-                senderBox.Items.Add(f.name);
-            }
-        }
-
-        private bool DoesFunctionExist(string functionName)
-        {
-            foreach(Function f in AllFunctions)
-            {
-                if(f.name==functionName)
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-    
         private void cmd_openPlayground_Click(object sender, EventArgs e)
         {
             if (SubFormManager.IsFormOpen(SubFormManager.SubFormIndex.Playground))

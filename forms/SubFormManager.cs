@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace term
@@ -15,6 +11,11 @@ namespace term
         public static Form_SerialTraffic form_traffic;
         public static Form_Playground form_playground;
         public static Form_Settings form_settings;
+
+        public static void Initialize()
+        {
+            // Nothing happens here.
+        }
 
         /// <summary>
         /// Use this function to reset the check value in the list of forms.
