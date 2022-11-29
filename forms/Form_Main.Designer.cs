@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_Center));
             this.main_menu = new System.Windows.Forms.MenuStrip();
             this.menuItem_file = new System.Windows.Forms.ToolStripMenuItem();
@@ -51,6 +52,7 @@
             this.cmd_createNewRule = new System.Windows.Forms.ToolStripMenuItem();
             this.cmd_editRule = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.images_connectButton = new System.Windows.Forms.ImageList(this.components);
             this.main_menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -139,9 +141,11 @@
             this.menuItem_connection.Name = "menuItem_connection";
             this.menuItem_connection.Size = new System.Drawing.Size(152, 28);
             this.menuItem_connection.Text = "Serielle Verbindung";
+            this.menuItem_connection.DropDownOpening += new System.EventHandler(this.menuItem_connection_DropDownOpening);
             // 
             // cmd_connect
             // 
+            this.cmd_connect.Enabled = false;
             this.cmd_connect.Image = ((System.Drawing.Image)(resources.GetObject("cmd_connect.Image")));
             this.cmd_connect.Name = "cmd_connect";
             this.cmd_connect.Size = new System.Drawing.Size(235, 30);
@@ -257,6 +261,13 @@
             this.statusStrip1.TabIndex = 14;
             this.statusStrip1.Text = "statusStrip1";
             // 
+            // images_connectButton
+            // 
+            this.images_connectButton.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("images_connectButton.ImageStream")));
+            this.images_connectButton.TransparentColor = System.Drawing.Color.Transparent;
+            this.images_connectButton.Images.SetKeyName(0, "network-disconnect.png");
+            this.images_connectButton.Images.SetKeyName(1, "network-connect.png");
+            // 
             // Form_Center
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -303,6 +314,7 @@
         private System.Windows.Forms.ToolStripMenuItem projektSpeichernUnterToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem projektÖffnenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem einstellungenToolStripMenuItem;
+        private System.Windows.Forms.ImageList images_connectButton;
     }
 }
 

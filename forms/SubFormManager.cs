@@ -160,6 +160,11 @@ namespace term
             return listOfForms[(int)idx];
         }
 
+        public static void PerformOutputAction(fRule sourceRule, string nameOfElement, string text)
+        {
+
+        }
+
         public enum SubFormIndex
         {
             Playground,

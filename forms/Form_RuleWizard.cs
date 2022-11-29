@@ -28,6 +28,7 @@ namespace term
         }
 
         Form_Center mainFM;
+        Function selectedFunction;
 
         private void Form_NewEditRule_Load(object sender, EventArgs e)
         {
@@ -52,7 +53,9 @@ namespace term
             string comment = "No comment.";
             bool active = chb_activate.Checked;
 
-            if(key != "" && cob_function.SelectedIndex != -1 && cob_CheckOperation.SelectedIndex != -1)
+            selectedFunction = FunctionManager.GetFunctionFromName(cob_function.Text);
+
+            if (key != "" && cob_function.SelectedIndex != -1 && cob_CheckOperation.SelectedIndex != -1)
             {
                 fRule newRule = new fRule(
                 key,
@@ -61,9 +64,11 @@ namespace term
                 GetOutputPart(),
                 comment,
                 active,
-                FunctionManager.GetFunctionFromName(cob_function.Text));
+                selectedFunction);
 
                 RuleManager.AddRule(newRule);
+
+                list_show.Items.Add(newRule.keyWord + "*" + newRule.OperationIndex.ToString());
             }
             else
             {
@@ -261,6 +266,28 @@ namespace term
                     chb_sendIfNegative.Checked =
                     txt_sendIfNegative.Enabled = false;
             }            
+        }
+
+        /// <summary>
+        /// Display all panels which are part of the previos selected function.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cob_outputElement_DropDown(object sender, EventArgs e)
+        {
+            ComboBox senderBox = sender as ComboBox;
+
+            senderBox.Items.Clear();
+
+            foreach(Panel p in selectedFunction.targetObjects)
+            {
+                senderBox.Items.Add(p.Name);
+            }
+        }
+
+        private void cob_function_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            selectedFunction = FunctionManager.GetFunctionFromName(cob_function.Text);
         }
     }
 }

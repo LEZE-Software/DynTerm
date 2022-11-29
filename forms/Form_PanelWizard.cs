@@ -111,11 +111,11 @@ namespace term
         {
             string title = txt_Title.Text;
             string subTitle = txt_SubTitle.Text;
+            string nameOfPanel = txt_internalName.Text;
             int functionIndex = cob_ParentFunction.SelectedIndex;
 
-            if(title != "" && subTitle != "" && functionIndex != -1)
+            if(title != "" && subTitle != "" && functionIndex != -1 && nameOfPanel != "")
             {
-                Function connectedFunction = FunctionManager.GetFunctionFromIndex(functionIndex);
                 Point newLocation = Props.PanelToEdit.Location;
                 SubFormManager.form_playground.Controls.Remove(Props.PanelToEdit);
                 Panel newPanel = new Panel();
@@ -124,20 +124,18 @@ namespace term
                 {
                     case PanelType.Display:
                         {
-                            newPanel = CreateNewDisplayPanel(newLocation, title, subTitle);
-
-                            connectedFunction.AddPanel(newPanel);
+                            newPanel = CreateNewDisplayPanel(nameOfPanel, newLocation, title, subTitle);
                             break;
                         }
                     case PanelType.Input:
                         {
-                            newPanel = CreateNewInputPanel(newLocation, title, subTitle);
+                            newPanel = CreateNewInputPanel(nameOfPanel, newLocation, title, subTitle);
 
                             break;
                         }
                     case PanelType.Select:
                         {
-                            newPanel = CreateNewSelectPanel(newLocation, title, subTitle);
+                            newPanel = CreateNewSelectPanel(nameOfPanel, newLocation, title, subTitle);
 
                             break;
                         }
@@ -146,8 +144,9 @@ namespace term
                             throw new NotImplementedException();
                         }
                 }
-
                 newPanel.Tag = "set";
+
+                FunctionManager.AddPanelToFunction(functionIndex, newPanel);
                 SubFormManager.form_playground.Controls.Add(newPanel);
 
                 foreach (Control c in SubFormManager.form_playground.Controls)
@@ -161,12 +160,12 @@ namespace term
             }          
         }
 
-        private Panel CreateNewDisplayPanel(Point newLocation, string title, string subTitle)
+        private Panel CreateNewDisplayPanel(string panel_name, Point newLocation, string title, string subTitle)
         {
             Panel ret = new Panel()
             {
                 BackColor = SystemColors.ControlLight,
-                Name = "panel_frank",
+                Name = panel_name,
                 Size = new Size(157, 90),
                 BorderStyle = BorderStyle.FixedSingle,
                 Tag = newType.ToString(),
@@ -176,7 +175,7 @@ namespace term
 
             Label titleLable = new Label()
             {
-                Name = "lbl_title",
+                Name = panel_name+ "_lbl_title",
                 Text = title,
                 Font = new Font("Microsoft YaHei",9.75f,FontStyle.Bold),
                 ForeColor = Color.Crimson,
@@ -186,7 +185,7 @@ namespace term
 
             Label subTitleLabel = new Label()
             {
-                Name = "lbl_SubTitle",
+                Name = panel_name + "_lbl_SubTitle",
                 Text = subTitle,
                 Font = new Font("Microsoft YaHei", 8.00f, FontStyle.Underline),
                 ForeColor = Color.Black,
@@ -198,7 +197,7 @@ namespace term
 
             TextBox txt_content = new TextBox()
             {
-                Name = "txt_content",
+                Name = panel_name + "_txt_content",
                 Text = "",
                 Font = new Font("Consolas", 10.00f),
                 ForeColor = Color.Black,
@@ -214,12 +213,12 @@ namespace term
             return ret;
         }
 
-        private Panel CreateNewInputPanel(Point newLocation, string title, string subTitle)
+        private Panel CreateNewInputPanel(string panel_name, Point newLocation, string title, string subTitle)
         {
             Panel ret = new Panel()
             {
                 BackColor = SystemColors.ControlLight,
-                Name = "panel_frank",
+                Name = panel_name,
                 Size = new Size(157, 90),
                 BorderStyle = BorderStyle.FixedSingle,
                 Tag = newType.ToString(),
@@ -229,7 +228,7 @@ namespace term
 
             Label titleLable = new Label()
             {
-                Name = "lbl_title",
+                Name = panel_name + "_lbl_title",
                 Text = title,
                 Font = new Font("Microsoft YaHei", 9.75f, FontStyle.Bold),
                 ForeColor = Color.Crimson,
@@ -239,7 +238,7 @@ namespace term
 
             Label subTitleLabel = new Label()
             {
-                Name = "lbl_SubTitle",
+                Name = panel_name + "_lbl_SubTitle",
                 Text = subTitle,
                 Font = new Font("Microsoft YaHei", 8.00f, FontStyle.Underline),
                 ForeColor = Color.Black,
@@ -251,7 +250,7 @@ namespace term
 
             TextBox txt_content = new TextBox()
             {
-                Name = "txt_content",
+                Name = panel_name + "_txt_content",
                 Text = "",
                 Font = new Font("Consolas", 10.00f),
                 ForeColor = Color.Black,
@@ -267,12 +266,12 @@ namespace term
             return ret;
         }
 
-        private Panel CreateNewSelectPanel(Point newLocation, string title, string subTitle)
+        private Panel CreateNewSelectPanel(string panel_name, Point newLocation, string title, string subTitle)
         {
             Panel ret = new Panel()
             {
                 BackColor = SystemColors.ControlLight,
-                Name = "panel_frank",
+                Name = panel_name,
                 Size = new Size(157, 90),
                 BorderStyle = BorderStyle.FixedSingle,
                 Tag = newType.ToString(),
@@ -282,7 +281,7 @@ namespace term
 
             Label titleLable = new Label()
             {
-                Name = "lbl_title",
+                Name = panel_name + "_lbl_title",
                 Text = title,
                 Font = new Font("Microsoft YaHei", 9.75f, FontStyle.Bold),
                 ForeColor = Color.Crimson,
@@ -292,7 +291,7 @@ namespace term
 
             Label subTitleLabel = new Label()
             {
-                Name = "lbl_SubTitle",
+                Name = panel_name + "_lbl_SubTitle",
                 Text = subTitle,
                 Font = new Font("Microsoft YaHei", 8.00f, FontStyle.Underline),
                 ForeColor = Color.Black,
@@ -304,7 +303,7 @@ namespace term
 
             ComboBox cob_select = new ComboBox()
             {
-                Name = "cob_select",
+                Name = panel_name + "_cob_select",
                 Text = "",
                 Font = new Font("Consolas", 10.00f),
                 ForeColor = Color.Black,

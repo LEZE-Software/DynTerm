@@ -100,7 +100,7 @@
     <Compile Include="functions\Function.cs" />
     <Compile Include="rules\fRule.cs" />
     <Compile Include="functions\FunctionManager.cs" />
-    <Compile Include="global\SerialConnection.cs" />
+    <Compile Include="global\Serial_Manager.cs" />
     <Compile Include="msg\Messages.cs" />
     <Compile Include="msg\MessageManager.cs" />
     <Compile Include="Objects.cs" />
@@ -108,7 +108,6 @@
     <Compile Include="Properties.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="rules\RuleManager.cs" />
-    <Compile Include="Serial_functions.cs" />
     <EmbeddedResource Include="forms\Form_Main.resx">
       <DependentUpon>Form_Main.cs</DependentUpon>
     </EmbeddedResource>

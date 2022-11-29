@@ -21,7 +21,6 @@ namespace term
             Thread thread1 = new Thread(StateMachine);
             thread1.Start();
 
-            Serial_Manager.Initialize();
             RuleManager.Initialize();
             SubFormManager.Initialize();
 

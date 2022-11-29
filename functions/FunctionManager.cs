@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace term
 {
@@ -13,6 +14,11 @@ namespace term
         public static int FunctionCount
         {
             get { return allFunctions.Count; }
+        }
+
+        public static void AddPanelToFunction(int idx, Panel pan)
+        {
+            allFunctions[idx].AddPanel(pan);
         }
 
         public static List<Function> GetListOfFunctions

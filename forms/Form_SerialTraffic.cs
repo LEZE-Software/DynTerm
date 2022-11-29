@@ -25,9 +25,29 @@ namespace term
             list_traffic.Items.Add(text);
         }
 
+        public void UpdateConnectionDisplay(bool state)
+        {
+            if(state)
+            {
+                lbl_connectionState.Text = "Verbunden";
+                lbl_connectionState.Image = images_connectButton.Images[1];
+            }
+            else
+            {
+                lbl_connectionState.Text = "Getrennt";
+                lbl_connectionState.Image = images_connectButton.Images[0];
+            }
+            
+        }
+
         private void Form_SerialTraffic_FormClosing(object sender, FormClosingEventArgs e)
         {
             SubFormManager.ExternCloseSubForm(SubFormManager.SubFormIndex.Traffic);
+        }
+
+        private void Form_SerialTraffic_Load(object sender, EventArgs e)
+        {
+            UpdateConnectionDisplay(Serial_Manager.GetConnectionState);
         }
     }
 }

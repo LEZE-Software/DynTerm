@@ -28,11 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_SerialTraffic));
             this.list_traffic = new System.Windows.Forms.ListBox();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.statusBar = new System.Windows.Forms.StatusStrip();
             this.lbl_connectionState = new System.Windows.Forms.ToolStripStatusLabel();
-            this.statusStrip1.SuspendLayout();
+            this.images_connectButton = new System.Windows.Forms.ImageList(this.components);
+            this.statusBar.SuspendLayout();
             this.SuspendLayout();
             // 
             // list_traffic
@@ -50,16 +52,16 @@
             this.list_traffic.Size = new System.Drawing.Size(800, 425);
             this.list_traffic.TabIndex = 0;
             // 
-            // statusStrip1
+            // statusBar
             // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.statusBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lbl_connectionState});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 403);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(800, 22);
-            this.statusStrip1.SizingGrip = false;
-            this.statusStrip1.TabIndex = 2;
-            this.statusStrip1.Text = "statusStrip1";
+            this.statusBar.Location = new System.Drawing.Point(0, 403);
+            this.statusBar.Name = "statusBar";
+            this.statusBar.Size = new System.Drawing.Size(800, 22);
+            this.statusBar.SizingGrip = false;
+            this.statusBar.TabIndex = 2;
+            this.statusBar.Text = "statusStrip1";
             // 
             // lbl_connectionState
             // 
@@ -68,12 +70,19 @@
             this.lbl_connectionState.Size = new System.Drawing.Size(80, 17);
             this.lbl_connectionState.Text = "Verbunden";
             // 
+            // images_connectButton
+            // 
+            this.images_connectButton.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("images_connectButton.ImageStream")));
+            this.images_connectButton.TransparentColor = System.Drawing.Color.Transparent;
+            this.images_connectButton.Images.SetKeyName(0, "network-disconnect.png");
+            this.images_connectButton.Images.SetKeyName(1, "network-connect.png");
+            // 
             // Form_SerialTraffic
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 425);
-            this.Controls.Add(this.statusStrip1);
+            this.Controls.Add(this.statusBar);
             this.Controls.Add(this.list_traffic);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
@@ -81,17 +90,18 @@
             this.ShowIcon = false;
             this.Text = "Serieller Datenverkehr";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_SerialTraffic_FormClosing);
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
+            this.Load += new System.EventHandler(this.Form_SerialTraffic_Load);
+            this.statusBar.ResumeLayout(false);
+            this.statusBar.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.ListBox list_traffic;
-        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.StatusStrip statusBar;
         private System.Windows.Forms.ToolStripStatusLabel lbl_connectionState;
+        public System.Windows.Forms.ListBox list_traffic;
+        private System.Windows.Forms.ImageList images_connectButton;
     }
 }

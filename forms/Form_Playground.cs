@@ -27,10 +27,7 @@ namespace term
 
         private void Form_Playground_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //if(!Props.shallClose)
-            //{
-            //    e.Cancel = true;
-            //}
+            SubFormManager.ExternCloseSubForm(SubFormManager.SubFormIndex.Playground);
         }
 
         private void cmd_Help_Click(object sender, EventArgs e)
@@ -40,7 +37,7 @@ namespace term
 
         private void context_panel_Opening(object sender, CancelEventArgs e)
         {
-            bool edit = (Props.PanelToEdit.Tag.ToString() == "set");
+            bool edit = (Props.PanelToEdit.Tag.ToString() != "new");
 
             cmd_EditPanel.Enabled =
                 cmd_ActivatePanel.Enabled =

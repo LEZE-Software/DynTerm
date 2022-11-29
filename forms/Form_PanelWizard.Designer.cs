@@ -45,12 +45,16 @@
             this.lbl_ActionElement = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.title_workbench = new System.Windows.Forms.Label();
+            this.txt_internalName = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.pan_workbench.SuspendLayout();
             this.SuspendLayout();
             // 
             // pan_workbench
             // 
             this.pan_workbench.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.pan_workbench.Controls.Add(this.label3);
+            this.pan_workbench.Controls.Add(this.txt_internalName);
             this.pan_workbench.Controls.Add(this.cob_ActionElement);
             this.pan_workbench.Controls.Add(this.cob_ClickAction);
             this.pan_workbench.Controls.Add(this.lbl_ClickAciton);
@@ -240,6 +244,24 @@
             this.title_workbench.TabIndex = 0;
             this.title_workbench.Text = "Panel konfigurieren";
             // 
+            // txt_internalName
+            // 
+            this.txt_internalName.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_internalName.Location = new System.Drawing.Point(200, 53);
+            this.txt_internalName.Name = "txt_internalName";
+            this.txt_internalName.Size = new System.Drawing.Size(130, 23);
+            this.txt_internalName.TabIndex = 921;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft YaHei", 8F, System.Drawing.FontStyle.Underline);
+            this.label3.Location = new System.Drawing.Point(195, 36);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(97, 16);
+            this.label3.TabIndex = 922;
+            this.label3.Text = "Name des Panels";
+            // 
             // Form_PanelWizard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 14F);
@@ -279,5 +301,7 @@
         private System.Windows.Forms.ComboBox cob_ActionElement;
         private System.Windows.Forms.ComboBox cob_ClickAction;
         private System.Windows.Forms.Label lbl_ClickAciton;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txt_internalName;
     }
 }

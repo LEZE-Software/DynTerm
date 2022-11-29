@@ -33,7 +33,7 @@ namespace term
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            Serial_Manager.Initialize();
+            Serial_Manager.Initialize(this);
 
 
             // Create Displayfunction.
@@ -98,7 +98,23 @@ namespace term
 
         private void cmd_connect_Click(object sender, EventArgs e)
         {
-            Serial_functions.OpenClosePort();
+            Serial_Manager.OpenClosePort();
+
+            if(Serial_Manager.GetConnectionState == true)
+            {
+                cmd_connect.Text = "Trennen";
+                cmd_connect.Image = images_connectButton.Images[1];
+            }
+            else
+            {
+                cmd_connect.Text = "Verbinden";
+                cmd_connect.Image = images_connectButton.Images[0];
+            }
+
+            if(SubFormManager.IsFormOpen(SubFormManager.SubFormIndex.Traffic))
+            {
+                SubFormManager.form_traffic.UpdateConnectionDisplay(Serial_Manager.GetConnectionState);
+            }
         }
 
         private void cmd_editRule_Click(object sender, EventArgs e)
@@ -157,6 +173,29 @@ namespace term
             {
                 SubFormManager.OpenSubForm(SubFormManager.SubFormIndex.Settings, this, true);
             }
+        }
+
+        private void menuItem_connection_DropDownOpening(object sender, EventArgs e)
+        {
+            if(Serial_Manager.IsPortConfigured())
+            {
+                cmd_connect.Enabled = true;
+
+                if (!Serial_Manager.GetConnectionState)
+                {
+                    cmd_connect.Image = images_connectButton.Images[0];
+                    cmd_connect.Text = "Verbinden";
+                }
+                else
+                {
+                    cmd_connect.Image = images_connectButton.Images[1];
+                    cmd_connect.Text = "Trennen";
+                }
+            }
+            else
+            {
+                cmd_connect.Enabled = false;
+            }        
         }
     }    
 }

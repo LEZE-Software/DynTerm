@@ -51,41 +51,48 @@ namespace term
             return connectedPanels.Contains(val);
         }
 
-        public void ExecuteReaction(string serialAnswer)
+        public void ExecuteSerialAction(bool positive, string serialAnswer)
         {
-            switch(SerialAction.serialOutputIndex)
+            if (SerialAction.serialOutputIndex == SerialIndex.Both)
             {
-                // No serial action expected.
-                case SerialIndex.None:
-                    {
-                        break;
-                    }
-                // Action expected when positive.
-                case SerialIndex.Positive:
-                    {
-                        break;
-                    }
-                // Action expected when negative.
-                case SerialIndex.Negative:
-                    {
-                        break;
-                    }
-                // Action expected when positive or negative.
-                case SerialIndex.Both:
-                    {
-                        break;
-                    }
+                Serial_Manager.SendCommand(SerialAction.messageToSendPos);
+            }
+
+            if(positive && SerialAction.serialOutputIndex == SerialIndex.Positive)
+            {
+                Serial_Manager.SendCommand(SerialAction.messageToSendPos);
+            }
+
+            if(!positive && SerialAction.serialOutputIndex == SerialIndex.Negative)
+            {
+                Serial_Manager.SendCommand(SerialAction.messageToSendNeg);
             }
         }
 
-        public void ExecuteSendOperation(string serialAnswer)
+        private void ExecuteOutputReaction(bool positive, string serialAnswer)
         {
-
-        }
-
-        public void ExecuteDisplayOperation(string serialAnswer, Form_Center mainFM)
-        {
-
+            if(positive)
+            {
+                if (OutputAction.postiveIndex == OutputIndex.IndividualText)
+                {
+                    SubFormManager.PerformOutputAction(this, OutputAction.nameOfPositiveControlElement, OutputAction.positiveText);
+                }
+                else if(OutputAction.postiveIndex == OutputIndex.RawValue)
+                {
+                    SubFormManager.PerformOutputAction(this, OutputAction.nameOfPositiveControlElement, serialAnswer);
+                }
+            }
+            else
+            {
+                if (OutputAction.negativeIndex == OutputIndex.IndividualText)
+                {
+                    SubFormManager.PerformOutputAction(this, OutputAction.nameOfNegativeControlElement, OutputAction.negativeText);
+                }
+                else if (OutputAction.negativeIndex == OutputIndex.RawValue)
+                {
+                    SubFormManager.PerformOutputAction(this, OutputAction.nameOfNegativeControlElement, serialAnswer);
+                }
+            }
         }
 
         /// <summary>
@@ -102,103 +109,114 @@ namespace term
                         // Contains.
                         if (serialAnswer.Contains(keyWord))
                         {
-                            // Execute positive serial action.
-                            if (SerialAction.serialOutputIndex == SerialIndex.Positive)
+                            if(SerialAction.serialOutputIndex != SerialIndex.None)
                             {
-                                throw new NotImplementedException();
+                                ExecuteSerialAction(true, serialAnswer);
                             }
 
-                            // Execute positive output action.
                             if (OutputAction.postiveIndex != OutputIndex.None)
                             {
-                                throw new NotImplementedException();
+                                ExecuteOutputReaction(true, serialAnswer);
                             }
                         }
                         // Contains not.
                         else
                         {
-                            // Execute negative serial action.
-                            if (SerialAction.serialOutputIndex == SerialIndex.Negative)
+                            if (SerialAction.serialOutputIndex == SerialIndex.Both)
                             {
-                                throw new NotImplementedException();
+                                ExecuteSerialAction(true, serialAnswer);
+                            }
+                            else if (SerialAction.serialOutputIndex == SerialIndex.Negative)
+                            {
+                                ExecuteSerialAction(false, serialAnswer);
                             }
 
-                            // Execute negative output action.
                             if (OutputAction.negativeIndex != OutputIndex.None)
                             {
-                                throw new NotImplementedException();
+                                ExecuteOutputReaction(false, serialAnswer);
                             }
                         }
                         break;
                     }
                 case KeywordCheckOperation.ContainsNot:
                     {
-                        // Contains. This is the negative part here.
-                        if (serialAnswer.Contains(keyWord))
+                        // Contains not.
+                        if (!serialAnswer.Contains(keyWord))
                         {
-                            // Execute negative serial action.
-                            if (SerialAction.serialOutputIndex == SerialIndex.Negative)
+                            if (SerialAction.serialOutputIndex != SerialIndex.None)
                             {
-                                throw new NotImplementedException();
+                                ExecuteSerialAction(true, serialAnswer);
                             }
 
-                            // Execute positive output action.
-                            if (OutputAction.negativeIndex != OutputIndex.None)
-                            {
-                                throw new NotImplementedException();
-                            }
-                        }
-                        // Contains not. This is the positive part here.
-                        else
-                        {
-                            // Execute positive serial action.
-                            if (SerialAction.serialOutputIndex == SerialIndex.Positive)
-                            {
-                                throw new NotImplementedException();
-                            }
-
-                            // Execute positive output action.
                             if (OutputAction.postiveIndex != OutputIndex.None)
                             {
-                                throw new NotImplementedException();
+                                ExecuteOutputReaction(true, serialAnswer);
+                            }
+                        }
+                        // Contains.
+                        else
+                        {
+                            if (SerialAction.serialOutputIndex == SerialIndex.Both)
+                            {
+                                ExecuteSerialAction(true, serialAnswer);
+                            }
+                            else if (SerialAction.serialOutputIndex == SerialIndex.Negative)
+                            {
+                                ExecuteSerialAction(false, serialAnswer);
+                            }
+
+                            if (OutputAction.negativeIndex != OutputIndex.None)
+                            {
+                                ExecuteOutputReaction(false, serialAnswer);
                             }
                         }
                         break;
                     }
                 case KeywordCheckOperation.IsEqual:
                     {
-                        if (serialAnswer == keyWord)
+                        // Equals.
+                        if (serialAnswer ==keyWord)
                         {
-                            // Execute positive serial action.
-                            if (SerialAction.serialOutputIndex == SerialIndex.Positive)
+                            if (SerialAction.serialOutputIndex != SerialIndex.None)
                             {
-
+                                ExecuteSerialAction(true, serialAnswer);
                             }
 
-                            // Execute positive output action.
                             if (OutputAction.postiveIndex != OutputIndex.None)
                             {
-
+                                ExecuteOutputReaction(true, serialAnswer);
                             }
                         }
+                        // Equals not.
                         else
                         {
-                            // Execute positive serial action.
-                            if (SerialAction.serialOutputIndex == SerialIndex.Positive)
+                            if (SerialAction.serialOutputIndex == SerialIndex.Both)
                             {
-
+                                ExecuteSerialAction(true, serialAnswer);
+                            }
+                            else if (SerialAction.serialOutputIndex == SerialIndex.Negative)
+                            {
+                                ExecuteSerialAction(false, serialAnswer);
                             }
 
-                            // Execute positive output action.
-                            if (OutputAction.postiveIndex != OutputIndex.None)
+                            if (OutputAction.negativeIndex != OutputIndex.None)
                             {
-
+                                ExecuteOutputReaction(false, serialAnswer);
                             }
                         }
                         break;
                     }
                 case KeywordCheckOperation.ExecuteAlways:
                     {
+                        if (SerialAction.serialOutputIndex != SerialIndex.None)
+                        {
+                            ExecuteSerialAction(true, serialAnswer);
+                        }
+
+                        if (OutputAction.postiveIndex != OutputIndex.None)
+                        {
+                            ExecuteOutputReaction(true, serialAnswer);
+                        }
                         break;
                     }
             }

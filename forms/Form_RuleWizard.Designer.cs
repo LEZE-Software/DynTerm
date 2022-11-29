@@ -128,6 +128,7 @@
             this.cob_function.Name = "cob_function";
             this.cob_function.Size = new System.Drawing.Size(129, 23);
             this.cob_function.TabIndex = 919;
+            this.cob_function.SelectedIndexChanged += new System.EventHandler(this.cob_function_SelectedIndexChanged);
             // 
             // chb_activate
             // 
@@ -360,6 +361,7 @@
             this.cob_outputElementNeg.Name = "cob_outputElementNeg";
             this.cob_outputElementNeg.Size = new System.Drawing.Size(129, 23);
             this.cob_outputElementNeg.TabIndex = 921;
+            this.cob_outputElementNeg.DropDown += new System.EventHandler(this.cob_outputElement_DropDown);
             // 
             // lbl_negOutputElement
             // 
@@ -392,6 +394,7 @@
             this.cob_outputElementPos.Name = "cob_outputElementPos";
             this.cob_outputElementPos.Size = new System.Drawing.Size(129, 23);
             this.cob_outputElementPos.TabIndex = 918;
+            this.cob_outputElementPos.DropDown += new System.EventHandler(this.cob_outputElement_DropDown);
             // 
             // lbl_negOutput_Title
             // 

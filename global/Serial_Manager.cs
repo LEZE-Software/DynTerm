@@ -12,10 +12,18 @@ namespace term
     {
         private static SerialPort port;
         public static LineEndIndex lineEnd { get; private set; }
-        
+
+        private static Form_Center form_main;
+
         public static void SavePortSettings()
         {
-            throw new NotImplementedException();
+            string[] portLines = new string[2]
+            {
+                port.PortName,
+                port.BaudRate.ToString(),
+            };
+
+            File.WriteAllLines("port.dynTerm", portLines);
         }
 
         public static string GetCurrentPortName
@@ -23,9 +31,29 @@ namespace term
             get { return port.PortName; }
         }
 
+        public static bool IsPortConfigured()
+        {
+            return !(port == null);
+        }
+
         public static bool GetConnectionState
         {
-            get { return port.IsOpen; }
+            get
+            {  
+                if(port == null)
+                {
+                    return false;
+                }
+                else
+                {
+                    return port.IsOpen;
+                }
+            }
+        }
+
+        public static void SendCommand(string command)
+        {
+            port.Write(command);
         }
 
         private static void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
@@ -43,14 +71,35 @@ namespace term
             bufferSize = port.ReadBufferSize;
             timeOut = port.ReadTimeout;
 
-            receivedAnswer = port.ReadLine();
+            receivedAnswer = port.ReadExisting();
+
+            form_main.Invoke(new Action(() =>
+            {
+                if (SubFormManager.IsFormOpen(SubFormManager.SubFormIndex.Traffic))
+                {
+                    SubFormManager.form_traffic.AddTrafficItem(receivedAnswer);
+                }
+            }));
 
             AllAnswers.Add(receivedAnswer);
         }
 
-        public static void Initialize()
+        public static void OpenClosePort()
+        {
+            if(port.IsOpen)
+            {
+                port.Close();
+            }
+            else
+            {
+                port.Open();
+            }
+        }
+
+        public static void Initialize(Form_Center main)
         {
             AllAnswers.OnAdd += new EventHandler(ParseReceivedAnswer);
+            form_main = main;
         }
 
         public static void SetPortSettings(string portName, int baudRate, LineEndIndex lineEnd)
@@ -61,7 +110,7 @@ namespace term
 
         public static void ParseReceivedAnswer(object sender, EventArgs e)
         {
-            string answer = AllAnswers[0];
+            string answer = AllAnswers[0];     
 
             foreach (fRule rule in RuleManager.GetListOfRules)
             {
